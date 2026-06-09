@@ -186,6 +186,7 @@ const styles = `
     flex-direction: column;
     align-items: center;
     gap: 16px;
+    perspective: 1000px;
   }
 
   .fc-card-inner {
