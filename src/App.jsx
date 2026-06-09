@@ -1,5 +1,5 @@
-import VehicleQuiz from './VehicleQuiz'
+import FlashCard from './FlashCard'
 
 export default function App() {
-  return <VehicleQuiz />
+  return <FlashCard />
 }
