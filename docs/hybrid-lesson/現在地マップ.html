@@ -1,0 +1,228 @@
+<style>
+  :root{
+    --bg:#FAF6EF; --panel:#FFFFFF; --panel2:#F4EFE5; --ink:#221E18; --soft:#5E574C;
+    --line:#E5DDCF; --accent:#2E7D6F; --accent-soft:#E1EFEB;
+    --ok:#2F8A54; --ok-bg:#E4F1E8; --warn:#A9741A; --warn-bg:#F6EBD3; --info:#33619E; --info-bg:#E3EAF6;
+    --shadow:0 1px 2px rgba(40,32,20,.04),0 8px 24px rgba(40,32,20,.05);
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --bg:#17140F; --panel:#221E18; --panel2:#2A251E; --ink:#EFE8DB; --soft:#B2A794;
+      --line:#38312A; --accent:#5FB3A3; --accent-soft:#1E322D;
+      --ok:#71C08C; --ok-bg:#1D2E22; --warn:#D8A552; --warn-bg:#322816; --info:#7DA6DE; --info-bg:#1B2738;
+      --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 28px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="light"]{
+      --bg:#FAF6EF; --panel:#FFFFFF; --panel2:#F4EFE5; --ink:#221E18; --soft:#5E574C;
+      --line:#E5DDCF; --accent:#2E7D6F; --accent-soft:#E1EFEB;
+      --ok:#2F8A54; --ok-bg:#E4F1E8; --warn:#A9741A; --warn-bg:#F6EBD3; --info:#33619E; --info-bg:#E3EAF6;
+      --shadow:0 1px 2px rgba(40,32,20,.04),0 8px 24px rgba(40,32,20,.05);
+  }
+  :root[data-theme="dark"]{
+      --bg:#17140F; --panel:#221E18; --panel2:#2A251E; --ink:#EFE8DB; --soft:#B2A794;
+      --line:#38312A; --accent:#5FB3A3; --accent-soft:#1E322D;
+      --ok:#71C08C; --ok-bg:#1D2E22; --warn:#D8A552; --warn-bg:#322816; --info:#7DA6DE; --info-bg:#1B2738;
+      --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 28px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box}
+  .page{
+    font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",YuGothic,"Noto Sans JP","Meiryo",sans-serif;
+    background:var(--bg); color:var(--ink); line-height:1.7;
+    -webkit-font-smoothing:antialiased; padding:32px 20px 72px;
+  }
+  .wrap{max-width:1060px; margin:0 auto}
+  .eyebrow{font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:700; margin:0 0 8px}
+  h1{font-size:clamp(26px,4vw,38px); line-height:1.2; margin:0 0 10px; letter-spacing:.01em; text-wrap:balance}
+  .lede{color:var(--soft); font-size:16px; max-width:60ch; margin:0}
+  .meta{margin-top:14px; font-size:13px; color:var(--soft); display:flex; gap:14px; flex-wrap:wrap}
+  .meta b{color:var(--ink); font-weight:600}
+
+  section{margin-top:40px}
+  h2{font-size:19px; margin:0 0 4px; display:flex; align-items:baseline; gap:10px}
+  h2 .n{font-size:12px; font-weight:700; color:var(--accent); background:var(--accent-soft);
+       border-radius:6px; padding:2px 8px; letter-spacing:.05em}
+  .sub{color:var(--soft); font-size:13.5px; margin:0 0 18px}
+
+  .legend{display:flex; gap:8px; flex-wrap:wrap; margin-top:22px}
+  .chip{display:inline-flex; align-items:center; gap:6px; font-size:12.5px; font-weight:600;
+        padding:3px 10px; border-radius:999px; white-space:nowrap; border:1px solid transparent}
+  .chip::before{content:""; width:7px; height:7px; border-radius:50%}
+  .chip.ok{color:var(--ok); background:var(--ok-bg)} .chip.ok::before{background:var(--ok)}
+  .chip.warn{color:var(--warn); background:var(--warn-bg)} .chip.warn::before{background:var(--warn)}
+  .chip.info{color:var(--info); background:var(--info-bg)} .chip.info::before{background:var(--info)}
+
+  .roles{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+  .card{background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:18px 18px 16px; box-shadow:var(--shadow)}
+  .card .role{font-size:12px; letter-spacing:.08em; color:var(--accent); font-weight:700; text-transform:uppercase}
+  .card .who{font-size:18px; font-weight:700; margin:4px 0 2px}
+  .card .who small{display:block; font-size:12.5px; font-weight:500; color:var(--soft); letter-spacing:0}
+  .card ul{margin:12px 0 14px; padding-left:18px; color:var(--soft); font-size:13.5px}
+  .card ul li{margin:3px 0}
+  .card ul li b{color:var(--ink); font-weight:600}
+
+  .tablewrap{overflow-x:auto; border:1px solid var(--line); border-radius:14px; box-shadow:var(--shadow); background:var(--panel)}
+  table{border-collapse:collapse; width:100%; min-width:560px; font-size:14px}
+  thead th{text-align:left; font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--soft);
+           font-weight:700; padding:13px 16px; background:var(--panel2); border-bottom:1px solid var(--line)}
+  tbody td{padding:13px 16px; border-bottom:1px solid var(--line); vertical-align:middle}
+  tbody tr:last-child td{border-bottom:none}
+  td .part{font-weight:700}
+  td.num{font-variant-numeric:tabular-nums; font-weight:700; color:var(--accent); white-space:nowrap}
+
+  .cols{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+  .panel{background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:18px 20px; box-shadow:var(--shadow)}
+  .panel.decided{border-top:3px solid var(--ok)}
+  .panel.open{border-top:3px solid var(--warn)}
+  .panel h3{margin:0 0 12px; font-size:15px; display:flex; align-items:center; gap:8px}
+  .panel ul{margin:0; padding:0; list-style:none}
+  .panel li{position:relative; padding:8px 0 8px 26px; font-size:14px; border-bottom:1px dashed var(--line)}
+  .panel li:last-child{border-bottom:none}
+  .panel li::before{position:absolute; left:0; top:8px; font-weight:800}
+  .panel.decided li::before{content:"✓"; color:var(--ok)}
+  .panel.open li::before{content:"?"; color:var(--warn)}
+
+  ol.q{list-style:none; counter-reset:q; margin:0; padding:0; display:grid; gap:10px}
+  ol.q li{counter-increment:q; position:relative; background:var(--panel); border:1px solid var(--line);
+          border-radius:12px; padding:14px 16px 14px 52px; box-shadow:var(--shadow); font-size:14.5px}
+  ol.q li::before{content:counter(q); position:absolute; left:14px; top:13px; width:26px; height:26px;
+          display:grid; place-items:center; border-radius:8px; background:var(--accent-soft); color:var(--accent);
+          font-weight:800; font-size:14px}
+  ol.q li .pri{float:right; margin-left:12px}
+
+  .flow{display:flex; flex-wrap:wrap; gap:6px; margin-top:4px}
+  .flow span{font-size:12.5px; padding:5px 10px; border-radius:8px; background:var(--panel2); border:1px solid var(--line); color:var(--soft)}
+  .flow span b{color:var(--ink); font-weight:600}
+  .flow span.hl{background:var(--accent-soft); border-color:transparent; color:var(--accent); font-weight:600}
+
+  .foot{margin-top:44px; padding-top:16px; border-top:1px solid var(--line); font-size:12.5px; color:var(--soft)}
+  @media (max-width:760px){
+    .roles{grid-template-columns:1fr} .cols{grid-template-columns:1fr}
+  }
+</style>
+
+<div class="page"><div class="wrap">
+
+  <p class="eyebrow">ハイブリッドレッスン</p>
+  <h1>現在地マップ — いま、どこにいるか</h1>
+  <p class="lede">部品がたくさんあって混乱しやすいので、全体を1枚に整理しました。「誰が何を作るか」「何がどれだけあるか」「決まったこと／まだのこと」「今日聞くこと」の順で見てください。</p>
+  <div class="meta"><span>更新：<b>2026-07-07</b></span><span>次の打ち合わせ：<b>本日 15:00（システム会社）</b></span><span>設計：<b>大坪可奈</b></span></div>
+
+  <div class="legend">
+    <span class="chip ok">決定・整理済み</span>
+    <span class="chip warn">検討中・要確認</span>
+    <span class="chip info">制作前／実装中</span>
+  </div>
+
+  <section>
+    <h2><span class="n">01</span>登場人物と役割 — 誰が何を作る？</h2>
+    <p class="sub">3者で分担しています。役割が混ざると混乱するので、ここを分けて考えます。</p>
+    <div class="roles">
+      <div class="card">
+        <div class="role">レッスン設計</div>
+        <div class="who">可奈さん<small>あなた</small></div>
+        <ul>
+          <li><b>60分・16場面</b>の中身</li>
+          <li>使う教材・カード選び</li>
+          <li>「世界水準」の狙い</li>
+        </ul>
+        <span class="chip ok">設計ほぼ固まった</span>
+      </div>
+      <div class="card">
+        <div class="role">アプリ本体</div>
+        <div class="who">システム会社<small>クラ・ゼミ／ベンダー</small></div>
+        <ul>
+          <li>本部PC管理画面</li>
+          <li>先生アプリ・3デバイス同期</li>
+          <li>配信・年間カレンダー</li>
+        </ul>
+        <span class="chip info">ステージング稼働中</span>
+      </div>
+      <div class="card">
+        <div class="role">ゲーム・カード制作</div>
+        <div class="who">可奈さん＋Claude<small>この場所</small></div>
+        <ul>
+          <li>ハイブリッド<b>167ゲーム</b></li>
+          <li>フラッシュカードの整理</li>
+          <li>育脳／復習の中身</li>
+        </ul>
+        <span class="chip info">これから制作</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="n">02</span>主な部品 — 何が、どれだけ、何のために</h2>
+    <p class="sub">レッスンを作る「部品」の一覧。量が多いのはゲームとカードですが、置き場所と役割は分かれています。</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>部品</th><th>量</th><th>何のために使う</th><th>状況</th></tr></thead>
+        <tbody>
+          <tr><td class="part">レッスン進行</td><td class="num">16場面 / 60分</td><td>レッスン全体の流れ（統合版v5）</td><td><span class="chip ok">合意</span></td></tr>
+          <tr><td class="part">ハイブリッドゲーム</td><td class="num">167本</td><td>レッスン中に使う本命ゲーム</td><td><span class="chip info">リスト化済・制作前</span></td></tr>
+          <tr><td class="part">フラッシュカード</td><td class="num">816セット</td><td>毎週プログラムに入れる</td><td><span class="chip ok">分類 整理済み</span></td></tr>
+          <tr><td class="part">育脳ゲーム</td><td class="num">350本<small>（50完成）</small></td><td>レッスン中の「時々の遊び」</td><td><span class="chip info">ベンダー移植中</span></td></tr>
+          <tr><td class="part">復習ゲーム</td><td class="num">〜5000本</td><td>宿題・家庭用（Kulabo相当）</td><td><span class="chip info">ベンダー制作中</span></td></tr>
+          <tr><td class="part">アプリ管理画面</td><td class="num">5画面</td><td>プログラム／コンテンツ／配信／カード／実行結果</td><td><span class="chip info">ステージング稼働</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="n">03</span>決まったこと ／ まだ決まっていないこと</h2>
+    <p class="sub">左は自信を持ってよい部分。右は今日の打ち合わせで詰める部分です。</p>
+    <div class="cols">
+      <div class="panel decided">
+        <h3><span class="chip ok">決定・整理済み</span></h3>
+        <ul>
+          <li>レッスンは<b>16場面（統合版v5）</b></li>
+          <li>運動・エンジョイタイムは<b>終盤</b></li>
+          <li>発表・振り返りは<b>残す</b>（時間があれば）／SSTは14に含める</li>
+          <li>個別ゲームは固定枠にせず<b>「時々の遊び」</b></li>
+          <li>フラッシュカード分類＝発注表の<b>「分野」＝ベンダーの「サブジャンル」</b>（作り直し不要）</li>
+          <li>ゲーム役割：167=レッスン中／育脳=遊び／復習=宿題</li>
+        </ul>
+      </div>
+      <div class="panel open">
+        <h3><span class="chip warn">検討中・要確認</span></h3>
+        <ul>
+          <li>1プログラムに<b>16場面・60分</b>入るか（サンプルは30分）</li>
+          <li><b>28課題</b>を、アプリのカテゴリ／ねらいのどこに載せるか</li>
+          <li><b>育つ力（7要素）</b>をどこに持つか</li>
+          <li>運動・発表など<b>非デジタル場面</b>を置けるか</li>
+          <li>発達段階の刻み：<b>ゲームS1–S12 ⇄ ベンダーs01–s24</b> の対応</li>
+          <li>ゲーム投入<b>CSVの列</b>定義</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="n">04</span>今日の打ち合わせで確認すること</h2>
+    <p class="sub">この順で聞けば、いちばん大事なずれから埋まります。<span style="color:var(--info);font-weight:600">🔴＝今日ぜひ／🟡＝近いうちに</span></p>
+    <ol class="q">
+      <li><span class="pri chip ok">🔴</span>私の発注表の<b>「分野」を、そのままサブジャンルに使ってよいか</b>（＝分類はもう整理できている）</li>
+      <li><span class="pri chip ok">🔴</span>1プログラムに<b>16場面・60分</b>を入れられるか（サンプルが30分なので確認）</li>
+      <li><span class="pri chip ok">🔴</span>発達段階：私のゲーム<b>S1–S12</b>と、ベンダーの<b>s01–s24</b>の<b>対応ルール</b></li>
+      <li><span class="pri chip ok">🔴</span><b>28課題／167ゲーム</b>は、ねらい・タグのどこに載せるか</li>
+      <li><span class="pri chip warn">🟡</span><b>育つ力（IQ/EQ/SQ・7要素）</b>のタグを持てるか</li>
+      <li><span class="pri chip warn">🟡</span><b>非デジタル場面</b>（運動・発表・実物教材）を置けるか</li>
+      <li><span class="pri chip warn">🟡</span>ゲーム投入<b>CSVの列</b>（167本の項目と合うか）</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2><span class="n">05</span>参考：統合レッスン進行 v5（16場面）</h2>
+    <p class="sub">🌐＝外部基準に沿って「世界水準」で作る場面。</p>
+    <div class="flow">
+      <span>1 <b>はじまりのうた</b></span><span>2 お名前・気分</span><span>3 深呼吸・イメトレ</span><span>4 直観像</span>
+      <span>5 リンクカード</span><span>6 フラッシュカード</span><span>7 今月の歌</span><span>8 HLタイム3つ</span>
+      <span class="hl">9 文字🌐</span><span>10 かずのうた</span><span class="hl">11 数🌐</span><span>12 そろばんの歌</span><span class="hl">13 図形🌐</span>
+      <span>14 エンジョイタイム＋SST</span><span>15 発表・振り返り</span><span>16 終わりの歌</span>
+    </div>
+  </section>
+
+  <p class="foot">この1枚は全体の要約です。詳しい設計は <b>ARCHITECTURE.md</b>、フラッシュカードは <b>フラッシュカード分類_整理.md</b>、当日用は <b>打ち合わせメモ_20260707_15時.md</b> にあります。</p>
+
+</div></div>
