@@ -89,6 +89,11 @@
           display:grid; place-items:center; border-radius:8px; background:var(--accent-soft); color:var(--accent);
           font-weight:800; font-size:14px}
   ol.q li .pri{float:right; margin-left:12px}
+  .ql{display:flex; flex-wrap:wrap; gap:5px; margin:9px 0 2px; align-items:center}
+  .ql em{font-style:normal; font-weight:700; color:var(--ink); font-size:11.5px; margin-right:2px}
+  .ql span{font-size:11.5px; padding:2px 8px; border-radius:6px; background:var(--panel2); border:1px solid var(--line); color:var(--soft); white-space:nowrap}
+  .ql span.age{color:var(--accent); background:var(--accent-soft); border-color:transparent}
+  .ask{display:block; margin-top:7px; font-size:13px; color:var(--info); font-weight:600}
 
   .flow{display:flex; flex-wrap:wrap; gap:6px; margin-top:4px}
   .flow span{font-size:12.5px; padding:5px 10px; border-radius:8px; background:var(--panel2); border:1px solid var(--line); color:var(--soft)}
@@ -203,12 +208,23 @@
     <h2><span class="n">04</span>今日の打ち合わせで確認すること</h2>
     <p class="sub">この順で聞けば、いちばん大事なずれから埋まります。<span style="color:var(--info);font-weight:600">🔴＝今日ぜひ／🟡＝近いうちに</span></p>
     <ol class="q">
-      <li><span class="pri chip ok">🔴</span>私の発注表の<b>「分野」を、そのままサブジャンルに使ってよいか</b>（＝<b>割り当て表を用意済み</b>。フラッシュカード分類_整理.md）</li>
-      <li><span class="pri chip ok">🔴</span>カードは<b>「枠に入れていく方式」</b>か。枠は<b>編集できる</b>か（枠はサンプルで今後変わる）</li>
-      <li><span class="pri chip ok">🔴</span>1プログラムに<b>16場面・60分</b>を入れられるか（サンプルが30分なので確認）</li>
+      <li><span class="pri chip ok">🔴</span>私の発注表の<b>「分野」を、そのままサブジャンルに使ってよいか</b>（割り当て表あり）
+        <div class="ql"><em>分野：</em><span>リンク</span><span>百科事典</span><span>ことわざ</span><span>反対語</span><span>四字熟語</span><span>俳句</span><span>基礎概念</span><span>もじ</span><span>かず</span><span>右脳</span><span>IQ</span><span>実数フラッシュ</span><span>絵画</span><span>英語</span><span>English Diary</span><span>暗唱</span><span>百人一首</span></div>
+      </li>
+      <li><span class="pri chip ok">🔴</span>カードは<b>「枠に入れていく方式」</b>か。枠は<b>編集できる</b>か（枠はサンプルで今後変わる）
+        <div class="ql"><em>枠（週セット19）：</em><span>リンク</span><span>百科事典</span><span>ことわざ・慣用句</span><span>反対語</span><span>四字熟語</span><span>俳句</span><span class="age">1〜3才</span><span>基礎概念</span><span>もじ</span><span>かず</span><span>右脳</span><span class="age">4〜6才</span><span>基礎概念</span><span>もじ</span><span>かず</span><span>右脳</span><span>IQ</span><span>実数フラッシュ</span><span>絵画</span><span>英単語</span><span>English Diary</span></div>
+      </li>
+      <li><span class="pri chip ok">🔴</span>1プログラムに<b>16場面・60分</b>を入れられるか（サンプルが30分）
+        <span class="ask">→ お願い：<b>コンテンツを入れると、60分までの「残り時間」が分かる</b>ように表示してほしい</span>
+      </li>
       <li><span class="pri chip ok">🔴</span>発達段階は<b>24ステージ（s01–s24）で確定</b>。私のゲーム（旧S1–S12）の<b>対応ルール</b></li>
-      <li><span class="pri chip warn">🟡</span><b>28課題／167ゲーム</b>は、ねらい・タグのどこに載せるか</li>
-      <li><span class="pri chip warn">🟡</span><b>育つ力（IQ/EQ/SQ・7要素）</b>のタグを持てるか</li>
+      <li><span class="pri chip warn">🟡</span><b>ねらい・タグ</b>には、どんなものがあるか（28課題／167ゲームの載せ先）
+        <div class="ql"><em>ねらい(Kulabo25＝5領域)：</em><span>言語・コミュ</span><span>健康・生活</span><span>認知・行動</span><span>人間関係・社会性</span><span>運動・感覚</span></div>
+        <div class="ql"><em>タグ例：</em><span>あんしょう</span><span>反対語</span><span>九九</span><span>動物</span><span>数</span><span>かたち</span><span>もじ</span><span>のりもの</span><span>コペルン由来</span><span>Kulabo由来</span><span>HL自前</span><span>季節</span></div>
+      </li>
+      <li><span class="pri chip warn">🟡</span><b>育つ力タグ</b>を持てるか（＝これを伝える）
+        <div class="ql"><em>育つ力：</em><span>IQ</span><span>EQ</span><span>SQ</span><span class="age">＋7要素</span><span>①エージェンシー</span><span>②EF</span><span>③身体性認知</span><span>④インテロセプション</span><span>⑤グロースマインドセット</span><span>⑥ごっこ遊び</span><span>⑦4C's</span></div>
+      </li>
       <li><span class="pri chip warn">🟡</span><b>非デジタル場面</b>（運動・発表）を置けるか／ゲーム投入<b>CSVの列</b></li>
     </ol>
   </section>
