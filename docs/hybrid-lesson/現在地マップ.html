@@ -34,212 +34,143 @@
   .wrap{max-width:1060px; margin:0 auto}
   .eyebrow{font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:700; margin:0 0 8px}
   h1{font-size:clamp(26px,4vw,38px); line-height:1.2; margin:0 0 10px; letter-spacing:.01em; text-wrap:balance}
-  .lede{color:var(--soft); font-size:16px; max-width:60ch; margin:0}
+  .lede{color:var(--soft); font-size:16px; max-width:64ch; margin:0}
   .meta{margin-top:14px; font-size:13px; color:var(--soft); display:flex; gap:14px; flex-wrap:wrap}
   .meta b{color:var(--ink); font-weight:600}
-
   section{margin-top:40px}
   h2{font-size:19px; margin:0 0 4px; display:flex; align-items:baseline; gap:10px}
-  h2 .n{font-size:12px; font-weight:700; color:var(--accent); background:var(--accent-soft);
-       border-radius:6px; padding:2px 8px; letter-spacing:.05em}
+  h2 .n{font-size:12px; font-weight:700; color:var(--accent); background:var(--accent-soft); border-radius:6px; padding:2px 8px; letter-spacing:.05em}
   .sub{color:var(--soft); font-size:13.5px; margin:0 0 18px}
-
   .legend{display:flex; gap:8px; flex-wrap:wrap; margin-top:22px}
-  .chip{display:inline-flex; align-items:center; gap:6px; font-size:12.5px; font-weight:600;
-        padding:3px 10px; border-radius:999px; white-space:nowrap; border:1px solid transparent}
+  .chip{display:inline-flex; align-items:center; gap:6px; font-size:12.5px; font-weight:600; padding:3px 10px; border-radius:999px; white-space:nowrap; border:1px solid transparent}
   .chip::before{content:""; width:7px; height:7px; border-radius:50%}
   .chip.ok{color:var(--ok); background:var(--ok-bg)} .chip.ok::before{background:var(--ok)}
   .chip.warn{color:var(--warn); background:var(--warn-bg)} .chip.warn::before{background:var(--warn)}
   .chip.info{color:var(--info); background:var(--info-bg)} .chip.info::before{background:var(--info)}
 
-  .roles{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
-  .card{background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:18px 18px 16px; box-shadow:var(--shadow)}
-  .card .role{font-size:12px; letter-spacing:.08em; color:var(--accent); font-weight:700; text-transform:uppercase}
-  .card .who{font-size:18px; font-weight:700; margin:4px 0 2px}
-  .card .who small{display:block; font-size:12.5px; font-weight:500; color:var(--soft); letter-spacing:0}
-  .card ul{margin:12px 0 14px; padding-left:18px; color:var(--soft); font-size:13.5px}
-  .card ul li{margin:3px 0}
-  .card ul li b{color:var(--ink); font-weight:600}
+  .track{display:flex; flex-direction:column; gap:10px}
+  .row{display:grid; grid-template-columns:26px 1fr auto; gap:14px; align-items:start; background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:14px 16px; box-shadow:var(--shadow)}
+  .row .mk{font-size:18px; line-height:1.4}
+  .row .body h3{margin:0 0 3px; font-size:15.5px}
+  .row .body p{margin:0; font-size:13px; color:var(--soft)}
+  .row .st{align-self:center}
 
   .tablewrap{overflow-x:auto; border:1px solid var(--line); border-radius:14px; box-shadow:var(--shadow); background:var(--panel)}
-  table{border-collapse:collapse; width:100%; min-width:560px; font-size:14px}
-  thead th{text-align:left; font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--soft);
-           font-weight:700; padding:13px 16px; background:var(--panel2); border-bottom:1px solid var(--line)}
-  tbody td{padding:13px 16px; border-bottom:1px solid var(--line); vertical-align:middle}
+  table{border-collapse:collapse; width:100%; min-width:520px; font-size:14px}
+  thead th{text-align:left; font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--soft); font-weight:700; padding:12px 16px; background:var(--panel2); border-bottom:1px solid var(--line)}
+  tbody td{padding:11px 16px; border-bottom:1px solid var(--line)}
   tbody tr:last-child td{border-bottom:none}
-  td .part{font-weight:700}
   td.num{font-variant-numeric:tabular-nums; font-weight:700; color:var(--accent); white-space:nowrap}
 
   .cols{display:grid; grid-template-columns:1fr 1fr; gap:16px}
   .panel{background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:18px 20px; box-shadow:var(--shadow)}
-  .panel.decided{border-top:3px solid var(--ok)}
-  .panel.open{border-top:3px solid var(--warn)}
+  .panel.ok{border-top:3px solid var(--ok)} .panel.warn{border-top:3px solid var(--warn)}
   .panel h3{margin:0 0 12px; font-size:15px; display:flex; align-items:center; gap:8px}
   .panel ul{margin:0; padding:0; list-style:none}
-  .panel li{position:relative; padding:8px 0 8px 26px; font-size:14px; border-bottom:1px dashed var(--line)}
+  .panel li{position:relative; padding:7px 0 7px 24px; font-size:14px; border-bottom:1px dashed var(--line)}
   .panel li:last-child{border-bottom:none}
-  .panel li::before{position:absolute; left:0; top:8px; font-weight:800}
-  .panel.decided li::before{content:"✓"; color:var(--ok)}
-  .panel.open li::before{content:"?"; color:var(--warn)}
+  .panel li::before{position:absolute; left:0; top:7px; font-weight:800}
+  .panel.ok li::before{content:"✓"; color:var(--ok)} .panel.warn li::before{content:"＋"; color:var(--warn)}
 
-  ol.q{list-style:none; counter-reset:q; margin:0; padding:0; display:grid; gap:10px}
-  ol.q li{counter-increment:q; position:relative; background:var(--panel); border:1px solid var(--line);
-          border-radius:12px; padding:14px 16px 14px 52px; box-shadow:var(--shadow); font-size:14.5px}
-  ol.q li::before{content:counter(q); position:absolute; left:14px; top:13px; width:26px; height:26px;
-          display:grid; place-items:center; border-radius:8px; background:var(--accent-soft); color:var(--accent);
-          font-weight:800; font-size:14px}
-  ol.q li .pri{float:right; margin-left:12px}
-  .ql{display:flex; flex-wrap:wrap; gap:5px; margin:9px 0 2px; align-items:center}
-  .ql em{font-style:normal; font-weight:700; color:var(--ink); font-size:11.5px; margin-right:2px}
-  .ql span{font-size:11.5px; padding:2px 8px; border-radius:6px; background:var(--panel2); border:1px solid var(--line); color:var(--soft); white-space:nowrap}
-  .ql span.age{color:var(--accent); background:var(--accent-soft); border-color:transparent}
-  .ask{display:block; margin-top:7px; font-size:13px; color:var(--info); font-weight:600}
+  ol.q{list-style:none; counter-reset:q; margin:0; padding:0; display:grid; gap:9px}
+  ol.q li{counter-increment:q; position:relative; background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:13px 16px 13px 50px; box-shadow:var(--shadow); font-size:14px}
+  ol.q li::before{content:counter(q); position:absolute; left:13px; top:12px; width:24px; height:24px; display:grid; place-items:center; border-radius:7px; background:var(--accent-soft); color:var(--accent); font-weight:800; font-size:13px}
 
   .flow{display:flex; flex-wrap:wrap; gap:6px; margin-top:4px}
-  .flow span{font-size:12.5px; padding:5px 10px; border-radius:8px; background:var(--panel2); border:1px solid var(--line); color:var(--soft)}
-  .flow span b{color:var(--ink); font-weight:600}
+  .flow span{font-size:12px; padding:5px 9px; border-radius:8px; background:var(--panel2); border:1px solid var(--line); color:var(--soft)}
   .flow span.hl{background:var(--accent-soft); border-color:transparent; color:var(--accent); font-weight:600}
-
   .foot{margin-top:44px; padding-top:16px; border-top:1px solid var(--line); font-size:12.5px; color:var(--soft)}
-  @media (max-width:760px){
-    .roles{grid-template-columns:1fr} .cols{grid-template-columns:1fr}
-  }
+  @media (max-width:760px){ .cols{grid-template-columns:1fr} }
 </style>
 
 <div class="page"><div class="wrap">
 
   <p class="eyebrow">ハイブリッドレッスン</p>
-  <h1>現在地マップ — いま、どこにいるか</h1>
-  <p class="lede">部品がたくさんあって混乱しやすいので、全体を1枚に整理しました。「誰が何を作るか」「何がどれだけあるか」「決まったこと／まだのこと」「今日聞くこと」の順で見てください。</p>
-  <div class="meta"><span>更新：<b>2026-07-07</b></span><span>次の打ち合わせ：<b>本日 15:00（システム会社）</b></span><span>設計：<b>大坪可奈</b></span></div>
+  <h1>現在地マップ — プロジェクト進捗</h1>
+  <p class="lede">「数」という1本の柱を <b>思想 → 28段 → 12週 → ゲーム → コペル照合</b> まで通しきりました。文字は背骨まで。教材資産（167本・育脳345本・カード816）は整理済み。あとはこの型を他教科へ展開する段階です。</p>
+  <div class="meta"><span>更新：<b>2026-07-08</b></span><span>設計：<b>大坪可奈</b></span><span>資料：<b>約30ファイル（GitHubに保存）</b></span></div>
 
   <div class="legend">
-    <span class="chip ok">決定・整理済み</span>
-    <span class="chip warn">検討中・要確認</span>
-    <span class="chip info">制作前／実装中</span>
+    <span class="chip ok">完了</span>
+    <span class="chip warn">途中</span>
+    <span class="chip info">これから</span>
   </div>
 
   <section>
-    <h2><span class="n">01</span>登場人物と役割 — 誰が何を作る？</h2>
-    <p class="sub">3者で分担しています。役割が混ざると混乱するので、ここを分けて考えます。</p>
-    <div class="roles">
-      <div class="card">
-        <div class="role">レッスン設計</div>
-        <div class="who">可奈さん<small>あなた</small></div>
-        <ul>
-          <li><b>60分・16場面</b>の中身</li>
-          <li>使う教材・カード選び</li>
-          <li>「世界水準」の狙い</li>
-        </ul>
-        <span class="chip ok">設計ほぼ固まった</span>
-      </div>
-      <div class="card">
-        <div class="role">アプリ本体</div>
-        <div class="who">システム会社<small>クラ・ゼミ／ベンダー</small></div>
-        <ul>
-          <li>本部PC管理画面</li>
-          <li>先生アプリ・3デバイス同期</li>
-          <li>配信・年間カレンダー</li>
-        </ul>
-        <span class="chip info">ステージング稼働中</span>
-      </div>
-      <div class="card">
-        <div class="role">ゲーム・カード制作</div>
-        <div class="who">可奈さん＋Claude<small>この場所</small></div>
-        <ul>
-          <li>ハイブリッド<b>167ゲーム</b></li>
-          <li>フラッシュカードの整理</li>
-          <li>育脳／復習の中身</li>
-        </ul>
-        <span class="chip info">これから制作</span>
-      </div>
+    <h2><span class="n">01</span>エリア別の進捗</h2>
+    <p class="sub">教育の土台と「数」は一本通り、資産・コペル照合・打ち合わせ資料も揃った。文字は背骨まで。</p>
+    <div class="track">
+      <div class="row"><div class="mk">✅</div><div class="body"><h3>教育の土台（設計フレーム）</h3><p>北極星（AI時代×世界水準）／0〜6歳・28段フレーム／育つ力／飽きさせない12週設計</p></div><div class="st"><span class="chip ok">完了</span></div></div>
+      <div class="row"><div class="mk">✅</div><div class="body"><h3>数（1教科目・見本として完走）</h3><p>11要素 → 28段の各行 → 全段12週 → ゲーム配置 → コペル数プログラム照合＋足す8点</p></div><div class="st"><span class="chip ok">完了</span></div></div>
+      <div class="row"><div class="mk">◐</div><div class="body"><h3>文字（2教科目・背骨まで）</h3><p>9要素＋作文 → 28段の各行 → ゲーム配置 → ハイブリッド3画面設計。<b>12週・3歳ゲームは未</b></p></div><div class="st"><span class="chip warn">途中</span></div></div>
+      <div class="row"><div class="mk">✅</div><div class="body"><h3>教材・ゲーム資産の整理</h3><p>ハイブリッド167本→28段／育脳345本（実装済50）→数・文字へ配置／フラッシュ816・研修カード枠</p></div><div class="st"><span class="chip ok">完了</span></div></div>
+      <div class="row"><div class="mk">✅</div><div class="body"><h3>コペルより「下がらない」照合</h3><p>プログラム全体カバレッジ／数プログラム（足す8点）／文字取り組み</p></div><div class="st"><span class="chip ok">完了</span></div></div>
+      <div class="row"><div class="mk">✅</div><div class="body"><h3>ベンダー・打ち合わせ資料</h3><p>ARCHITECTURE（用語・R1〜R8）／メモ／確認事項ワード／このマップ</p></div><div class="st"><span class="chip ok">完了</span></div></div>
     </div>
   </section>
 
   <section>
-    <h2><span class="n">02</span>主な部品 — 何が、どれだけ、何のために</h2>
-    <p class="sub">レッスンを作る「部品」の一覧。量が多いのはゲームとカードですが、置き場所と役割は分かれています。</p>
-    <div class="tablewrap">
-      <table>
-        <thead><tr><th>部品</th><th>量</th><th>何のために使う</th><th>状況</th></tr></thead>
-        <tbody>
-          <tr><td class="part">レッスン進行</td><td class="num">16場面 / 60分</td><td>レッスン全体の流れ（統合版v5）</td><td><span class="chip ok">合意</span></td></tr>
-          <tr><td class="part">ハイブリッドゲーム</td><td class="num">167本</td><td>レッスン中に使う本命ゲーム</td><td><span class="chip info">リスト化済・制作前</span></td></tr>
-          <tr><td class="part">フラッシュカード</td><td class="num">816セット</td><td>毎週プログラムに入れる</td><td><span class="chip ok">分類 整理済み</span></td></tr>
-          <tr><td class="part">育脳ゲーム</td><td class="num">350本<small>（50完成）</small></td><td>レッスン中の「時々の遊び」</td><td><span class="chip info">ベンダー移植中</span></td></tr>
-          <tr><td class="part">復習ゲーム</td><td class="num">〜5000本</td><td>宿題・家庭用（Kulabo相当）</td><td><span class="chip info">ベンダー制作中</span></td></tr>
-          <tr><td class="part">アプリ管理画面</td><td class="num">5画面</td><td>プログラム／コンテンツ／配信／カード／実行結果</td><td><span class="chip info">ステージング稼働</span></td></tr>
-        </tbody>
-      </table>
-    </div>
+    <h2><span class="n">02</span>いま揃っている部品</h2>
+    <p class="sub">設計と資産の数量。これらを組み合わせてプログラムが作れる。</p>
+    <div class="tablewrap"><table>
+      <thead><tr><th>部品</th><th>量</th><th>状態</th></tr></thead>
+      <tbody>
+        <tr><td>発達段階フレーム</td><td class="num">28段（0〜6歳）</td><td><span class="chip ok">確定</span></td></tr>
+        <tr><td>レッスン進行</td><td class="num">16場面 / 60分</td><td><span class="chip ok">合意</span></td></tr>
+        <tr><td>数カリキュラム</td><td class="num">28段＋全段12週</td><td><span class="chip ok">完走</span></td></tr>
+        <tr><td>文字カリキュラム</td><td class="num">28段（背骨）</td><td><span class="chip warn">12週は未</span></td></tr>
+        <tr><td>ハイブリッド167本</td><td class="num">167本</td><td><span class="chip ok">28段へ配置</span></td></tr>
+        <tr><td>育脳ゲーム</td><td class="num">345本（実装50）</td><td><span class="chip ok">数・文字へ配置</span></td></tr>
+        <tr><td>フラッシュカード</td><td class="num">816セット</td><td><span class="chip ok">分類・枠 整理</span></td></tr>
+      </tbody>
+    </table></div>
   </section>
 
   <section>
-    <h2><span class="n">03</span>決まったこと ／ まだ決まっていないこと</h2>
-    <p class="sub">左は自信を持ってよい部分。右は今日の打ち合わせで詰める部分です。</p>
+    <h2><span class="n">03</span>コペルより下がらない（照合の結論）</h2>
+    <p class="sub">コペルの項目はほぼ覆えており、質はむしろ精密化。あと数点を足せば「網羅」。</p>
     <div class="cols">
-      <div class="panel decided">
-        <h3><span class="chip ok">決定・整理済み</span></h3>
+      <div class="panel ok">
+        <h3><span class="chip ok">覆えている・上乗せ</span></h3>
         <ul>
-          <li>レッスンは<b>16場面（統合版v5）</b></li>
-          <li>運動・エンジョイタイムは<b>終盤</b></li>
-          <li>発表・振り返りは<b>残す</b>（時間があれば）／SSTは14に含める</li>
-          <li>個別ゲームは固定枠にせず<b>「時々の遊び」</b></li>
-          <li>フラッシュカード分類＝発注表の<b>「分野」＝ベンダーの「サブジャンル」</b>（作り直し不要）</li>
-          <li>ゲーム役割：167=レッスン中／育脳=遊び／復習=宿題</li>
+          <li>歌・集中訓練・直観像・リンク・フラッシュ・かず・そろばん・図形・もじ・リトミック…全対応</li>
+          <li>数・文字は<b>28段で精密化</b>、フラッシュは816整理済＝質は向上</li>
+          <li>上乗せ：発表＋SST／粗大運動／個別ゲーム／世界水準の枠組み／3画面ハイブリッド</li>
         </ul>
       </div>
-      <div class="panel open">
-        <h3><span class="chip warn">検討中・要確認</span></h3>
+      <div class="panel warn">
+        <h3><span class="chip warn">足す（虫食い）</span></h3>
         <ul>
-          <li>1プログラムに<b>16場面・60分</b>入るか（サンプルは30分）</li>
-          <li><b>28課題</b>を、アプリのカテゴリ／ねらいのどこに載せるか</li>
-          <li><b>育つ力（7要素）</b>をどこに持つか</li>
-          <li>運動・発表など<b>非デジタル場面</b>を置けるか</li>
-          <li>カードが<b>「枠に入れていく方式」</b>になっているか（枠は編集可か）</li>
-          <li>ゲーム167本（旧S1–S12）を<b>24ステージ</b>へ再マッピング</li>
-          <li>ゲーム投入<b>CSVの列</b>定義</li>
+          <li>数：<b>掛け算・百玉そろばん・マス計算</b>・5とび10とび歌・音の数（洗い出し済／統合中）</li>
+          <li>全体：<b>暗唱・速読・連想ゲーム</b>を16場面に明示</li>
+          <li>→ 足せば「コペルより下がらない」を担保</li>
         </ul>
       </div>
     </div>
   </section>
 
   <section>
-    <h2><span class="n">04</span>今日の打ち合わせで確認すること</h2>
-    <p class="sub">この順で聞けば、いちばん大事なずれから埋まります。<span style="color:var(--info);font-weight:600">🔴＝今日ぜひ／🟡＝近いうちに</span></p>
+    <h2><span class="n">04</span>これから（次の一手）</h2>
+    <p class="sub">優先順。型はできているので、あとは展開と作り込み。</p>
     <ol class="q">
-      <li><span class="pri chip ok">🔴</span>私の発注表の<b>「分野」を、そのままサブジャンルに使ってよいか</b>（割り当て表あり）
-        <div class="ql"><em>分野：</em><span>リンク</span><span>百科事典</span><span>ことわざ</span><span>反対語</span><span>四字熟語</span><span>俳句</span><span>基礎概念</span><span>もじ</span><span>かず</span><span>右脳</span><span>IQ</span><span>実数フラッシュ</span><span>絵画</span><span>英語</span><span>English Diary</span><span>暗唱</span><span>百人一首</span></div>
-      </li>
-      <li><span class="pri chip ok">🔴</span>カードは<b>「枠に入れていく方式」</b>か。枠は<b>編集できる</b>か（枠はサンプルで今後変わる）
-        <div class="ql"><em>枠（週セット19）：</em><span>リンク</span><span>百科事典</span><span>ことわざ・慣用句</span><span>反対語</span><span>四字熟語</span><span>俳句</span><span class="age">1〜3才</span><span>基礎概念</span><span>もじ</span><span>かず</span><span>右脳</span><span class="age">4〜6才</span><span>基礎概念</span><span>もじ</span><span>かず</span><span>右脳</span><span>IQ</span><span>実数フラッシュ</span><span>絵画</span><span>英単語</span><span>English Diary</span></div>
-      </li>
-      <li><span class="pri chip ok">🔴</span>1プログラムに<b>16場面・60分</b>を入れられるか（サンプルが30分）
-        <span class="ask">→ お願い：<b>コンテンツを入れると、60分までの「残り時間」が分かる</b>ように表示してほしい</span>
-      </li>
-      <li><span class="pri chip ok">🔴</span>発達段階は<b>24ステージ（s01–s24）で確定</b>。私のゲーム（旧S1–S12）の<b>対応ルール</b></li>
-      <li><span class="pri chip warn">🟡</span><b>ねらい・タグ</b>には、どんなものがあるか（28課題／167ゲームの載せ先）
-        <div class="ql"><em>ねらい(Kulabo25＝5領域)：</em><span>言語・コミュ</span><span>健康・生活</span><span>認知・行動</span><span>人間関係・社会性</span><span>運動・感覚</span></div>
-        <div class="ql"><em>タグ例：</em><span>あんしょう</span><span>反対語</span><span>九九</span><span>動物</span><span>数</span><span>かたち</span><span>もじ</span><span>のりもの</span><span>コペルン由来</span><span>Kulabo由来</span><span>HL自前</span><span>季節</span></div>
-      </li>
-      <li><span class="pri chip warn">🟡</span><b>育つ力タグ</b>を持てるか（＝これを伝える）
-        <div class="ql"><em>育つ力：</em><span>IQ</span><span>EQ</span><span>SQ</span><span class="age">＋7要素</span><span>①エージェンシー</span><span>②EF</span><span>③身体性認知</span><span>④インテロセプション</span><span>⑤グロースマインドセット</span><span>⑥ごっこ遊び</span><span>⑦4C's</span></div>
-      </li>
-      <li><span class="pri chip warn">🟡</span><b>非デジタル場面</b>（運動・発表）を置けるか／ゲーム投入<b>CSVの列</b></li>
+      <li>数の<b>足す8点</b>（掛け算・百玉そろばん・マス計算…）を各段・12週に完全統合</li>
+      <li><b>文字の12週プラン</b>＋3歳の文字ゲーム</li>
+      <li>虫食い（<b>暗唱・速読・連想</b>）を16場面に追加</li>
+      <li><b>図形・リトミック</b>ほか他教科を、同じ型で（教室版で照合しつつ）</li>
+      <li><b>ゲーム実装</b>：ハイブリッド「あたまのおとさがし」から1本</li>
+      <li>ベンダーすり合わせ（CSV列・28段の起点・枠方式・育つ力タグ…）</li>
     </ol>
   </section>
 
   <section>
-    <h2><span class="n">05</span>参考：統合レッスン進行 v5（16場面）</h2>
+    <h2><span class="n">05</span>参考：レッスン16場面</h2>
     <p class="sub">🌐＝外部基準に沿って「世界水準」で作る場面。</p>
     <div class="flow">
-      <span>1 <b>はじまりのうた</b></span><span>2 お名前・気分</span><span>3 深呼吸・イメトレ</span><span>4 直観像</span>
-      <span>5 リンクカード</span><span>6 フラッシュカード</span><span>7 今月の歌</span><span>8 HLタイム3つ</span>
-      <span class="hl">9 文字🌐</span><span>10 かずのうた</span><span class="hl">11 数🌐</span><span>12 そろばんの歌</span><span class="hl">13 図形🌐</span>
-      <span>14 エンジョイタイム＋SST</span><span>15 発表・振り返り</span><span>16 終わりの歌</span>
+      <span>1 はじまりのうた</span><span>2 名前・気分</span><span>3 深呼吸</span><span>4 直観像</span><span>5 リンクカード</span><span>6 フラッシュカード</span><span>7 今月の歌</span><span>8 HLタイム3つ</span>
+      <span class="hl">9 文字🌐</span><span>10 かずのうた</span><span class="hl">11 数🌐</span><span>12 そろばんの歌</span><span class="hl">13 図形🌐</span><span>14 エンジョイ＋SST</span><span>15 発表・振り返り</span><span>16 終わりの歌</span>
     </div>
   </section>
 
-  <p class="foot">この1枚は全体の要約です。詳しい設計は <b>ARCHITECTURE.md</b>、フラッシュカードは <b>フラッシュカード分類_整理.md</b>、当日用は <b>打ち合わせメモ_20260707_15時.md</b> にあります。</p>
+  <p class="foot">全資料は GitHub の <b>docs/hybrid-lesson/</b>（索引＝README.md）。設計の中枢は <b>発達28段階_設計フレーム</b>、見本教科は <b>数論理_28段_各行詳細</b>、これからは <b>作る作業_バックログ</b>。</p>
 
 </div></div>
