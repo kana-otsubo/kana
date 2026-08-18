@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>ひらがな　あいうえお　なぞりプリント</title>
+<style>
+  @page { size: A4 portrait; margin: 10mm; }
+
+  :root {
+    --cell: 56mm;
+    --gap: 6mm;
+    --ink: #333;
+    --guide: #cfd6dd;
+    --trace-dark: #9aa4ae;
+    --trace-light: #cdd3d9;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: "IPAGothic", "Hiragino Kaku Gothic ProN", "Yu Gothic", "MS Gothic", sans-serif;
+    color: var(--ink);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .page {
+    width: 190mm;
+    min-height: 277mm;
+    margin: 0 auto;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    page-break-after: always;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  /* ---- ヘッダー ---- */
+  .head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    border-bottom: 0.8mm solid var(--ink);
+    padding-bottom: 3mm;
+    margin-bottom: 6mm;
+  }
+  .title { font-size: 9mm; font-weight: bold; letter-spacing: 0.1em; line-height: 1.2; }
+  .title small { display: block; font-size: 4.5mm; font-weight: normal; letter-spacing: 0; color: #6b7580; margin-top: 1mm; }
+  .name { font-size: 5mm; white-space: nowrap; flex: 0 0 auto; padding-left: 6mm; }
+  .name i { font-style: normal; border-bottom: 0.4mm solid var(--ink); display: inline-block; width: 42mm; }
+
+  /* ---- マス ---- */
+  .row {
+    display: flex;
+    gap: var(--gap);
+    margin-bottom: var(--gap);
+    justify-content: flex-start;
+  }
+  .cell {
+    position: relative;
+    width: var(--cell);
+    height: var(--cell);
+    border: 0.6mm solid var(--guide);
+    border-radius: 1.5mm;
+    flex: 0 0 auto;
+  }
+  /* 十字の補助線 */
+  .cell::before,
+  .cell::after {
+    content: "";
+    position: absolute;
+    background-image: linear-gradient(to right, var(--guide) 60%, transparent 60%);
+    background-size: 3mm 100%;
+  }
+  .cell::before { left: 0; right: 0; top: 50%; height: 0.3mm; }
+  .cell::after {
+    top: 0; bottom: 0; left: 50%; width: 0.3mm;
+    background-image: linear-gradient(to bottom, var(--guide) 60%, transparent 60%);
+    background-size: 100% 3mm;
+  }
+
+  .cell span {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 44mm;
+    line-height: 1;
+    padding-bottom: 2mm;
+  }
+
+  /* ---- 白抜き文字 ---- */
+  .outline span {
+    color: transparent;
+    -webkit-text-stroke: 0.7mm var(--trace-dark);
+  }
+  .outline-light span {
+    color: transparent;
+    -webkit-text-stroke: 0.5mm var(--trace-light);
+  }
+  .blank span { color: transparent; }
+
+  /* ---- フッター（ことば） ---- */
+  .word {
+    margin-top: auto;
+    padding-top: 5mm;
+    border-top: 0.4mm dashed var(--guide);
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 2mm 5mm;
+    font-size: 7mm;
+  }
+  .word b { font-size: 9mm; }
+  .word em { font-style: normal; color: #6b7580; font-size: 5mm; }
+
+  /* ---- 一覧ページ ---- */
+  .sheet-all .row { margin-bottom: 8mm; }
+  .sheet-all .cell { width: 52mm; height: 52mm; }
+  .sheet-all .cell span { font-size: 40mm; }
+  .lead { font-size: 5mm; color: #6b7580; margin: 0 0 6mm; }
+</style>
+</head>
+<body>
+<script>
+const CHARS = [
+  { kana: "あ", word: "あり",  yomi: "あ・あり" },
+  { kana: "い", word: "いぬ",  yomi: "い・いぬ" },
+  { kana: "う", word: "うし",  yomi: "う・うし" },
+  { kana: "え", word: "えび",  yomi: "え・えび" },
+  { kana: "お", word: "おに",  yomi: "お・おに" },
+];
+
+const cell = (kana, cls) => `<div class="cell ${cls}"><span>${kana}</span></div>`;
+const head = (title, sub) => `
+  <div class="head">
+    <div class="title">${title}${sub ? `<small>${sub}</small>` : ""}</div>
+    <div class="name">なまえ <i></i></div>
+  </div>`;
+
+let html = "";
+
+/* 1枚目：あいうえお 一覧（ぜんぶ白抜き） */
+html += `<section class="page sheet-all">
+  ${head("ひらがな　あいうえお", "しろぬきもじを なぞりましょう")}
+  <p class="lead">うすい もじを ゆびで なぞってから、えんぴつで なぞりましょう。</p>
+  <div class="row">${CHARS.slice(0, 3).map(c => cell(c.kana, "outline")).join("")}</div>
+  <div class="row">${CHARS.slice(3).map(c => cell(c.kana, "outline")).join("")}</div>
+  <div class="row">${CHARS.slice(0, 3).map(c => cell(c.kana, "outline-light")).join("")}</div>
+  <div class="word"><em>ことば</em>${CHARS.map(c => `<b>${c.word}</b>`).join("")}</div>
+</section>`;
+
+/* 2枚目以降：1文字ずつ */
+for (const c of CHARS) {
+  html += `<section class="page">
+    ${head(`ひらがな　${c.kana}`, "なぞって かいてみよう")}
+    <div class="row">${cell(c.kana, "outline")}${cell(c.kana, "outline")}${cell(c.kana, "outline")}</div>
+    <div class="row">${cell(c.kana, "outline-light")}${cell(c.kana, "outline-light")}${cell(c.kana, "outline-light")}</div>
+    <div class="row">${cell(c.kana, "blank")}${cell(c.kana, "blank")}${cell(c.kana, "blank")}</div>
+    <div class="word"><em>ことば</em><b>${c.word}</b><em>${c.yomi}</em></div>
+  </section>`;
+}
+
+document.write(html);
+</script>
+</body>
+</html>
