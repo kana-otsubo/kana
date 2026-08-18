@@ -1,0 +1,320 @@
+<title>レッスン15場面 画面仕様</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+:root {
+  --paper:#F6F7F4; --surface:#FFFFFF; --ink:#18242A; --muted:#66757C;
+  --line:#DFE4DE; --accent:#1F6F6B; --accent-soft:#E2EFEB;
+  --ok:#2C6E49; --ok-bg:#E4F0E7; --todo:#1F6F6B; --todo-bg:#E2EFEB;
+  --undec:#A9631C; --undec-bg:#F7EBDC;
+  --mincho:"Zen Old Mincho","Yu Mincho","Hiragino Mincho ProN",serif;
+  --gothic:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper:#12191C; --surface:#1A2327; --ink:#E7EDE9; --muted:#93A2A6;
+    --line:#2C3A3E; --accent:#7BC6BC; --accent-soft:#1E3330;
+    --ok:#8CCBA2; --ok-bg:#1C2E23; --todo:#7BC6BC; --todo-bg:#17302E;
+    --undec:#E0A868; --undec-bg:#332617;
+  }
+}
+:root[data-theme="dark"] {
+  --paper:#12191C; --surface:#1A2327; --ink:#E7EDE9; --muted:#93A2A6;
+  --line:#2C3A3E; --accent:#7BC6BC; --accent-soft:#1E3330;
+  --ok:#8CCBA2; --ok-bg:#1C2E23; --todo:#7BC6BC; --todo-bg:#17302E;
+  --undec:#E0A868; --undec-bg:#332617;
+}
+
+* { box-sizing:border-box; }
+body {
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--gothic); font-size:16px; line-height:1.85;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap { max-width:940px; margin:0 auto; padding:clamp(28px,5vw,64px) clamp(18px,4vw,40px) 96px; }
+
+header.top { border-bottom:2px solid var(--ink); padding-bottom:22px; }
+.eyebrow { font-family:var(--mono); font-size:12px; letter-spacing:.18em; color:var(--accent); text-transform:uppercase; }
+h1 { font-family:var(--mincho); font-weight:700; font-size:clamp(30px,5.2vw,46px); line-height:1.3; margin:10px 0 12px; text-wrap:balance; letter-spacing:.02em; }
+.sub { color:var(--muted); margin:0; max-width:62ch; }
+.meta { display:flex; flex-wrap:wrap; gap:8px 22px; margin-top:18px; font-family:var(--mono); font-size:12.5px; color:var(--muted); }
+
+section { margin-top:56px; }
+h2 {
+  font-family:var(--mincho); font-size:clamp(21px,3vw,27px); font-weight:700;
+  margin:0 0 6px; padding-bottom:10px; border-bottom:1px solid var(--line); letter-spacing:.02em;
+}
+h2 .en { font-family:var(--mono); font-size:11px; letter-spacing:.16em; color:var(--accent); display:block; margin-bottom:6px; font-weight:500; }
+h3 { font-family:var(--gothic); font-size:19px; margin:0; font-weight:700; }
+p { max-width:66ch; }
+.note { color:var(--muted); font-size:14.5px; max-width:66ch; }
+
+.tally { display:flex; gap:10px; flex-wrap:wrap; margin:18px 0 0; }
+.tally b {
+  font-family:var(--mono); font-size:12.5px; font-weight:500; padding:5px 11px;
+  border-radius:999px; border:1px solid var(--line);
+}
+.tally b.ok { color:var(--ok); background:var(--ok-bg); border-color:transparent; }
+.tally b.todo { color:var(--todo); background:var(--todo-bg); border-color:transparent; }
+.tally b.undec { color:var(--undec); background:var(--undec-bg); border-color:transparent; }
+
+nav.toc { display:grid; grid-template-columns:repeat(auto-fill,minmax(190px,1fr)); gap:2px 18px; margin-top:22px; }
+nav.toc a {
+  display:flex; gap:10px; align-items:baseline; color:var(--ink); text-decoration:none;
+  padding:7px 4px; border-bottom:1px solid var(--line); font-size:15px;
+}
+nav.toc a span { font-family:var(--mono); font-size:12px; color:var(--accent); }
+nav.toc a:hover { color:var(--accent); }
+a:focus-visible, nav.toc a:focus-visible { outline:2px solid var(--accent); outline-offset:3px; border-radius:3px; }
+
+.scenes { display:flex; flex-direction:column; gap:14px; margin-top:24px; }
+.scene { background:var(--surface); border:1px solid var(--line); border-radius:4px; padding:20px 22px; scroll-margin-top:20px; }
+.scene-head { display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; padding-bottom:14px; border-bottom:1px solid var(--line); }
+.scene-head .no { font-family:var(--mono); font-size:15px; color:var(--accent); }
+.scene-head .chip { margin-left:auto; font-family:var(--mono); font-size:11.5px; padding:3px 10px; border-radius:999px; }
+.chip.ok { color:var(--ok); background:var(--ok-bg); }
+.chip.todo { color:var(--todo); background:var(--todo-bg); }
+.chip.undec { color:var(--undec); background:var(--undec-bg); }
+
+.dl { display:grid; grid-template-columns:140px 1fr; gap:0 20px; margin-top:14px; }
+.dl .k { font-size:13.5px; color:var(--muted); padding:9px 0; border-bottom:1px solid var(--line); }
+.dl .v { font-size:15.5px; padding:9px 0; border-bottom:1px solid var(--line); }
+.dl .k:last-of-type, .dl .v:last-of-type { border-bottom:0; }
+@media (max-width:620px) {
+  .dl { grid-template-columns:1fr; gap:0; }
+  .dl .k { border-bottom:0; padding-bottom:0; color:var(--accent); font-family:var(--mono); font-size:12px; }
+}
+
+.tw { overflow-x:auto; margin-top:18px; border:1px solid var(--line); border-radius:4px; background:var(--surface); }
+table { border-collapse:collapse; width:100%; min-width:520px; font-size:15px; }
+th, td { text-align:left; padding:11px 16px; border-bottom:1px solid var(--line); vertical-align:top; }
+th { font-size:12.5px; font-family:var(--mono); font-weight:500; color:var(--muted); letter-spacing:.06em; white-space:nowrap; background:var(--accent-soft); }
+tbody tr:last-child td { border-bottom:0; }
+td:nth-child(3) { font-variant-numeric:tabular-nums; white-space:nowrap; }
+
+ul { padding-left:1.1em; max-width:66ch; }
+li { margin:5px 0; }
+.devices { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px; margin-top:20px; }
+.device { background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--accent); border-radius:4px; padding:16px 18px; }
+.device h4 { margin:0 0 6px; font-size:16px; }
+.device p { margin:0; font-size:14.5px; color:var(--muted); }
+
+footer { margin-top:64px; padding-top:20px; border-top:1px solid var(--line); color:var(--muted); font-size:13.5px; }
+@media print {
+  body { background:#fff; }
+  .scene, .tw, .device { break-inside:avoid; }
+  nav.toc { display:none; }
+}
+</style>
+
+<div class="wrap">
+<header class="top">
+  <div class="eyebrow">Lesson Screen Specification</div>
+  <h1>レッスン15場面 画面仕様</h1>
+  <p class="sub">幼児教室の1コマを、大画面ディスプレイ・先生の携帯・子どもタブレットの3台で進行するための仕様です。場面ごとに、何を映し、先生が何を操作し、子どもが何をし、何を記録するかをまとめています。</p>
+  <div class="meta"><span>2026-08-18</span><span>全15場面</span><span>システム会社 提出用</span></div>
+  <div class="tally">
+    <b class="ok">用意済み 3</b>
+    <b class="todo">作成が必要 9</b>
+    <b class="undec">内容未定 3</b>
+  </div>
+</header>
+
+<section>
+  <h2><span class="en">01 / Devices</span>機器の役割</h2>
+  <div class="devices">
+    <div class="device"><h4>大画面ディスプレイ</h4><p>子ども全員が見る画面。動画・カード・問題・正解などを表示する。</p></div>
+    <div class="device"><h4>先生の携帯</h4><p>進行の操作。大画面に何を出すかを制御し、先生用のカンペ・進行メモも表示する。</p></div>
+    <div class="device"><h4>子どもタブレット</h4><p>子どもが個別に使う端末。場面ごとに、ロック／操作可／画面共有を切り替える。</p></div>
+  </div>
+  <p class="note" style="margin-top:18px">レッスンは15場面を上から順に進める。先生の操作で、場面のスキップ・やり直しができる。</p>
+</section>
+
+<section>
+  <h2><span class="en">02 / Common</span>共通仕様</h2>
+  <h3 style="margin-top:22px">進行</h3>
+  <ul>
+    <li>場面は原則、番号順に進む。先生の携帯から「次の場面へ」「前の場面へ」「この場面をスキップ」ができる。</li>
+    <li>場面の中の進行（次のカード、次の問題など）も先生の携帯から操作する。</li>
+    <li>自動で進む場面は、速度を先生の携帯から変更できる。</li>
+  </ul>
+  <h3 style="margin-top:22px">子どもタブレットの状態</h3>
+  <div class="tw"><table><thead><tr><th>状態</th><th>内容</th></tr></thead><tbody><tr><td>ロック</td><td>触っても反応しない。画面は待機表示、または大画面と同じ表示。</td></tr><tr><td>操作可</td><td>その場面で必要な操作（タッチ・ドラッグ・選択）ができる。</td></tr><tr><td>画面共有</td><td>大画面と同じ内容を手元にも出す。必要な子だけ個別にONにできる。</td></tr></tbody></table></div>
+  <ul style="margin-top:16px">
+    <li>ロック中に子どもが触っても、エラー表示や進行の中断を起こさないこと。</li>
+    <li>先生の携帯から、特定の子だけ画面共有をONにできること。</li>
+  </ul>
+  <h3 style="margin-top:22px">音声キャラクター</h3>
+  <p>音声は ペル君／ルルちゃん／博士／おじいちゃん の4種類から選ぶ。場面ごと・カードごとに設定でき、先生の携帯から途中変更もできる。</p>
+  <h3 style="margin-top:22px">記録</h3>
+  <ul>
+    <li>記録は、先生が操作しなくても自動で残ることを基本とする。</li>
+    <li>子どもが答えられない、声だけで答えた等の場合は、先生の携帯から代理入力できる。</li>
+    <li>1コマ終了時に、その日の記録を保護者レポートとしてまとめて送信できる。</li>
+  </ul>
+  <h3 style="margin-top:22px">教材の差し替え</h3>
+  <ul>
+    <li>文字教材・図形教材・レッスンタイムの取り組みは、週ごと／BOXごとに差し替える。</li>
+    <li>差し替えは管理画面から教材を選ぶ操作で行えること（プログラム修正なしで変更できること）。</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="en">03 / Scenes</span>場面ごとの仕様</h2>
+  <nav class="toc"><a href="#s1"><span>01</span>はじまりのうた</a><a href="#s2"><span>02</span>お名前呼び</a><a href="#s3"><span>03</span>深呼吸・イメージトレーニング</a><a href="#s4"><span>04</span>直観像</a><a href="#s5"><span>05</span>リンクカード</a><a href="#s6"><span>06</span>フラッシュカード</a><a href="#s7"><span>07</span>今月の歌</a><a href="#s8"><span>08</span>レッスンタイム</a><a href="#s9"><span>09</span>もじ</a><a href="#s10"><span>10</span>かずのうた</a><a href="#s11"><span>11</span>数プログラム</a><a href="#s12"><span>12</span>図形</a><a href="#s13"><span>13</span>そろばん</a><a href="#s14"><span>14</span>エンジョイタイム</a><a href="#s15"><span>15</span>終わりの歌</a></nav>
+  <div class="scenes">
+<article class="scene" id="s1">
+  <div class="scene-head">
+    <span class="no">01</span>
+    <h3>はじまりのうた</h3>
+    <span class="chip ok">用意済み</span>
+  </div>
+  <div class="dl"><div class="k">大画面</div><div class="v">歌のお姉さんの動画を再生する。</div><div class="k">先生の携帯</div><div class="v">開始／一時停止／再開／子ども画面共有のON・OFF</div><div class="k">子どもタブレット</div><div class="v">ロック（切り替えで画面共有も可）</div><div class="k">記録</div><div class="v">なし</div><div class="k">素材</div><div class="v">既存データから</div><div class="k">備考</div><div class="v">誤タッチしてもエラーにならないこと。</div></div>
+</article>
+<article class="scene" id="s2">
+  <div class="scene-head">
+    <span class="no">02</span>
+    <h3>お名前呼び</h3>
+    <span class="chip todo">作成が必要</span>
+  </div>
+  <div class="dl"><div class="k">大画面</div><div class="v">名前カードを表示する（例：大坪可奈 → おおつぼ かな）。あわせて気分アイコンを表示する。</div><div class="k">先生の携帯</div><div class="v">次の子へ／もう一回呼ぶ／先生が代理入力／スキップ／質問を選ぶ（例：好きな果物は？）</div><div class="k">子どもタブレット</div><div class="v">操作可。自分のタブレットで今日の気分をタッチする（例：にこにこ 等）。</div><div class="k">記録</div><div class="v">出席／気分／今日頑張ったこと／好きなもの／補助の有無</div><div class="k">素材</div><div class="v">新規作成が必要</div><div class="k">備考</div><div class="v">声で答えた内容は先生が記録する。名前は漢字表記とひらがな表記の両方を持つ。</div></div>
+</article>
+<article class="scene" id="s3">
+  <div class="scene-head">
+    <span class="no">03</span>
+    <h3>深呼吸・イメージトレーニング</h3>
+    <span class="chip todo">作成が必要</span>
+  </div>
+  <div class="dl"><div class="k">大画面</div><div class="v">「すう／はく」が目で見て分かるアニメを表示する。風船がふくらむ／しぼむ、または丸が大きくなる／小さくなるを繰り返す。最後に短いイメージ指示を出す。</div><div class="k">先生の携帯</div><div class="v">開始／次へ／音声のON・OFF（音声を切って先生の声で誘導する場合がある）</div><div class="k">子どもタブレット</div><div class="v">ロック（画面は見てよいが、操作は不要）</div><div class="k">記録</div><div class="v">なし</div><div class="k">素材</div><div class="v">動画素材から</div><div class="k">備考</div><div class="v">呼吸の音声・BGM・画面アニメを同期させる。年齢別に時間を短くできること。</div></div>
+</article>
+<article class="scene" id="s4">
+  <div class="scene-head">
+    <span class="no">04</span>
+    <h3>直観像</h3>
+    <span class="chip todo">作成が必要</span>
+  </div>
+  <div class="dl"><div class="k">大画面</div><div class="v">見せる → 消す → 見せる → 消す → 回答画面 → 正解表示、の順に進む。</div><div class="k">先生の携帯</div><div class="v">表示／消す／もう一回見せる／回答へ／正解表示／次へ。あわせて子どもの様子をタップで記録する。</div><div class="k">子どもタブレット</div><div class="v">操作可。子どもが絵をドラッグして置く。正解の位置は光る。一定時間が経つとヒントが光って出る。置きなおせば正解として扱う。</div><div class="k">記録</div><div class="v">解答時間／子どもの答え／正誤（自動で記録する）</div><div class="k">素材</div><div class="v">既存レッスンから</div></div>
+</article>
+<article class="scene" id="s5">
+  <div class="scene-head">
+    <span class="no">05</span>
+    <h3>リンクカード</h3>
+    <span class="chip undec">内容未定</span>
+  </div>
+  <div class="dl"><div class="k">大画面</div><div class="v">カードを順番に表示し、物語やつながりを見せる。</div><div class="k">先生の携帯</div><div class="v">次へ／戻る／最初から／音声自動のON・OFF／先生カンペ表示</div><div class="k">子どもタブレット</div><div class="v">ロック</div><div class="k">記録</div><div class="v">なし</div><div class="k">枚数</div><div class="v">10〜30枚の可変。回ごとに枚数が変わる。</div><div class="k">備考</div><div class="v">フラッシュカードと同じカードデータで扱う。</div></div>
+</article>
+<article class="scene" id="s6">
+  <div class="scene-head">
+    <span class="no">06</span>
+    <h3>フラッシュカード</h3>
+    <span class="chip todo">作成が必要</span>
+  </div>
+  <div class="dl"><div class="k">大画面</div><div class="v">各カテゴリのカードを表示する。高速・中速・先生進行の切り替えができる。</div><div class="k">先生の携帯</div><div class="v">開始／停止／再開／スキップ／速度変更／声の種類変更</div><div class="k">子どもタブレット</div><div class="v">ロック（見る・聞く）。必要な子だけ個別に画面共有できる。</div><div class="k">記録</div><div class="v">なし</div><div class="k">進行モード</div><div class="v">デッキごと・カードごとに、①完全自動（音声もめくりも自動）②音声のみ自動（めくりは先生）③めくりのみ自動（音声は先生の声）④先生進行（両方とも先生の操作）の4つから設定する。</div><div class="k">備考</div><div class="v">デッキ一覧は「フラッシュカードのデッキ」を参照。</div></div>
+</article>
+<article class="scene" id="s7">
+  <div class="scene-head">
+    <span class="no">07</span>
+    <h3>今月の歌</h3>
+    <span class="chip undec">内容未定</span>
+  </div>
+  <div class="dl"><div class="k">大画面</div><div class="v">今月の歌の映像と歌詞を表示する。</div><div class="k">先生の携帯</div><div class="v">開始／一時停止／再開／次へ</div><div class="k">子どもタブレット</div><div class="v">ロック。必要な子だけ画面共有できる。</div><div class="k">記録</div><div class="v">なし</div><div class="k">備考</div><div class="v">歌詞と音声を同期させる。月ごとに差し替える。</div></div>
+</article>
+<article class="scene" id="s8">
+  <div class="scene-head">
+    <span class="no">08</span>
+    <h3>レッスンタイム</h3>
+    <span class="chip undec">内容未定</span>
+  </div>
+  <div class="dl"><div class="k">大画面</div><div class="v">取り組みを3つ、順番に提示する。</div><div class="k">先生の携帯</div><div class="v">取り組み1／2／3 それぞれの開始・終了・次へ。先生用の進行メモを表示する。</div><div class="k">子どもタブレット</div><div class="v">必要な取り組みのみ操作可。それ以外はロック。</div><div class="k">記録</div><div class="v">取り組みごとの実施状況／補助の有無</div><div class="k">備考</div><div class="v">内容はBOXごと・週ごとに差し替える。</div></div>
+</article>
+<article class="scene" id="s9">
+  <div class="scene-head">
+    <span class="no">09</span>
+    <h3>もじ</h3>
+    <span class="chip ok">用意済み</span>
+  </div>
+  <div class="dl"><div class="k">大画面</div><div class="v">文字プログラムを表示する。</div><div class="k">先生の携帯</div><div class="v">開始／次へ／記録</div><div class="k">子どもタブレット</div><div class="v">操作可。なぞる・選ぶ・答える等、教材に応じた操作。</div><div class="k">記録</div><div class="v">実施状況／補助の有無</div><div class="k">教材</div><div class="v">ひらがな書きプリント（あ行）。白抜き文字をなぞる形式。印刷用データあり。</div><div class="k">備考</div><div class="v">文字教材は週ごとに差し替える。「文字」の1枠として管理する（2種類に分けない）。</div></div>
+</article>
+<article class="scene" id="s10">
+  <div class="scene-head">
+    <span class="no">10</span>
+    <h3>かずのうた</h3>
+    <span class="chip ok">用意済み</span>
+  </div>
+  <div class="dl"><div class="k">大画面</div><div class="v">数の歌の動画・歌詞・数字を表示する。</div><div class="k">先生の携帯</div><div class="v">開始／一時停止／次へ</div><div class="k">子どもタブレット</div><div class="v">ロック。必要に応じて数字をタッチできる。</div><div class="k">記録</div><div class="v">なし</div><div class="k">備考</div><div class="v">歌と数字表示を同期させる。</div></div>
+</article>
+<article class="scene" id="s11">
+  <div class="scene-head">
+    <span class="no">11</span>
+    <h3>数プログラム</h3>
+    <span class="chip todo">作成が必要</span>
+  </div>
+  <div class="dl"><div class="k">大画面</div><div class="v">数の課題画面。実物教材を使う前提で、見本・指示・答えを表示する。</div><div class="k">先生の携帯</div><div class="v">開始／問題表示／正解表示／次へ／記録</div><div class="k">子どもタブレット</div><div class="v">実物教材を使う。必要なときだけタッチで回答。</div><div class="k">記録</div><div class="v">教材名／正誤／補助の有無／子どもの反応</div><div class="k">教材</div><div class="v">卵（実物教材）</div></div>
+</article>
+<article class="scene" id="s12">
+  <div class="scene-head">
+    <span class="no">12</span>
+    <h3>図形</h3>
+    <span class="chip todo">作成が必要</span>
+  </div>
+  <div class="dl"><div class="k">大画面</div><div class="v">図形の見本・問題・正解を表示する。教材を使う指示を出す。</div><div class="k">先生の携帯</div><div class="v">開始／問題表示／正解表示／次へ／記録</div><div class="k">子どもタブレット</div><div class="v">実物教材を使う。必要なときだけ選択・タッチ。</div><div class="k">記録</div><div class="v">教材名／正誤／補助の有無</div><div class="k">教材</div><div class="v">積み木（実物教材）。お手本の図形を表示する。</div><div class="k">備考</div><div class="v">図形教材は週ごとに差し替える。立体と平面で表示方法を分けられること。</div></div>
+</article>
+<article class="scene" id="s13">
+  <div class="scene-head">
+    <span class="no">13</span>
+    <h3>そろばん</h3>
+    <span class="chip todo">作成が必要</span>
+  </div>
+  <div class="dl"><div class="k">大画面</div><div class="v">そろばんの画面（0〜20）</div><div class="k">先生の携帯</div><div class="v">開始／停止／次へ</div><div class="k">子どもタブレット</div><div class="v">ロック、または見てまねる。</div><div class="k">記録</div><div class="v">なし</div><div class="k">備考</div><div class="v">「そろばんの歌」として歌で扱う形と、0〜20の操作課題として扱う形がある。どちらにするかは要確認。</div></div>
+</article>
+<article class="scene" id="s14">
+  <div class="scene-head">
+    <span class="no">14</span>
+    <h3>エンジョイタイム</h3>
+    <span class="chip todo">作成が必要</span>
+  </div>
+  <div class="dl"><div class="k">大画面</div><div class="v">活動内容に応じて、動画・BGM・説明画面を表示する。</div><div class="k">先生の携帯</div><div class="v">活動を選ぶ（リトミック／粗大／実験／バスゲーム）</div><div class="k">子どもタブレット</div><div class="v">ロック。活動により個別参加・タッチ可。</div><div class="k">記録</div><div class="v">活動の種別／参加状況</div><div class="k">今回の実施</div><div class="v">リトミック／実験</div><div class="k">備考</div><div class="v">名称は「エンジョイタイム」に統一する。</div></div>
+</article>
+<article class="scene" id="s15">
+  <div class="scene-head">
+    <span class="no">15</span>
+    <h3>終わりの歌</h3>
+    <span class="chip todo">作成が必要</span>
+  </div>
+  <div class="dl"><div class="k">大画面</div><div class="v">終わりの歌＋ペル君のほめ演出。</div><div class="k">先生の携帯</div><div class="v">開始／保護者レポート送信／終了</div><div class="k">子どもタブレット</div><div class="v">ロック。必要な子だけ画面共有できる。</div><div class="k">記録</div><div class="v">がんばり記録／今日の参加状況をまとめる。</div><div class="k">備考</div><div class="v">1日の記録を保護者レポートとして送信する。</div></div>
+</article>
+  </div>
+</section>
+
+<section>
+  <h2><span class="en">04 / Decks</span>フラッシュカードのデッキ</h2>
+  <p class="note">カードの中身は既存教材から入れる。ここでは枠と枚数のみを示す。</p>
+  <div class="tw"><table><thead><tr><th>デッキ</th><th>種別</th><th>枚数</th><th>備考</th></tr></thead><tbody><tr><td>どうぶつ</td><td>絵カード</td><td>未定</td><td></td></tr><tr><td>のりもの</td><td>絵カード</td><td>未定</td><td></td></tr><tr><td>やさい</td><td>絵カード</td><td>未定</td><td></td></tr><tr><td>もじ（あ行）</td><td>文字カード</td><td>5枚</td><td>ひらがなを見せた後に、そのことばの絵を見せる（あ→あり、い→いぬ、う→うし、え→えび、お→おに）</td></tr><tr><td>ことわざ</td><td>文カード</td><td>5枚</td><td>内容は決定済み（既存教材から）</td></tr><tr><td>百人一首</td><td>文カード</td><td>3枚</td><td>内容は決定済み（既存教材から）</td></tr><tr><td>はんたいご</td><td>対のカード</td><td>3枚</td><td>内容は決定済み（既存教材から）</td></tr><tr><td>四字熟語</td><td>文カード</td><td>3枚</td><td>内容は決定済み（既存教材から）</td></tr><tr><td>俳句（一茶）</td><td>文カード</td><td>4枚</td><td>内容は決定済み（既存教材から）</td></tr><tr><td>速読（詩）</td><td>文カード</td><td>未定</td><td>内容未定</td></tr><tr><td>English / Animals 1</td><td>絵カード</td><td>未定</td><td>内容未定</td></tr><tr><td>English / Getting dressed in the morning</td><td>絵カード</td><td>未定</td><td>内容未定</td></tr></tbody></table></div>
+</section>
+
+<section>
+  <h2><span class="en">05 / Card data</span>カードデータの項目</h2>
+  <p class="note">カードはリンクカード（No.5）とフラッシュカード（No.6）で共通のデータとして管理する。</p>
+  <h3 style="margin-top:22px">デッキが持つ項目</h3>
+  <div class="tw"><table><thead><tr><th>項目</th><th>内容</th></tr></thead><tbody><tr><td>デッキ名</td><td>画面と管理画面に表示する名前</td></tr><tr><td>種別</td><td>絵カード／文字カード／対のカード／文カード</td></tr><tr><td>枚数</td><td>そのデッキに入れる枚数</td></tr><tr><td>進行モード</td><td>完全自動／音声のみ自動／めくりのみ自動／先生進行</td></tr><tr><td>声</td><td>ペル君／ルルちゃん／博士／おじいちゃん</td></tr><tr><td>速度</td><td>1枚あたりの表示時間</td></tr></tbody></table></div>
+  <h3 style="margin-top:26px">カードが持つ項目（種別ごと）</h3>
+  <div class="tw"><table><thead><tr><th>種別</th><th>項目</th></tr></thead><tbody><tr><td>絵カード</td><td>絵（画像）／日本語のことば／英語のことば（英語デッキのみ）／読み上げる一文（任意）</td></tr><tr><td>文字カード</td><td>ひらがな1文字／そのことば／ことばの絵</td></tr><tr><td>対のカード</td><td>ことばA／Aの絵／ことばB／Bの絵</td></tr><tr><td>文カード</td><td>本文／よみがな／意味（任意）／作者・出典（任意）</td></tr></tbody></table></div>
+</section>
+
+<section>
+  <h2><span class="en">06 / Records</span>記録項目</h2>
+  <p class="note">1コマの中で自動的に記録する項目。</p>
+  <div class="tw"><table><thead><tr><th>場面</th><th>記録する内容</th></tr></thead><tbody><tr><td>No.2 お名前呼び</td><td>出席／気分／今日頑張ったこと／好きなもの／補助の有無</td></tr><tr><td>No.4 直観像</td><td>解答時間／子どもの答え／正誤</td></tr><tr><td>No.8 レッスンタイム</td><td>取り組みごとの実施状況／補助の有無</td></tr><tr><td>No.9 もじ</td><td>実施状況／補助の有無</td></tr><tr><td>No.11 数プログラム</td><td>教材名／正誤／補助の有無／子どもの反応</td></tr><tr><td>No.12 図形</td><td>教材名／正誤／補助の有無</td></tr><tr><td>No.14 エンジョイタイム</td><td>活動の種別／参加状況</td></tr><tr><td>No.15 終わりの歌</td><td>がんばり記録／今日の参加状況／保護者レポートの送信</td></tr></tbody></table></div>
+</section>
+
+<section>
+  <h2><span class="en">07 / Open items</span>未決定事項</h2>
+  <p class="note">下記は後日確定して連絡する。</p>
+  <div class="tw"><table><thead><tr><th>対象</th><th>決めること</th></tr></thead><tbody><tr><td>No.5 リンクカード</td><td>使用するカードのテーマと枚数（10〜30枚のうち）</td></tr><tr><td>No.6 フラッシュカード</td><td>どうぶつ・のりもの・やさいの枚数。速読（詩）の内容と枚数。英語2デッキの内容と枚数</td></tr><tr><td>No.7 今月の歌</td><td>対象の曲</td></tr><tr><td>No.8 レッスンタイム</td><td>取り組み3つの内容</td></tr><tr><td>No.13 そろばん</td><td>「そろばんの歌」として扱うか、0〜20の操作課題として扱うか</td></tr><tr><td>全体：教材の差し替え</td><td>週ごと・BOXごとの差し替えを、誰がどの画面から行うか</td></tr><tr><td>全体：保護者レポート</td><td>送信方法（アプリ通知／メール等）と、載せる項目</td></tr></tbody></table></div>
+</section>
+
+<footer>レッスン15場面 画面仕様 ／ 2026-08-18 作成。内容の追記・変更があった場合は、この資料を更新して再送します。</footer>
+</div>
