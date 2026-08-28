@@ -235,6 +235,29 @@ ol.steps li::before{
 }
 .opflow .press{background:var(--accent-soft);color:var(--accent-ink);font-weight:700}
 
+/* ---------- cycle ---------- */
+.cycle{
+  margin:0 0 20px;padding:22px 20px;background:var(--surface);
+  border:1px solid var(--line);border-radius:12px
+}
+.cycle ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:0;max-width:none}
+.cycle li{
+  margin:0;display:grid;grid-template-columns:1fr;justify-items:center;text-align:center
+}
+.cycle .node{
+  padding:9px 18px;border-radius:8px;font-size:14px;line-height:1.5;
+  font-family:"Zen Maru Gothic",sans-serif;font-weight:700;
+  background:var(--surface-2);color:var(--ink-soft);border:1px solid var(--line)
+}
+.cycle .node.them{background:var(--teal-soft);color:var(--teal);border-color:color-mix(in srgb,var(--teal) 30%,transparent)}
+.cycle .node.us{background:var(--accent-soft);color:var(--accent-ink);border-color:color-mix(in srgb,var(--accent) 32%,transparent)}
+.cycle .node small{display:block;font-family:"IBM Plex Mono",monospace;font-size:10px;font-weight:400;letter-spacing:.08em;opacity:.8;margin-top:2px}
+.cycle .down{color:var(--ink-faint);font-size:15px;line-height:1.4;padding:5px 0}
+.cycle .loop{
+  margin-top:12px;padding-top:12px;border-top:1px dashed var(--line);
+  font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.1em;
+  color:var(--ink-faint);text-align:center
+}
 /* ---------- code ---------- */
 pre{
   background:var(--surface-2);border:1px solid var(--line);border-radius:10px;
@@ -776,7 +799,7 @@ html{scroll-behavior:smooth}
     <thead><tr><th>マイルストーン</th><th class="num">時期</th><th>内容</th><th>確認方法</th></tr></thead>
     <tbody>
       <tr><th>M0 着手</th><td class="num">D-14</td><td>本仕様の受領確認。不明点・懸念の洗い出し</td><td>§12 の質問回答</td></tr>
-      <tr><th>定例進捗確認</th><td class="num">毎日<br>12:00 / 17:00</td><td>午前・午後の進捗確認（各 15 分）</td><td>下記のとおり</td></tr>
+      <tr><th>提案・指示サイクル</th><td class="num">毎日<br>12:00 / 17:00</td><td>提案を受け取り、その場で指示を返す（各 15 分）</td><td>下記のとおり</td></tr>
       <tr><th>M1 中間確認①</th><td class="num">D-10</td><td>第 1 次提出物（§10 ①〜⑤）の確認</td><td><strong>実機で対面確認</strong></td></tr>
       <tr><th>M1.5 表示方法決定</th><td class="num">D-9</td><td>基本表示方法の確定・通知</td><td>書面 1 枚</td></tr>
       <tr><th>M2 中間確認②</th><td class="num">D-6</td><td>百科事典 50 枚完成、ひらがな改修（§5）完了</td><td><strong>実機で対面確認</strong></td></tr>
@@ -787,29 +810,81 @@ html{scroll-behavior:smooth}
   </table></div>
   <p><strong>完成直前ではなく、途中段階で 3 回の確認機会を設けてください。</strong>M1・M2・M3 は必須とし、いずれも省略しません。</p>
 
-  <h3>定例進捗確認（毎日 2 回）<span class="b b-req">必須</span></h3>
+  <h3>提案・指示サイクル（毎日 2 回）<span class="b b-req">必須</span></h3>
   <div class="goal">
-    <p>毎日 12:00 と 17:00 の 2 回、各 15 分程度の進捗確認を行う。</p>
+    <p>この定例は進捗報告の場ではない。システム会社から提案を受け取り、その場で指示を返す場である。</p>
   </div>
+  <p>この往復を確実に回すことが、デモまでの品質と速度を決めます。<strong>流れを作ることそのものが目的</strong>であり、報告を聞くことが目的ではありません。</p>
+
+  <div class="cycle">
+    <ol>
+      <li><span class="node">前回の指示</span></li>
+      <li><span class="down">↓</span></li>
+      <li><span class="node them">実装・検討<small>システム会社</small></span></li>
+      <li><span class="down">↓</span></li>
+      <li><span class="node them">提案<small>システム会社 → こちら</small></span></li>
+      <li><span class="down">↓</span></li>
+      <li><span class="node us">判断・指示<small>こちら → システム会社</small></span></li>
+      <li><span class="down">↓</span></li>
+      <li><span class="node">次の作業ブロックの確定</span></li>
+    </ol>
+    <p class="loop">1 日 2 回、繰り返す</p>
+  </div>
+
+  <p><strong>実施時刻</strong></p>
   <div class="tw"><table>
-    <thead><tr><th class="num">時刻</th><th>名称</th><th>確認対象</th></tr></thead>
+    <thead><tr><th class="num">時刻</th><th>受け取る提案の対象</th><th>出す指示が動かす作業</th></tr></thead>
     <tbody>
-      <tr><td class="num">12:00<br>（15 分）</td><th>午前の進捗確認</th><td>午前に着手・完了した内容</td></tr>
-      <tr><td class="num">17:00<br>（15 分）</td><th>午後の進捗確認</th><td>午後に着手・完了した内容</td></tr>
+      <tr><td class="num">12:00<br>（15 分）</td><td>午前の作業結果</td><td><strong>当日午後</strong>の作業</td></tr>
+      <tr><td class="num">17:00<br>（15 分）</td><td>午後の作業結果</td><td><strong>翌日午前</strong>の作業</td></tr>
     </tbody>
   </table></div>
 
-  <p><strong>各回で必ず共有する 3 点</strong></p>
+  <p><strong>15 分の進め方</strong></p>
+  <div class="tw"><table>
+    <thead><tr><th class="num">時間</th><th>方向</th><th>内容</th></tr></thead>
+    <tbody>
+      <tr><td class="num">0〜5 分</td><th>システム会社 → こちら</th><td>前回指示の結果、および判断が必要な点の<strong>提案</strong></td></tr>
+      <tr><td class="num">5〜12 分</td><th>こちら → システム会社</th><td>各提案に対する<strong>判断と指示</strong></td></tr>
+      <tr><td class="num">12〜15 分</td><th>相互確認</th><td>次の作業ブロックで進める内容の確定・復唱</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="call">
+    <span class="ct">提案の出し方 — システム会社側のルール</span>
+    <p><strong>判断が必要な点は、必ず「案」の形で出してください。</strong>「どうしますか」という丸投げの質問にはしないでください。</p>
+    <p>1 件につき、次の 4 点をセットで出します。</p>
+  </div>
   <ol class="steps">
-    <li><strong>完了したもの</strong> … その時間帯に完了した作業</li>
-    <li><strong>止まっている点・判断が必要な点</strong> … 仕様の疑義、素材待ち、技術的な詰まり</li>
-    <li><strong>次の時間帯に進める内容</strong> … 12:00 の回は当日午後、17:00 の回は翌日午前の予定</li>
+    <li><strong>現状</strong> … 何がどこまで進み、何が引っかかっているか</li>
+    <li><strong>案</strong> … 最低 1 案、可能なら 2 案</li>
+    <li><strong>推奨する案とその理由</strong></li>
+    <li><strong>決まらない場合の影響</strong> … 何が止まるか、どれだけ遅れるか</li>
   </ol>
+  <p><strong>提案は定例の開始前までに箇条書きで共有してください。</strong>口頭のみにしないこと（15 分に収めるため）。</p>
+
+  <div class="call">
+    <span class="ct">指示の出し方 — こちら側のルール</span>
+    <p>各提案に対し、その場で <strong>採用 ／ 修正のうえ採用 ／ 保留</strong> のいずれかを返します。<strong>持ち帰りを原則としません。</strong></p>
+    <p>保留にする場合は、<strong>いつまでに決めるかをその場で決めます</strong>。期限のない保留を作りません。</p>
+    <p>修正指示は「良くない」で終わらせず、<strong>何をどう変えるか</strong>まで言い切ります。</p>
+  </div>
+
+  <p><strong>決定の記録</strong> — 決定事項は、その場で決定ログに 1 行ずつ残します。</p>
+  <div class="tw"><table>
+    <thead><tr><th class="num">日付</th><th class="num">時刻</th><th>議題</th><th>提案（システム会社）</th><th>決定・指示</th><th>担当</th><th class="num">期限</th></tr></thead>
+    <tbody>
+      <tr><td class="num">例：9/2</td><td class="num">12:00</td><td>表示方法</td><td>B 案（軽いズーム）を推奨</td><td>C 案（中央から広がる）を採用。ひらがなと揃えるため</td><td>〇〇</td><td class="num">9/3 12:00</td></tr>
+    </tbody>
+  </table></div>
+  <div class="call warn">
+    <p><strong>次の回の冒頭で、前回の決定ログの実施状況を確認します。これによりサイクルが閉じます。</strong>指示が実行されたかを確認しないまま、次の提案に進まないでください。</p>
+  </div>
 
   <p><strong>運用ルール</strong></p>
   <ul>
-    <li>15 分の枠を超えないよう、資料は用意せず口頭ベースで行う。議論が必要な論点は別途時間を取る。</li>
-    <li>進捗がない回も<strong>必ず実施する</strong>。「報告することがない」こと自体が状況の共有になる。</li>
+    <li>15 分の枠を超えない。議論が長引く論点は別途時間を取るが、<strong>その日時はこの場で決める</strong>。</li>
+    <li>提案がない回も<strong>必ず実施する</strong>。「提案がない」こと自体が状況の共有になる。</li>
     <li><strong>遅延の可能性は、次のマイルストーンを待たずこの場で必ず共有する</strong>（下記の報告ルールと連動）。</li>
     <li>実装確認が必要な場合は、この場で実機を見せる。</li>
   </ul>
@@ -821,7 +896,7 @@ html{scroll-behavior:smooth}
     <p>「間に合いそうにない」と判断した時点ではなく、<strong>「間に合わない可能性が出た」時点</strong>でご連絡ください。その際は ①遅れる対象 ②想定される遅延幅 ③代替案（例：ジャンルを 4 つに減らす／レア演出を簡略化する）を添えてください。</p>
   </div>
   <ul>
-    <li>日々の状況は上記の定例進捗確認で共有し、各マイルストーン終了時に、進捗と残課題を 1 通の連絡にまとめて共有する。</li>
+    <li>日々の判断は上記の提案・指示サイクルで確定させ、各マイルストーン終了時に、進捗と残課題を 1 通の連絡にまとめて共有する。</li>
     <li>仕様に疑義が生じた場合、独自判断で決めずに §12 の手順で確認する。</li>
   </ul>
 
