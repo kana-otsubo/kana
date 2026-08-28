@@ -433,24 +433,75 @@ html{scroll-behavior:smooth}
   <ul>
     <li>各ジャンル 10 枚のうち、<strong>後半（7〜9 枚目）に 1 枚だけ</strong>配置する。</li>
     <li>1 セットにレアカードは<strong>1 枚のみ</strong>。2 枚以上入れない。</li>
-    <li>位置はデータ側（<code>order</code> と <code>rarity</code>）で決まり、コードに直書きしない。</li>
+    <li><strong>出現位置は 7〜9 枚目の範囲で毎回変える</strong>（下記「出現位置をランダムにする」）。</li>
+    <li>位置はデータ側で決まり、コードに直書きしない。</li>
   </ul>
 
-  <h3>通常カードとレアカードの差<span class="b b-req">必須</span></h3>
+  <h3>レアカードの設計<span class="b b-req">必須</span></h3>
+  <div class="goal">
+    <p>レアカードは、子どもが楽しみにするカードである。<br>「10 枚に 1 枚、特別なカードが出る」というゲーム性を持たせる。</p>
+  </div>
+  <div class="call gold">
+    <span class="ct">原則</span>
+    <p><strong>ゲーム性は、演出の派手さではなく「期待」と「発見」でつくる。</strong></p>
+    <p>点滅や全画面の色替えで刺激を強くする方向は取りません。連続して見せるカードでそれを行うと §4 の条件②（目がチカチカしない）・⑤（連続しても疲れにくい）に反し、結果として子どもが見続けられなくなります。</p>
+  </div>
+
+  <p><strong>3 段構成</strong></p>
+  <div class="tw"><table>
+    <thead><tr><th>段階</th><th>タイミング</th><th>内容</th><th class="num">時間</th></tr></thead>
+    <tbody>
+      <tr><th>① 予兆</th><td>レアの 1 つ前のカードの表示終了時</td><td>短い効果音を 1 回。画面下部を細い光のラインが左→右に 1 回だけ横切る</td><td class="num">0.3 秒</td></tr>
+      <tr class="rare"><th>② 本体</th><td>レアカード表示中</td><td>基本表示方法 ＋ ゴールドの枠がスッと現れる ＋ 専用効果音</td><td class="num">通常 +0.4 秒</td></tr>
+      <tr><th>③ 余韻</th><td>セット終了画面</td><td>「きょうのレアカード」としてそのカードを再掲する</td><td class="num">「次へ」待ちの間</td></tr>
+    </tbody>
+  </table></div>
+  <p><strong>① 予兆が、子どもが「楽しみにする」ための中心的な仕掛けです。</strong>「次、来るぞ」と気づける合図があることで期待が生まれます。予兆なしに突然出るだけでは、驚きはあっても楽しみにはなりません。</p>
+  <p><strong>③ 余韻は、達成感と次のセットへの期待をつくります。</strong>「〇〇が出たね」と先生が声をかけられる状態にしてください。</p>
+
+  <h3>出現位置をランダムにする<span class="b b-rec">推奨</span></h3>
+  <ul>
+    <li>7〜9 枚目のどこに出るかを、<strong>セット再生ごとにランダムで決める</strong>。</li>
+    <li><strong>「いつ出るか分からない」ことがゲーム性の核</strong>です。位置が毎回同じだと、2 回目以降は期待感が消えます。</li>
+    <li>ただしレアは必ず 1 枚、必ず後半（7〜9 枚目）に出る。<strong>「必ず出る」ことは変えない。</strong></li>
+    <li>実装：データ側に候補位置（例 <code>rareSlot: [7, 8, 9]</code>）を持ち、再生開始時に 1 つ選ぶ。</li>
+    <li>先生には §8 の「つぎ：〇〇」予告で分かるため、進行に支障はありません。</li>
+  </ul>
+  <p>固定位置にする場合は §12 の手順で事前にご相談ください。</p>
+
+  <h3>演出で守ること<span class="b b-req">必須</span></h3>
+  <div class="tw"><table>
+    <thead><tr><th>項目</th><th>規定</th></tr></thead>
+    <tbody>
+      <tr><th>背景</th><td><strong>変えない</strong>（通常カードと同じ単色のまま）</td></tr>
+      <tr><th>枠</th><td>ゴールド 4px 程度、<strong>静止</strong>。点滅・回転させない</td></tr>
+      <tr><th>★マーク</th><td>画面の隅に小さく 1 つだけ。静止。付けなくてもよい</td></tr>
+      <tr><th>効果音</th><td>0.3 秒以内。読み上げ音声の<strong>前</strong>に鳴らし、音声と重ねない。同一セット内では同じ音</td></tr>
+      <tr><th>表示時間</th><td>通常カード +0.4 秒</td></tr>
+      <tr><th>演出の合計</th><td>予兆＋本体＋余韻を含め、<strong>通常カード 1 枚分に対して +1.0 秒を超えない</strong></td></tr>
+    </tbody>
+  </table></div>
+  <div class="call warn">
+    <span class="ct">禁止事項</span>
+    <p>点滅／全画面の色替え・フラッシュ／複数のアニメーションの重ねがけ／派手な回転・跳ね返り／通常カードのテンポを崩す長さの演出。</p>
+  </div>
+
+  <h3>通常カードとの対比</h3>
   <div class="tw"><table>
     <thead><tr><th>観点</th><th>通常カード</th><th>レアカード</th></tr></thead>
     <tbody>
-      <tr><th>目的</th><td>瞬時に認識させる</td><td>注意をもう一度引きつける</td></tr>
+      <tr><th>目的</th><td>瞬時に認識させる</td><td><strong>子どもが楽しみにする</strong></td></tr>
       <tr><th>表示時間</th><td>基準値（初期値 1.6 秒）</td><td>基準値 <strong>+0.4 秒</strong></td></tr>
-      <tr><th>動き</th><td>§4 で決定した基本表示方法</td><td>基本表示方法 ＋ <strong>控えめな装飾を 1 種類だけ</strong></td></tr>
-      <tr><th>装飾</th><td>なし</td><td>細いゴールドの枠線（幅 4px 程度）を静かにフェードイン。または中央から一度だけ通る淡い光沢</td></tr>
-      <tr><th>効果音</th><td>なし</td><td>0.3 秒以内の控えめな音を 1 回。読み上げ音声の<strong>前</strong>に鳴らし、音声と重ねない</td></tr>
-      <tr><th>禁止</th><td>—</td><td>点滅／複数回のアニメーション／画面全体の色替え／派手な回転・跳ね返り</td></tr>
+      <tr><th>動き</th><td>§4 で決定した基本表示方法</td><td>基本表示方法 ＋ ゴールドの枠</td></tr>
+      <tr><th>予兆</th><td>なし</td><td>あり（1 つ前のカードの終わりに 0.3 秒）</td></tr>
+      <tr><th>効果音</th><td>なし</td><td>あり（0.3 秒以内、音声の前）</td></tr>
+      <tr><th>セット終了後の再掲</th><td>なし</td><td>あり（「きょうのレアカード」）</td></tr>
     </tbody>
   </table></div>
-  <div class="call gold">
-    <span class="ct">レアカードの考え方</span>
-    <p><strong>レアカードは「派手なカード」ではありません。「わずかに違う」ことで気づかせるカードです。</strong>演出は 1 種類までとしてください。</p>
+
+  <div class="call">
+    <span class="ct">判定基準</span>
+    <p>デモでは、<strong>レアカードで子どもの反応（声が出る／身を乗り出す）が起きるか</strong>で判断します。システムが演出を再生できたかどうかは判定基準としません。</p>
   </div>
 
   <h3>カード画像の制作規格<span class="b b-req">必須</span></h3>
@@ -734,7 +785,7 @@ html{scroll-behavior:smooth}
     <tbody>
       <tr><th>セッション開始前</th><td>セッション名と「はじめる」ボタンのみ</td></tr>
       <tr><th>セット再生中</th><td>カードのみ（進捗表示・タイトル・メニューを出さない）</td></tr>
-      <tr><th>セット終了時</th><td>「◯◯ おわり」＋ 次セット名 ＋「つぎへ」</td></tr>
+      <tr><th>セット終了時</th><td>「◯◯ おわり」＋ <strong>きょうのレアカード再掲（§3 ③）</strong> ＋ 次セット名 ＋「つぎへ」</td></tr>
       <tr><th>セッション終了時</th><td>「おしまい」＋ 最初に戻るボタン</td></tr>
     </tbody>
   </table></div>
@@ -775,8 +826,11 @@ html{scroll-behavior:smooth}
   "transition": "expand",
   "cardDurationMs": 1600,
   "rareDurationBonusMs": 400,
+  "rareSlot": [7, 8, 9],
   "cards": ["enc-animal-01", "..."]
 }</code></pre>
+
+  <p><code>rareSlot</code> は、レアカードを配置する候補位置。再生開始時にこの中から 1 つを選びます（§3）。</p>
 
   <h3>ことわざカードの追加フィールド</h3>
   <pre><code>{
@@ -803,7 +857,7 @@ html{scroll-behavior:smooth}
   <ul class="deliv">
     <li><span class="n">①</span><span><b>百科事典カード 1 ジャンル 10 枚</b><span>動物セット。画像・文字ラベルを含む完成品</span></span></li>
     <li><span class="n">②</span><span><b>通常カードの表示方法 2〜3 案</b><span>§4 の A / B / C。同一 10 枚で切り替えて比較できる状態</span></span></li>
-    <li><span class="n">③</span><span><b>レアカード 1 枚</b><span>カメレオン。演出込み</span></span></li>
+    <li><span class="n">③</span><span><b>レアカード 1 枚</b><span>カメレオン。<strong>予兆・本体・余韻の 3 段（§3）を含めた状態</strong>で確認する</span></span></li>
     <li><span class="n">④</span><span><b>音声</b><span>動物 10 枚分。§7 の規格に準拠</span></span></li>
     <li><span class="n">⑤</span><span><b>10 枚を連続再生したときの動き</b><span>実機（iPad）で通し再生。§4 の計測値を添付</span></span></li>
   </ul>
@@ -935,7 +989,7 @@ html{scroll-behavior:smooth}
     <li>ことわざの読み上げルール（§6）</li>
     <li>ひらがなの統一・文字サイズ・おちば（§5）</li>
     <li>百科事典 50 枚（枚数はジャンル数を減らして調整可）</li>
-    <li>レアカード演出</li>
+    <li>レアカードの 3 段演出（削る場合は「② 本体」だけを残し、予兆と余韻を落とす）</li>
   </ol>
 </section>
 
@@ -979,6 +1033,10 @@ html{scroll-behavior:smooth}
   <ul class="check">
     <li>百科事典 50 枚がそろっている（5 ジャンル × 10 枚）</li>
     <li>各ジャンルの 7〜9 枚目にレアカードが 1 枚だけ入っている</li>
+    <li>レアカードの 1 つ前に予兆が出る</li>
+    <li>レアカードの出現位置が再生ごとに変わる</li>
+    <li>セット終了画面に「きょうのレアカード」が再掲される</li>
+    <li>レアカードで子どもの反応が起きた</li>
     <li>各セット 10 枚が途中で止まらず連続再生される</li>
     <li>表示方法が全カードで統一されている</li>
     <li>ひらがなカードのアニメーションが「中央から広がる」に統一されている</li>
