@@ -388,6 +388,7 @@ html{scroll-behavior:smooth}
     <li>音声とカード表示のズレが体感で気にならない（§7 の許容値内）。</li>
     <li>10 枚連続再生時、1 枚あたりの表示間隔が<strong>目視で不均一に見えない</strong>。</li>
     <li><strong>先生が「次へ」を押しながら、そのカードの文字を無理なく読める</strong>（§8）。</li>
+    <li><strong>通し再生の間、先生が端末の音量を変える必要がない</strong>（§7）。動画・歌・フラッシュカードの間で音量差を感じない。</li>
   </ol>
   <div class="call warn">
     <span class="ct">重要</span>
@@ -776,11 +777,60 @@ html{scroll-behavior:smooth}
 
 <section id="s7">
   <h2><span class="num">07</span>音声仕様<span class="b b-req">必須</span></h2><div class="rule"></div>
+
+  <h3>音量の統一<span class="b b-req">必須・最優先</span></h3>
+  <div class="call warn">
+    <span class="ct">現状の問題</span>
+    <p><strong>動画と歌が急に大きくなり、フラッシュカードの音声との差がある。</strong>レッスン中に先生が端末の音量を調整せざるを得ない状態になっています。</p>
+    <p>これは §1 の「先生が操作に追われず、レッスンとしてスムーズに進行できること」に直接反します。</p>
+  </div>
+  <div class="goal">
+    <p>目標：レッスンの最初に音量を 1 回決めたら、最後まで触らなくてよい状態にする。</p>
+  </div>
+
+  <p><strong>適用範囲</strong> — <strong>この基準はフラッシュカードだけでなく、レッスン内で再生されるすべての音に適用します。</strong>フラッシュカード側だけを揃えても、動画・歌との差は解消しません。</p>
+  <div class="tw"><table>
+    <thead><tr><th>対象</th><th>基準ラウドネス</th></tr></thead>
+    <tbody>
+      <tr><th>フラッシュカードの読み上げ音声</th><td><strong>-16 LUFS</strong>（integrated）</td></tr>
+      <tr><th>歌</th><td><strong>-16 LUFS</strong>（integrated）</td></tr>
+      <tr><th>動画の音声</th><td><strong>-16 LUFS</strong>（integrated）</td></tr>
+      <tr><th>効果音（レアカードの変化音など）</th><td><strong>-18 LUFS</strong>（突発音のため、やや控えめにする）</td></tr>
+      <tr class="total"><td>すべての素材に共通</td><td><strong>True Peak −1.0 dBTP 以下</strong></td></tr>
+    </tbody>
+  </table></div>
+
+  <p><strong>測定・制作のルール</strong></p>
+  <div class="call gold">
+    <p><strong>ラウドネス（LUFS）で揃える。ピーク正規化だけで揃えない。</strong></p>
+    <p>ピーク正規化（波形の最大値を 0dB に合わせる方法）は、<strong>今回の音量差の典型的な原因</strong>です。歌や動画は音が詰まっているため、ピークを揃えると体感音量が読み上げ音声より大きくなります。</p>
+  </div>
+  <ul>
+    <li>歌は<strong>ボーカルと伴奏の合計</strong>で測る。ボーカルだけで測らない。</li>
+    <li>動画は<strong>音声トラックを抽出して測る</strong>。書き出し時の再エンコードで音量が変わっていないか、書き出し後にもう一度測る。</li>
+    <li>2 秒未満の短い素材（カード 1 語の読み上げなど）は integrated の測定が不安定になる。<strong>同一話者・同一収録条件で録ったうえで</strong>、測定値を添えて提出する。</li>
+    <li>測定ツールは問わない（<code>ffmpeg -af loudnorm</code> 等で可）。ただし<strong>全素材を同一の方法で測ること</strong>。</li>
+  </ul>
+
+  <p><strong>実装側のルール</strong></p>
+  <ul>
+    <li><strong>種別ごとの再生ゲインを設定ファイルで持つ</strong>（例 <code>volumeGain</code>）。素材を作り直さずに微調整できるようにする。</li>
+    <li><strong>再生時に自動ゲイン調整（AGC）やリミッターをかけない。</strong>素材の段階で揃える。実行時の自動調整は、静かな部分を持ち上げてノイズを目立たせ、テンポの妨げになる。</li>
+    <li>端末の音量は先生が最初に 1 回決める。<strong>レッスン中に音量 UI を出さない。</strong></li>
+  </ul>
+
+  <p><strong>検収方法</strong></p>
+  <ol class="steps">
+    <li><strong>全素材の測定値一覧を提出する</strong>（ファイル名／integrated LUFS／True Peak の表）。フラッシュカード音声・歌・動画・効果音のすべてを含めること。</li>
+    <li><strong>通し再生で、端末の音量に触れずに最後まで行けることを確認する。</strong>これが合格の判定です。</li>
+  </ol>
+
+  <h3>音声ファイルの規格<span class="b b-req">必須</span></h3>
   <div class="tw"><table>
     <thead><tr><th>項目</th><th>規格</th></tr></thead>
     <tbody>
       <tr><th>形式</th><td>MP3（128kbps 以上）／44.1kHz／モノラル</td></tr>
-      <tr><th>音量</th><td>全ファイルを <strong>-16 LUFS 前後に正規化</strong>。カード間で音量差を感じさせない</td></tr>
+      <tr><th>音量</th><td>上記「音量の統一」のとおり</td></tr>
       <tr><th>先頭無音</th><td>50ms 以内</td></tr>
       <tr><th>末尾無音</th><td>100ms 以内</td></tr>
       <tr><th>読み上げ</th><td>通常カードは語を<strong>1 回のみ</strong>。繰り返さない</td></tr>
@@ -791,9 +841,10 @@ html{scroll-behavior:smooth}
       <tr><th>先読み</th><td>次の 3 枚分の音声を事前に読み込む</td></tr>
     </tbody>
   </table></div>
+
+  <h3>再生上の注意</h3>
   <div class="call warn">
-    <span class="ct">技術上の注意</span>
-    <p>ブラウザの自動再生制限により、音声は必ず<strong>ユーザー操作を起点</strong>に再生を開始する必要があります。「次へ」タップ時に AudioContext を resume し、以降のセット内自動再生を成立させてください。<strong>この処理を入れないと 2 枚目以降が無音になります。</strong></p>
+    <p><strong>ブラウザの自動再生制限</strong>により、音声は必ず<strong>ユーザー操作を起点</strong>に再生を開始する必要があります。「次へ」タップ時に AudioContext を resume し、以降のセット内自動再生を成立させてください。<strong>この処理を入れないと 2 枚目以降が無音になります。</strong></p>
   </div>
 </section>
 
@@ -1139,6 +1190,7 @@ html{scroll-behavior:smooth}
   <ol class="prio">
     <li>セッション通し再生と「次へ」1 ボタン操作（§8）</li>
     <li>表示方法の決定と統一（§4）</li>
+    <li><strong>音量の統一（§7）</strong></li>
     <li>ことわざの読み上げルール（§6）</li>
     <li>ひらがなの統一・文字サイズ・おちば（§5）</li>
     <li>百科事典 50 枚（枚数はジャンル数を減らして調整可）</li>
@@ -1160,7 +1212,8 @@ html{scroll-behavior:smooth}
       <tr><td class="num">Q6</td><th>実機性能</th><td>対象 iPad の機種・OS バージョン。50 枚の先読みがメモリ上問題ないか</td></tr>
       <tr><td class="num">Q7</td><th>デモ実施日</th><td>確定日。§11 の相対日程を実日付に変換するため</td></tr>
       <tr><td class="num">Q8</td><th>読み上げの担当</th><td>§7 の収録音声と、§8 の先生による読み上げの関係。両方行うのか、どちらかを選べるようにするのか</td></tr>
-      <tr><td class="num">Q9</td><th>画面構成</th><td>子ども用の表示画面と先生用の操作画面は分かれているか。分かれている場合、それぞれに何を表示しているか</td></tr>
+      <tr><td class="num">Q9</td><th>音量の現状</th><td>現在、動画・歌・フラッシュカード音声はそれぞれどの水準で作られているか。既存素材の測り直しと作り直しにどれだけかかるか</td></tr>
+      <tr><td class="num">Q10</td><th>画面構成</th><td>子ども用の表示画面と先生用の操作画面は分かれているか。分かれている場合、それぞれに何を表示しているか</td></tr>
     </tbody>
   </table></div>
   <div class="call">
@@ -1170,6 +1223,9 @@ html{scroll-behavior:smooth}
 
 <section id="s13">
   <h2><span class="num">13</span>今回のスコープ外</h2><div class="rule"></div>
+  <div class="call warn">
+    <p><strong>例外：§7 の音量基準は、フラッシュカード以外（動画・歌）にも適用します。</strong>ここだけはフラッシュカードの範囲を越えます。フラッシュカード側だけを揃えても音量差が解消しないためです。</p>
+  </div>
   <p>以下は今回のデモ対象に含めません。実装しないでください。</p>
   <ul>
     <li>コンテンツの管理画面（カード追加・編集 UI）</li>
@@ -1208,6 +1264,9 @@ html{scroll-behavior:smooth}
     <li>ことわざ本文の重複読みがない</li>
     <li>頭のひらがなを飛ばして本文から始まるものがない</li>
     <li>音声が全カードで同一話者・同一音量</li>
+    <li>動画・歌・フラッシュカード音声・効果音の間で音量差を感じない</li>
+    <li>通し再生の間、端末の音量に一度も触らずに済んだ</li>
+    <li>全素材の測定値一覧（LUFS / True Peak）が提出されている</li>
     <li>全カード種別が一つの流れとして通しで再生される（百科事典だけで終わらない）</li>
     <li>種別が変わっても表示方法・文字・音声・操作が同じである</li>
     <li>「次へ」だけでセット間を移動できる</li>
@@ -1251,7 +1310,7 @@ html{scroll-behavior:smooth}
       <tr><th>§4 表示方法</th><td>2〜3 案を試作して比較、条件①〜⑤、方法は固定しない</td><td>3 案の具体と初期パラメータ、条件①〜⑤の<strong>数値化</strong>、比較の手順と計測項目</td></tr>
       <tr><th>§5 ひらがな</th><td>「あ」の中央展開に統一、「あいうえお」を約 2 倍、おさる→おちば</td><td>文字サイズの具体値（画面高さ 55%）、相対指定での実装</td></tr>
       <tr><th>§6 ことわざ</th><td>頭のひらがなを読んでからことわざ、重複読み禁止、本文からの開始禁止</td><td>間の長さ（0.4 秒）、画面表示との同期</td></tr>
-      <tr><th>§7 音声</th><td>（直接のご指示なし）</td><td><strong>全体が制作側の補足。</strong>話者・音量・無音・同期の統一がないと、連続再生でテンポと聞き取りが崩れるため</td></tr>
+      <tr><th>§7 音声</th><td><strong>音量の調整が必要。動画と歌が急に大きくなり、フラッシュカードの音声との差がある</strong></td><td>基準ラウドネスの数値、測定・制作のルール、実装側のゲイン設計、検収方法。話者・無音・同期の規格は制作側の補足</td></tr>
       <tr><th>§8 操作</th><td>「次へ」1 ボタン、セット間で設定・選択をさせない、先生が子どもを見ることに集中できる、<strong>押しながら文字を読める</strong>、<strong>全カード種別を一つの流れとして一気に流す</strong></td><td>操作の割り当て、画面状態の定義、セッション定義の JSON 化、先生用画面の文字要件の具体値、種別共通仕様の明文化</td></tr>
       <tr><th>§9 データ構造</th><td>（直接のご指示なし）</td><td><strong>全体が制作側の補足。</strong>コンテンツをコードから分離しないと、50 枚の差し替えや表示方法の変更が実装作業になるため</td></tr>
       <tr><th>§10 第 1 次提出物</th><td>①〜⑤、ここで方向性を確認してから展開</td><td>確認の実施方法、「確認完了まで量産に着手しない」</td></tr>
