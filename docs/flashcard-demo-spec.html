@@ -322,6 +322,7 @@ html{scroll-behavior:smooth}
   <h1>フラッシュカード<br>次回デモ仕様</h1>
   <p class="lead">次回デモに向けた、フラッシュカード機能（百科事典・ひらがな・ことわざ・反対語・俳句ほか）の表示／音声／操作の仕様指示です。まず動物 10 枚と表示方法 2〜3 案を先に確認し、方向性を固めてから残りへ展開します。</p>
   <dl class="metagrid">
+    <div><dt>対象年齢</dt><dd>2〜6 歳</dd></div>
     <div><dt>対象範囲</dt><dd>表示・音声・操作の全体</dd></div>
     <div><dt>対象デバイス</dt><dd>iPad Safari（横向き）／PC Chrome</dd></div>
     <div><dt>制作枚数</dt><dd>百科事典 50 枚（5 ジャンル）</dd></div>
@@ -429,7 +430,7 @@ html{scroll-behavior:smooth}
   <p><strong>各ジャンルは 10 枚を 1 セットとし、途中で止まらず連続提示できること。</strong>セット内での一時停止・選択・確認ダイアログは一切設けません。</p>
 
   <h3>第 5 ジャンル<span class="b b-rec">推奨</span></h3>
-  <p><strong>「がっき（楽器）」を推奨します。</strong>形が明確で 3〜6 歳でも識別しやすく、レアカード（パイプオルガン）で大きさの意外性を出せるためです。代替候補（採用可）：<code>やさい</code> / <code>うちゅう（天体）</code> / <code>きょうりゅう</code>。変更する場合は §12 の手順で事前にご連絡ください。</p>
+  <p><strong>「がっき（楽器）」を推奨します。</strong>形が明確で 2〜6 歳でも識別しやすく、レアカード（たいこ）で「音が出る」という変化を作りやすいためです。代替候補（採用可）：<code>やさい</code> / <code>うちゅう（天体）</code> / <code>きょうりゅう</code>。変更する場合は §12 の手順で事前にご連絡ください。</p>
 
   <h3>レアカードの配置ルール<span class="b b-req">必須</span></h3>
   <ul>
@@ -443,71 +444,94 @@ html{scroll-behavior:smooth}
   <div class="goal">
     <p>レアカードは、子どもが楽しみにするカードである。<br>「10 枚に 1 枚、特別なカードが出る」というゲーム性を持たせる。</p>
   </div>
-  <div class="call gold">
-    <span class="ct">原則</span>
-    <p><strong>ゲーム性は、演出の派手さではなく「期待」と「発見」でつくる。</strong></p>
-    <p>点滅や全画面の色替えで刺激を強くする方向は取りません。連続して見せるカードでそれを行うと §4 の条件②（目がチカチカしない）・⑤（連続しても疲れにくい）に反し、結果として子どもが見続けられなくなります。</p>
-  </div>
 
-  <p><strong>3 段構成</strong></p>
+  <h3>基本の考え方：静・静・静……→ 変化！</h3>
+  <div class="call gold">
+    <p><strong>常に派手にするのではありません。</strong></p>
+    <p>通常の 9 枚は統一された図鑑調で、静止したまま、同じテンポで淡々と見せます。そして 7〜9 枚目のどこかで、<strong>突然そのカードだけが動き、音が鳴ります。</strong></p>
+  </div>
+  <div class="cycle">
+    <ol style="flex-direction:row;flex-wrap:wrap;justify-content:center;gap:6px">
+      <li><span class="node">静</span></li><li><span class="node">静</span></li><li><span class="node">静</span></li>
+      <li><span class="node">静</span></li><li><span class="node">静</span></li><li><span class="node">静</span></li>
+      <li><span class="node us">変化！</span></li>
+      <li><span class="node">静</span></li><li><span class="node">静</span></li>
+    </ol>
+  </div>
+  <p><strong>幼児の注意を引くのは「予想していた流れから少し外れる変化」です。</strong>9 枚が完全に静かで統一されているほど、1 枚の変化が効きます。<strong>通常カードを揃えることが、レアカードを効かせる前提条件になります。</strong></p>
+
+  <h3>予兆は出さない<span class="b b-req">必須</span></h3>
+  <ul>
+    <li><strong>レアカードの前に予告・前触れを出さないこと。</strong>「次に来るぞ」と分かった時点で、驚きも変化も失われます。</li>
+    <li>直前のカードまで、完全にいつもどおりに進めます。</li>
+    <li>「楽しみにする」気持ちは、<strong>セットのどこかに必ず 1 枚ある</strong>と子どもが覚えることで生まれます。セット内の合図では作りません。</li>
+  </ul>
+
+  <h3>変化の内容（カードごとに違う）</h3>
+  <p><strong>レアカードの変化は、そのカード固有のものにします。</strong>全ジャンル共通の演出テンプレートにしないでください。</p>
   <div class="tw"><table>
-    <thead><tr><th>段階</th><th>タイミング</th><th>内容</th><th class="num">時間</th></tr></thead>
+    <thead><tr><th>ジャンル</th><th>レアカード</th><th>変化</th><th>音</th></tr></thead>
     <tbody>
-      <tr><th>① 予兆</th><td>レアの 1 つ前のカードの表示終了時</td><td>短い効果音を 1 回。画面下部を細い光のラインが左→右に 1 回だけ横切る</td><td class="num">0.3 秒</td></tr>
-      <tr class="rare"><th>② 本体</th><td>レアカード表示中</td><td>基本表示方法 ＋ ラベル文字がゴールド ＋ 隅に★ ＋ 専用効果音</td><td class="num">通常 +0.4 秒</td></tr>
-      <tr><th>③ 余韻</th><td>セット終了画面</td><td>「きょうのレアカード」としてそのカードを再掲する</td><td class="num">「次へ」待ちの間</td></tr>
+      <tr class="rare"><th>動物</th><td><strong>ぞう</strong></td><td>鼻を 1 回持ち上げる</td><td>「パオーン！」</td></tr>
+      <tr class="rare"><th>乗り物</th><td><strong>しょうぼうしゃ</strong></td><td>屋根のライトが 2 回光る</td><td>サイレン</td></tr>
+      <tr class="rare"><th>果物</th><td><strong>すいか</strong></td><td>パカッと割れて中（赤い果肉）が見える</td><td>「パカッ」</td></tr>
+      <tr class="rare"><th>職業</th><td><strong>宇宙飛行士</strong></td><td>ふわっと浮き上がる</td><td>無重力を感じる短い音</td></tr>
+      <tr class="rare"><th>がっき</th><td><strong>たいこ</strong></td><td>ばちが下りて打面が震える</td><td>「ドン！」</td></tr>
     </tbody>
   </table></div>
-  <p><strong>① 予兆が、子どもが「楽しみにする」ための中心的な仕掛けです。</strong>「次、来るぞ」と気づける合図があることで期待が生まれます。予兆なしに突然出るだけでは、驚きはあっても楽しみにはなりません。</p>
-  <p><strong>③ 余韻は、達成感と次のセットへの期待をつくります。</strong>「〇〇が出たね」と先生が声をかけられる状態にしてください。</p>
+  <div class="call">
+    <p><strong>レアカードの題材は、めずらしいものである必要はありません。</strong>むしろ、子どもがよく知っているもの（ぞう・すいか・しょうぼうしゃ）のほうが「いつもと違う」が伝わります。<strong>変えるのは題材ではなく、振る舞いです。</strong></p>
+  </div>
+
+  <h3>変化の進行</h3>
+  <div class="tw"><table>
+    <thead><tr><th class="num">順</th><th>内容</th><th class="num">時間</th></tr></thead>
+    <tbody>
+      <tr><td class="num">1</td><td>カード表示 ＋ 語の読み上げ（通常カードと同じ）</td><td class="num">通常どおり</td></tr>
+      <tr><td class="num">2</td><td>間</td><td class="num">0.3 秒</td></tr>
+      <tr class="rare"><td class="num">3</td><td><strong>変化（動き ＋ 効果音）</strong></td><td class="num">0.6 秒以内</td></tr>
+      <tr><td class="num">4</td><td>余韻（変化後の状態のまま静止）</td><td class="num">0.4 秒</td></tr>
+    </tbody>
+  </table></div>
+  <p><strong>レアカードの表示時間は、通常カード +1.0 秒程度</strong>（変化 0.6 秒＋余韻 0.4 秒）。</p>
+
+  <h3>変化の制約<span class="b b-req">必須</span></h3>
+  <div class="tw"><table>
+    <thead><tr><th>項目</th><th>規定</th></tr></thead>
+    <tbody>
+      <tr><th>回数</th><td><strong>1 回だけ。ループさせない</strong></td></tr>
+      <tr><th>長さ</th><td>動きは 0.6 秒以内、音は 0.8 秒以内</td></tr>
+      <tr><th>動かす範囲</th><td><strong>被写体の一部だけ</strong>（ぞうなら鼻、たいこならばち）。画面全体・カード全体を動かさない</td></tr>
+      <tr><th>背景</th><td><strong>変えない</strong>（§3.5 の共通の背景色のまま）</td></tr>
+      <tr><th>光るもの</th><td>点滅は <strong>2 回まで</strong>。3Hz 以上で明滅させない（§4 条件②）</td></tr>
+      <tr><th>枠・★</th><td><strong>付けない。</strong>変化そのものが標示なので、追加の目印は不要（§3.5「境目を作らない」とも両立しない）</td></tr>
+      <tr><th>音</th><td>読み上げ音声と<strong>重ねない</strong>。読み上げの後に鳴らす</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>セット終了後の再掲<span class="b b-rec">推奨</span></h3>
+  <p>セット終了画面で「きょうのレアカード」としてそのカードを再掲します。先生が「〇〇が出たね」と声をかけられる状態にし、次のセットへの期待をつくります。</p>
 
   <h3>出現位置をランダムにする<span class="b b-rec">推奨</span></h3>
   <ul>
     <li>7〜9 枚目のどこに出るかを、<strong>セット再生ごとにランダムで決める</strong>。</li>
-    <li><strong>「いつ出るか分からない」ことがゲーム性の核</strong>です。位置が毎回同じだと、2 回目以降は期待感が消えます。</li>
+    <li><strong>「いつ出るか分からない」ことがゲーム性の核</strong>です。位置が毎回同じだと、2 回目以降は驚きが消えます。</li>
     <li>ただしレアは必ず 1 枚、必ず後半（7〜9 枚目）に出る。<strong>「必ず出る」ことは変えない。</strong></li>
     <li>実装：データ側に候補位置（例 <code>rareSlot: [7, 8, 9]</code>）を持ち、再生開始時に 1 つ選ぶ。</li>
-    <li>先生には §8 の「つぎ：〇〇」予告で分かるため、進行に支障はありません。</li>
+    <li>下記の一覧はレアカードを 8 枚目に置いていますが、これは基準位置です。</li>
   </ul>
-  <p>固定位置にする場合は §12 の手順で事前にご相談ください。</p>
 
-  <h3>演出で守ること<span class="b b-req">必須</span></h3>
-  <div class="tw"><table>
-    <thead><tr><th>項目</th><th>規定</th></tr></thead>
-    <tbody>
-      <tr><th>背景</th><td><strong>変えない</strong>（通常カードと同じ単色のまま）</td></tr>
-      <tr><th>枠</th><td><strong>付けない。</strong>§3.5 の「カードとの境目を作らない」と両立しないため（枠は画面の縁を作ってしまう）</td></tr>
-      <tr><th>レアの標示</th><td>①ラベル文字を<strong>ゴールド</strong>にする ②画面の隅に小さな★を 1 つ ③予兆と効果音。この 3 つで示す</td></tr>
-      <tr><th>★マーク</th><td>画面の隅に小さく 1 つだけ。静止。付けなくてもよい</td></tr>
-      <tr><th>効果音</th><td>0.3 秒以内。読み上げ音声の<strong>前</strong>に鳴らし、音声と重ねない。同一セット内では同じ音</td></tr>
-      <tr><th>表示時間</th><td>通常カード +0.4 秒</td></tr>
-      <tr><th>演出の合計</th><td>予兆＋本体＋余韻を含め、<strong>通常カード 1 枚分に対して +1.0 秒を超えない</strong></td></tr>
-    </tbody>
-  </table></div>
   <div class="call warn">
     <span class="ct">禁止事項</span>
-    <p>点滅／全画面の色替え・フラッシュ／複数のアニメーションの重ねがけ／派手な回転・跳ね返り／通常カードのテンポを崩す長さの演出。</p>
+    <p>レアカードの前に予告・前触れを出す／変化を繰り返す・ループさせる／画面全体の色替え・フラッシュ・暗転／複数のアニメーションの重ねがけ／<strong>通常カードにも動きを付ける</strong>（通常カードは完全に静止。これが崩れるとレアが効きません）。</p>
   </div>
-
-  <h3>通常カードとの対比</h3>
-  <div class="tw"><table>
-    <thead><tr><th>観点</th><th>通常カード</th><th>レアカード</th></tr></thead>
-    <tbody>
-      <tr><th>目的</th><td>瞬時に認識させる</td><td><strong>子どもが楽しみにする</strong></td></tr>
-      <tr><th>表示時間</th><td>基準値（初期値 1.6 秒）</td><td>基準値 <strong>+0.4 秒</strong></td></tr>
-      <tr><th>動き</th><td>§4 で決定した基本表示方法</td><td>基本表示方法（同じ）。差は文字色と★で示す</td></tr>
-      <tr><th>予兆</th><td>なし</td><td>あり（1 つ前のカードの終わりに 0.3 秒）</td></tr>
-      <tr><th>効果音</th><td>なし</td><td>あり（0.3 秒以内、音声の前）</td></tr>
-      <tr><th>セット終了後の再掲</th><td>なし</td><td>あり（「きょうのレアカード」）</td></tr>
-    </tbody>
-  </table></div>
 
   <div class="call">
     <span class="ct">判定基準</span>
     <p>デモでは、<strong>レアカードで子どもの反応（声が出る／身を乗り出す）が起きるか</strong>で判断します。システムが演出を再生できたかどうかは判定基準としません。</p>
   </div>
 
-  <h3>カード画像の制作規格<span class="b b-req">必須</span></h3>
+  <h3>カード画像：画面の使い方<span class="b b-req">必須</span></h3>
   <div class="goal">
     <p>画像はディスプレイ全体を使って表示する。カードとの境目を作らない。</p>
   </div>
@@ -520,23 +544,58 @@ html{scroll-behavior:smooth}
       <tr><th>解像度</th><td><strong>横長。2732 × 2048 px（4:3）を基準とする</strong>（iPad 横向き想定）</td></tr>
       <tr><th>アスペクト比の吸収</th><td>画面比が異なる端末では <strong>cover（縦横比を保って画面を覆う）</strong> で表示し、余白を出さない。<strong>letterbox / contain は使わない</strong></td></tr>
       <tr><th>セーフエリア</th><td>画面比の違いで上下左右が見切れることを前提に、<strong>中央 4:3 相当の範囲に被写体を収める</strong>。端が切れても被写体が欠けないこと</td></tr>
-      <tr><th>被写体</th><td>画面中央。セーフエリアの <strong>70〜80%</strong> を占める。上下左右に均等な余白</td></tr>
-      <tr><th>背景</th><td><strong>全カード共通の単色（オフホワイト <code>#FAF7F2</code>）で画面の端まで塗り切る。</strong>透過 PNG のまま納品しない</td></tr>
-      <tr><th>画風</th><td>輪郭のはっきりしたイラスト。写真は使わない</td></tr>
-      <tr><th>表現</th><td>強い影・複雑なグラデーション・細かいテクスチャは使わない</td></tr>
-      <tr><th>色</th><td>高彩度の面積を画面の 40% 以内に抑える。隣接するカード間で背景輝度を変えない</td></tr>
-      <tr><th>向き</th><td>動物・乗り物は原則、左向きまたは正面に統一</td></tr>
+      <tr><th>被写体</th><td>画面中央。セーフエリアの <strong>70〜80%</strong> を占める</td></tr>
     </tbody>
   </table></div>
+
+  <h3>色：明るい・はっきり・少数<span class="b b-req">必須</span></h3>
+  <div class="goal">
+    <p>白〜ごく薄い背景 ＋ 彩度の高すぎない鮮やかな色。</p>
+  </div>
+  <div class="tw"><table>
+    <thead><tr><th>項目</th><th>規格</th></tr></thead>
+    <tbody>
+      <tr><th>背景</th><td><strong>白〜ごく薄い単色</strong>（<code>#FFFFFF</code>〜<code>#FAF8F5</code>）。<strong>全カード共通</strong>。画面の端まで塗り切る</td></tr>
+      <tr><th>主役の色</th><td>赤・黄・青・緑・オレンジなど、<strong>幼児が区別しやすい色</strong>。彩度は高すぎないこと（目に刺さる蛍光色は使わない）</td></tr>
+      <tr><th>1 枚あたりの色数</th><td><strong>主役の色 1〜2 色 ＋ 文字の黒。</strong>3 色以上の面を作らない</td></tr>
+      <tr><th>文字</th><td><strong>黒ではっきり</strong>（<code>#1A1A1A</code>）。色文字にしない</td></tr>
+      <tr><th>禁止</th><td>背景をカラフルにする／グラデーション背景／カードごとに背景色を変える</td></tr>
+    </tbody>
+  </table></div>
+  <div class="call gold">
+    <span class="ct">例 — りんご</span>
+    <p><strong>白い背景 ＋ 大きな赤いりんご ＋ 黒ではっきりした「りんご」</strong></p>
+    <p>これくらいがフラッシュカードには向いています。背景まで色を付けないでください。</p>
+  </div>
   <div class="call warn">
     <p><strong>背景色をカードごとに変えないでください。</strong>背景が変わると連続再生時のちらつきの主因になります（§4 条件②）。フルブリード表示では画面全体が背景色で埋まるため、色が変わると<strong>画面全体が変化する</strong>ことになり、影響がさらに大きくなります。</p>
   </div>
+
+  <h3>画像のタッチ：実物がすぐ分かる、少し柔らかい図鑑イラスト<span class="b b-req">必須</span></h3>
+  <p><strong>「リアルすぎず、キャラクターすぎず」。</strong>写真そのものより少し温かく、しかし漫画化しすぎない。</p>
+  <div class="tw"><table>
+    <thead><tr><th>項目</th><th>規格</th></tr></thead>
+    <tbody>
+      <tr><th>特徴の正確さ</th><td><strong>体の形・鼻・耳など、その対象の特徴を正確に描く</strong>（ぞうなら鼻の長さ・耳の大きさ・体の形）</td></tr>
+      <tr><th>輪郭</th><td><strong>明確</strong>。にじませない</td></tr>
+      <tr><th>陰影</th><td><strong>少なめ</strong>。強い影・複雑なグラデーション・細かいテクスチャは使わない</td></tr>
+      <tr><th>背景の情報</th><td><strong>余計なものを入れない。</strong>木・草・空・地面などは基本的に描かない</td></tr>
+      <tr><th>顔</th><td><strong>過度にキャラクター化しない。</strong>目を極端に大きくしない、擬人化しない、表情を付けすぎない</td></tr>
+      <tr><th>写真</th><td>使わない</td></tr>
+      <tr><th>向き</th><td>動物・乗り物は原則、左向きまたは正面に統一</td></tr>
+    </tbody>
+  </table></div>
+  <div class="goal">
+    <p>判定基準：子どもがあとで本物を見たときに、「これがゾウ」と結びつくか。</p>
+  </div>
+  <p>百科事典カードなので、「かわいい」だけでは足りません。<strong>実物と結びつくことが目的</strong>です。この基準で 1 枚ずつ確認してください。</p>
+
   <p><strong>「境目を作らない」の適用範囲</strong></p>
   <ul>
     <li>カードの周囲に枠線・影・角丸を付けない。</li>
     <li>画面の縁に色帯・余白を作らない。</li>
     <li>前のカードと次のカードの間に、境界を感じさせる線・帯・暗転を挟まない。</li>
-    <li>レアカードも枠で示さない（§3「演出で守ること」を参照）。</li>
+    <li>レアカードも枠で示さない（§3.4）。</li>
   </ul>
 
   <h3>文字ラベル<span class="b b-req">必須</span></h3>
@@ -552,31 +611,32 @@ html{scroll-behavior:smooth}
   </ul>
 
   <h3>カード内容一覧（制作リスト）</h3>
+  <p>★ ＝ レアカード。<strong>題材は子どもがよく知っているものを選び、変化（上記）で特別さを出します。</strong>一覧では 8 枚目に置いていますが、これは基準位置であり、再生時は 7〜9 枚目のいずれかに移動します。</p>
   <div class="sets">
     <div class="set"><h4>どうぶつ<span>10枚</span></h4><ol>
-      <li><i>1</i>いぬ</li><li><i>2</i>ねこ</li><li><i>3</i>ぞう</li><li><i>4</i>きりん</li><li><i>5</i>ライオン</li><li><i>6</i>うさぎ</li>
-      <li class="r"><i>7</i><b>カメレオン</b></li>
-      <li><i>8</i>ぺんぎん</li><li><i>9</i>くま</li><li><i>10</i>ぱんだ</li>
+      <li><i>1</i>いぬ</li><li><i>2</i>ねこ</li><li><i>3</i>うさぎ</li><li><i>4</i>きりん</li><li><i>5</i>ライオン</li><li><i>6</i>ぺんぎん</li><li><i>7</i>くま</li>
+      <li class="r"><i>8</i><b>ぞう</b></li>
+      <li><i>9</i>ぱんだ</li><li><i>10</i>さる</li>
     </ol></div>
     <div class="set"><h4>のりもの<span>10枚</span></h4><ol>
-      <li><i>1</i>くるま</li><li><i>2</i>バス</li><li><i>3</i>でんしゃ</li><li><i>4</i>しんかんせん</li><li><i>5</i>ひこうき</li><li><i>6</i>しょうぼうしゃ</li><li><i>7</i>きゅうきゅうしゃ</li>
-      <li class="r"><i>8</i><b>ロケット</b></li>
-      <li><i>9</i>ふね</li><li><i>10</i>じてんしゃ</li>
+      <li><i>1</i>くるま</li><li><i>2</i>バス</li><li><i>3</i>じてんしゃ</li><li><i>4</i>でんしゃ</li><li><i>5</i>しんかんせん</li><li><i>6</i>ひこうき</li><li><i>7</i>ふね</li>
+      <li class="r"><i>8</i><b>しょうぼうしゃ</b></li>
+      <li><i>9</i>きゅうきゅうしゃ</li><li><i>10</i>ロケット</li>
     </ol></div>
     <div class="set"><h4>くだもの<span>10枚</span></h4><ol>
-      <li><i>1</i>りんご</li><li><i>2</i>バナナ</li><li><i>3</i>みかん</li><li><i>4</i>いちご</li><li><i>5</i>ぶどう</li><li><i>6</i>もも</li><li><i>7</i>すいか</li>
-      <li class="r"><i>8</i><b>ドラゴンフルーツ</b></li>
-      <li><i>9</i>メロン</li><li><i>10</i>パイナップル</li>
+      <li><i>1</i>りんご</li><li><i>2</i>バナナ</li><li><i>3</i>みかん</li><li><i>4</i>いちご</li><li><i>5</i>ぶどう</li><li><i>6</i>もも</li><li><i>7</i>メロン</li>
+      <li class="r"><i>8</i><b>すいか</b></li>
+      <li><i>9</i>パイナップル</li><li><i>10</i>さくらんぼ</li>
     </ol></div>
     <div class="set"><h4>しょくぎょう<span>10枚</span></h4><ol>
-      <li><i>1</i>医師</li><li><i>2</i>警察官</li><li><i>3</i>消防士</li><li><i>4</i>パイロット</li><li><i>5</i>料理人</li><li><i>6</i>美容師</li>
-      <li class="r"><i>7</i><b>宇宙飛行士</b></li>
-      <li><i>8</i>農家</li><li><i>9</i>教師</li><li><i>10</i>獣医</li>
+      <li><i>1</i>医師</li><li><i>2</i>警察官</li><li><i>3</i>消防士</li><li><i>4</i>パイロット</li><li><i>5</i>料理人</li><li><i>6</i>美容師</li><li><i>7</i>農家</li>
+      <li class="r"><i>8</i><b>宇宙飛行士</b></li>
+      <li><i>9</i>教師</li><li><i>10</i>獣医</li>
     </ol></div>
     <div class="set"><h4>がっき<span>10枚</span></h4><ol>
-      <li><i>1</i>ピアノ</li><li><i>2</i>たいこ</li><li><i>3</i>ギター</li><li><i>4</i>バイオリン</li><li><i>5</i>トランペット</li><li><i>6</i>たてぶえ</li><li><i>7</i>カスタネット</li>
-      <li class="r"><i>8</i><b>パイプオルガン</b></li>
-      <li><i>9</i>ハープ</li><li><i>10</i>もっきん</li>
+      <li><i>1</i>ピアノ</li><li><i>2</i>ギター</li><li><i>3</i>バイオリン</li><li><i>4</i>トランペット</li><li><i>5</i>たてぶえ</li><li><i>6</i>カスタネット</li><li><i>7</i>もっきん</li>
+      <li class="r"><i>8</i><b>たいこ</b></li>
+      <li><i>9</i>ハープ</li><li><i>10</i>すず</li>
     </ol></div>
   </div>
   <div class="call">
@@ -584,7 +644,7 @@ html{scroll-behavior:smooth}
     <p><strong>職業カードは職業名で統一します。</strong>「〜さん」「〜の人」は使いません。さん付けと非さん付けを混在させないでください。</p>
     <p>医師（「おいしゃさん」としない）／料理人（「コックさん」としない）／農家（「農家の人」としない）／教師（「せんせい」は職業名として不明確なため使わない）／獣医（「じゅういさん」としない）。読みはそれぞれ いし・りょうりにん・のうか・きょうし・じゅうい。</p>
   </div>
-  <p>レアカードの補足：カメレオン＝体の色が特徴的なもの／ロケット＝打ち上げ姿勢・炎あり／ドラゴンフルーツ＝断面を見せる／うちゅうひこうし＝宇宙服・背景に地球／パイプオルガン＝人物を添えて大きさを示す。</p>
+  <p>果物の「りんご」は §3.5 の色の基準例です（白い背景 ＋ 大きな赤いりんご ＋ 黒の「りんご」）。</p>
 </section>
 
 <section id="s4">
@@ -600,7 +660,7 @@ html{scroll-behavior:smooth}
     <tbody>
       <tr><td class="num">①</td><th>テンポが落ちない</th><td>1 枚あたりの実測表示間隔のばらつきが ±50ms 以内。フレーム落ち（60fps 未満のフレーム）が 1 セット中 3 回以下</td></tr>
       <tr><td class="num">②</td><th>目がチカチカしない</th><td>画面全体の輝度変化が 1 秒あたり 3 回未満（WCAG 2.3.1 準拠）。白フラッシュ・全画面の色反転を行わない。背景色は全カード共通で<strong>切替時も変化させない</strong></td></tr>
-      <tr><td class="num">③</td><th>3〜6 歳が見やすい</th><td>被写体が常に画面中央。トランジション中に被写体が画面外へ出ない。回転・反転・スライドアウトを使わない</td></tr>
+      <tr><td class="num">③</td><th>2〜6 歳が見やすい</th><td>被写体が常に画面中央。トランジション中に被写体が画面外へ出ない。回転・反転・スライドアウトを使わない</td></tr>
       <tr><td class="num">④</td><th>絵や文字に注意が向く</th><td>装飾・エフェクト・UI 要素をカード表示中に出さない。動きは「現れる」ためだけに使い、「見せる」ためには使わない</td></tr>
       <tr><td class="num">⑤</td><th>連続でも疲れにくい</th><td>トランジション時間 250ms 以内。カード間に暗転・白転を挟まない。<code>prefers-reduced-motion: reduce</code> 指定時は A 案（瞬時表示）に自動切替</td></tr>
     </tbody>
@@ -712,7 +772,7 @@ html{scroll-behavior:smooth}
       <tr><th>末尾無音</th><td>100ms 以内</td></tr>
       <tr><th>読み上げ</th><td>通常カードは語を<strong>1 回のみ</strong>。繰り返さない</td></tr>
       <tr><th>職業カード</th><td>職業名をそのまま読む（「いし」「きょうし」）。「おいしゃさん」等に言い換えない</td></tr>
-      <tr><th>話速</th><td>3〜6 歳が聞き取れる速度。全カードで統一</td></tr>
+      <tr><th>話速</th><td>2〜6 歳が聞き取れる速度。全カードで統一</td></tr>
       <tr><th>話者</th><td>全カード・全セットで同一話者に統一</td></tr>
       <tr><th>同期</th><td>カード表示開始から音声再生開始までのズレ <strong>100ms 以内</strong></td></tr>
       <tr><th>先読み</th><td>次の 3 枚分の音声を事前に読み込む</td></tr>
@@ -869,13 +929,15 @@ html{scroll-behavior:smooth}
 
   <h3>カード</h3>
   <pre><code>{
-  "id": "enc-animal-07",
+  "id": "enc-animal-08",
   "deckId": "enc-animal",
-  "order": 7,
+  "order": 8,
   "rarity": "rare",
-  "label": "カメレオン",
-  "image": "/cards/encyclopedia/animal/07-chameleon.webp",
-  "audio": "/audio/encyclopedia/animal/07-chameleon.mp3"
+  "label": "ぞう",
+  "image": "/cards/encyclopedia/animal/08-zou.webp",
+  "audio": "/audio/encyclopedia/animal/08-zou.mp3",
+  "changeMotion": "trunk-lift",
+  "changeSound": "/audio/sfx/paoon.mp3"
 }</code></pre>
   <div class="tw"><table>
     <thead><tr><th>フィールド</th><th>型</th><th>説明</th></tr></thead>
@@ -887,6 +949,7 @@ html{scroll-behavior:smooth}
       <tr><th><code>type</code></th><td>string</td><td>カード種別（encyclopedia / hiragana / kotowaza / yojijukugo / hantaigo / haiku / hyakunin）。<strong>種別で分岐する処理は表示時間の決定のみ</strong></td></tr>
       <tr><th><code>label</code></th><td>string</td><td>画面表示文字</td></tr>
       <tr><th><code>image</code> / <code>audio</code></th><td>string</td><td>素材パス</td></tr>
+      <tr><th><code>changeMotion</code> / <code>changeSound</code></th><td>string</td><td><strong>レアカードのみ。</strong>変化の動きと効果音（§3.4）</td></tr>
     </tbody>
   </table></div>
 
@@ -933,7 +996,7 @@ html{scroll-behavior:smooth}
   <ul class="deliv">
     <li><span class="n">①</span><span><b>百科事典カード 1 ジャンル 10 枚</b><span>動物セット。画像・文字ラベルを含む完成品</span></span></li>
     <li><span class="n">②</span><span><b>通常カードの表示方法 2〜3 案</b><span>§4 の A / B / C。同一 10 枚で切り替えて比較できる状態</span></span></li>
-    <li><span class="n">③</span><span><b>レアカード 1 枚</b><span>カメレオン。<strong>予兆・本体・余韻の 3 段（§3）を含めた状態</strong>で確認する</span></span></li>
+    <li><span class="n">③</span><span><b>レアカード 1 枚</b><span><strong>ぞう</strong>（鼻を持ち上げる ＋「パオーン！」）。<strong>通常 9 枚の静けさとの対比</strong>が出ているかを確認する</span></span></li>
     <li><span class="n">④</span><span><b>音声</b><span>動物 10 枚分。§7 の規格に準拠</span></span></li>
     <li><span class="n">⑤</span><span><b>10 枚を連続再生したときの動き</b><span>実機（iPad）で通し再生。§4 の計測値を添付</span></span></li>
   </ul>
@@ -1065,7 +1128,7 @@ html{scroll-behavior:smooth}
     <li>ことわざの読み上げルール（§6）</li>
     <li>ひらがなの統一・文字サイズ・おちば（§5）</li>
     <li>百科事典 50 枚（枚数はジャンル数を減らして調整可）</li>
-    <li>レアカードの 3 段演出（削る場合は「② 本体」だけを残し、予兆と余韻を落とす）</li>
+    <li>レアカードの変化（削る場合は、セット終了後の再掲と出現位置のランダム化から落とす。<strong>変化そのものは最後まで残す</strong>）</li>
   </ol>
 </section>
 
@@ -1109,7 +1172,12 @@ html{scroll-behavior:smooth}
   <ul class="check">
     <li>百科事典 50 枚がそろっている（5 ジャンル × 10 枚）</li>
     <li>各ジャンルの 7〜9 枚目にレアカードが 1 枚だけ入っている</li>
-    <li>レアカードの 1 つ前に予兆が出る</li>
+    <li>通常カードは完全に静止しており、動くのはレアカードだけ</li>
+    <li>レアカードの前に予告・前触れが出ない</li>
+    <li>レアカードの変化が 1 回だけで、ループしない</li>
+    <li>背景が白〜ごく薄い単色で、全カード共通</li>
+    <li>1 枚の中の色が「主役 1〜2 色 ＋ 黒の文字」に収まっている</li>
+    <li>絵から実物が分かる（あとで本物を見て結びつく）</li>
     <li>レアカードの出現位置が再生ごとに変わる</li>
     <li>セット終了画面に「きょうのレアカード」が再掲される</li>
     <li>レアカードで子どもの反応が起きた</li>
@@ -1162,8 +1230,8 @@ html{scroll-behavior:smooth}
     <thead><tr><th>章</th><th>ご指示いただいた内容</th><th>制作側で補った内容</th></tr></thead>
     <tbody>
       <tr><th>§1 目的</th><td>目的の 2 文、「システムが動くことは完成条件ではない」</td><td>完成条件の判定形式（B-1）</td></tr>
-      <tr><th>§3 百科事典</th><td>5 ジャンル × 10 枚＝50 枚、後半にレア 1 枚、通常はシンプルで瞬時に認識、<strong>画像はディスプレイ全体・境目なし</strong>、<strong>職業は職業名で統一</strong></td><td>第 5 ジャンル「がっき」の提案、50 語の具体名、画像の技術規格（解像度・形式・セーフエリア）、同音異義語のふりがな規則</td></tr>
-      <tr><th>§3 レアカード</th><td><strong>子どもが楽しみにするカード。ゲーム性を持たせる</strong></td><td>3 段構成（予兆・本体・余韻）、出現位置のランダム化、演出の上限（+1.0 秒）、判定基準（子どもの反応で見る）</td></tr>
+      <tr><th>§3 百科事典</th><td>5 ジャンル × 10 枚＝50 枚、後半にレア 1 枚、通常はシンプルで瞬時に認識、<strong>画像はディスプレイ全体・境目なし</strong>、<strong>職業は職業名で統一</strong>、<strong>色は明るい・はっきり・少数（白背景＋主役の色＋黒い文字）</strong>、<strong>タッチは「実物がすぐ分かる、少し柔らかい図鑑イラスト」</strong>、<strong>対象年齢 2〜6 歳</strong></td><td>第 5 ジャンル「がっき」の提案、50 語の具体名、画像の技術規格（解像度・形式・セーフエリア）、同音異義語のふりがな規則</td></tr>
+      <tr><th>§3.4 レアカード</th><td><strong>子どもが楽しみにするカード。ゲーム性を持たせる。「静・静・静……→変化！」。予想していた流れから少し外れる変化。ぞう→パオーン／しょうぼうしゃ→ライト＋サイレン／すいか→割れて中が見える</strong></td><td>変化の時間配分と制約（1 回・0.6 秒・被写体の一部のみ）、職業とがっきのレア案、出現位置のランダム化、判定基準</td></tr>
       <tr><th>§4 表示方法</th><td>2〜3 案を試作して比較、条件①〜⑤、方法は固定しない</td><td>3 案の具体と初期パラメータ、条件①〜⑤の<strong>数値化</strong>、比較の手順と計測項目</td></tr>
       <tr><th>§5 ひらがな</th><td>「あ」の中央展開に統一、「あいうえお」を約 2 倍、おさる→おちば</td><td>文字サイズの具体値（画面高さ 55%）、相対指定での実装</td></tr>
       <tr><th>§6 ことわざ</th><td>頭のひらがなを読んでからことわざ、重複読み禁止、本文からの開始禁止</td><td>間の長さ（0.4 秒）、画面表示との同期</td></tr>
