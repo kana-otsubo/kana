@@ -318,14 +318,13 @@ html{scroll-behavior:smooth}
 <div class="shell">
 
 <header class="masthead">
-  <p class="eyebrow">仕様指示書<span>Ver 1.0</span><span>2026-08-28</span><span>宛先：開発担当者各位</span></p>
+  <p class="eyebrow">仕様指示書<span>Ver 2.0</span><span>2026-08-28</span><span>宛先：開発担当者各位</span></p>
   <h1>フラッシュカード<br>次回デモ仕様</h1>
-  <p class="lead">次回デモに向けた、フラッシュカード機能（百科事典・ひらがな・ことわざ・反対語・俳句ほか）の表示／音声／操作の仕様指示です。まず動物 10 枚と表示方法 2〜3 案を先に確認し、方向性を固めてから残りへ展開します。</p>
+  <p class="lead">次回デモに向けた、フラッシュカード機能（百科事典・ひらがな・ことわざ・四字熟語・反対語・俳句・百人一首・反対語の歌）の表示／音声／操作の仕様指示です。まず動物 10 枚を先に確認し、方向性を固めてから残りへ展開します。</p>
   <dl class="metagrid">
     <div><dt>対象年齢</dt><dd>2〜6 歳</dd></div>
     <div><dt>対象範囲</dt><dd>表示・音声・操作の全体</dd></div>
-    <div><dt>対象デバイス</dt><dd>iPad Safari（横向き）／PC Chrome</dd></div>
-    <div><dt>制作枚数</dt><dd>百科事典 50 枚（5 ジャンル）</dd></div>
+    <div><dt>制作枚数</dt><dd>百科事典 40 枚（4 ジャンル）</dd></div>
     <div><dt>中間確認</dt><dd>3 回（M1・M2・M3）</dd></div>
   </dl>
 </header>
@@ -339,16 +338,14 @@ html{scroll-behavior:smooth}
     <li><a href="#s1"><span class="n">01</span>目的とゴール</a></li>
     <li><a href="#s2"><span class="n">02</span>用語定義</a></li>
     <li><a href="#s3"><span class="n">03</span>百科事典カード</a></li>
-    <li><a href="#s4"><span class="n">04</span>表示方法</a></li>
-    <li><a href="#s5"><span class="n">05</span>ひらがなカード</a></li>
-    <li><a href="#s6"><span class="n">06</span>ことわざカード</a></li>
-    <li><a href="#s7"><span class="n">07</span>音声仕様</a></li>
-    <li><a href="#s8"><span class="n">08</span>全体の操作</a></li>
-    <li><a href="#s9"><span class="n">09</span>データ構造</a></li>
-    <li><a href="#s10"><span class="n">10</span>第1次提出物</a></li>
-    <li><a href="#s11"><span class="n">11</span>スケジュール</a></li>
-    <li><a href="#s12"><span class="n">12</span>確認事項</a></li>
-    <li><a href="#s13"><span class="n">13</span>スコープ外</a></li>
+    <li><a href="#s4"><span class="n">04</span>ことわざカード</a></li>
+    <li><a href="#s5"><span class="n">05</span>音声仕様</a></li>
+    <li><a href="#s6"><span class="n">06</span>全体の操作</a></li>
+    <li><a href="#s7"><span class="n">07</span>データ構造</a></li>
+    <li><a href="#s8"><span class="n">08</span>第1次提出物</a></li>
+    <li><a href="#s9"><span class="n">09</span>スケジュール</a></li>
+    <li><a href="#s10"><span class="n">10</span>確認事項</a></li>
+    <li><a href="#s11"><span class="n">11</span>スコープ外</a></li>
     <li><a href="#sA"><span class="n">A</span>チェックリスト</a></li>
     <li><a href="#sB"><span class="n">B</span>本仕様の出典</a></li>
   </ol>
@@ -358,16 +355,10 @@ html{scroll-behavior:smooth}
 
 <section id="s0">
   <h2><span class="num">00</span>この文書の読み方</h2><div class="rule"></div>
-  <p>各項目には次の 3 つの区分を付けています。</p>
-  <div class="tw"><table>
-    <thead><tr><th>区分</th><th>意味</th></tr></thead>
-    <tbody>
-      <tr><td><span class="b b-req">必須</span></td><td>次回デモの完成条件に直結する。未達は不可。</td></tr>
-      <tr><td><span class="b b-rec">推奨</span></td><td>実装方針の指定。合理的な代案があれば §12 の手順で協議可。</td></tr>
-      <tr><td><span class="b b-ask">提案依頼</span></td><td>こちらで固定しない。貴社から案を出していただき、比較のうえ決定する。</td></tr>
-    </tbody>
-  </table></div>
-  <p>数値（秒数・サイズ等）は特記なき限り<strong>初期値</strong>であり、§4 の比較検証で最終決定します。ただし設定値として外部化し、コード修正なしに変更できる状態にしてください。</p>
+  <div class="call">
+    <p><strong>本仕様書の項目は、すべて必須です。</strong>「推奨」「提案依頼」の区分は設けていません。</p>
+  </div>
+  <p>数値（秒数・サイズ等）は特記なき限り<strong>初期値</strong>です。設定値として外部化し、コード修正なしに変更できる状態にしてください。</p>
 </section>
 
 <section id="s1">
@@ -378,21 +369,17 @@ html{scroll-behavior:smooth}
     <p>さまざまな知識がテンポよく次々と提示され、子どもが惹きつけられて見続けられること。</p>
     <p>さらに、先生が操作に追われず、実際のレッスンとしてスムーズに進行できること。</p>
   </div>
-  <p>この 2 点が達成された状態を「完成」と定義します。</p>
 
   <h3>完成条件（受け入れ基準）<span class="b b-req">必須</span></h3>
   <ol class="steps">
-    <li><strong>先生役が操作し、子どもに見せるつもりで、フラッシュカード部分を最初から最後まで通して再生できる。</strong>百科事典だけでなく、ことわざ・四字熟語・俳句・百人一首などを含めた<strong>全カード種別が、一つの流れとして通る</strong>（§8）。</li>
+    <li><strong>先生役が操作し、子どもに見せるつもりで、フラッシュカード部分を最初から最後まで通して再生できる。</strong>百科事典だけでなく、ことわざ・四字熟語・俳句・百人一首などを含めた<strong>全カード種別が、一つの流れとして通る</strong>（§6.1）。</li>
     <li>通し再生の途中で、設定画面・選択画面・エラー・読み込み待ちによる<strong>中断が一度も発生しない</strong>。</li>
-    <li>カード種別が切り替わる際、先生の操作は<strong>「次へ」を押すだけ</strong>である。</li>
-    <li>音声とカード表示のズレが体感で気にならない（§7 の許容値内）。</li>
-    <li>10 枚連続再生時、1 枚あたりの表示間隔が<strong>目視で不均一に見えない</strong>。</li>
-    <li><strong>先生が「次へ」を押しながら、そのカードの文字を無理なく読める</strong>（§8）。</li>
-    <li><strong>通し再生の間、先生が端末の音量を変える必要がない</strong>（§7）。動画・歌・フラッシュカードの間で音量差を感じない。</li>
+    <li>音声とカード表示のズレが体感で気にならない（§5 の許容値内）。</li>
+    <li><strong>先生読みモードのとき、先生が「次へ」を押しながら、そのカードの文字を無理なく読める</strong>（§6.5）。自動音声モードのときは、「次へ」を押さずに進む（§6.2）。</li>
+    <li><strong>通し再生の間、先生が端末の音量を変える必要がない</strong>（§5.1）。動画・歌・フラッシュカードの間で音量差を感じない。</li>
   </ol>
   <div class="call warn">
-    <span class="ct">重要</span>
-    <p>「システムが動く」ことは完成条件ではありません。<strong>レッスンとして通せること</strong>が完成条件です。</p>
+    <p><strong>「システムが動く」ことは完成条件ではありません。レッスンとして通せることが完成条件です。</strong></p>
   </div>
 </section>
 
@@ -402,13 +389,14 @@ html{scroll-behavior:smooth}
     <thead><tr><th>用語</th><th>定義</th></tr></thead>
     <tbody>
       <tr><th>カード</th><td>1 枚の提示単位。画像／文字＋音声で構成される</td></tr>
-      <tr><th>カード種別</th><td>百科事典・ひらがな・ことわざ・四字熟語・反対語・俳句・百人一首など。<strong>すべて同一の再生エンジンで動く</strong>（§8）</td></tr>
+      <tr><th>カード種別</th><td>百科事典・ひらがな・ことわざ・四字熟語・反対語・俳句・百人一首・反対語の歌など（§6.1）</td></tr>
       <tr><th>セット（デッキ）</th><td>連続再生される 1 まとまり。例：「百科事典・動物 10 枚」</td></tr>
-      <tr><th>ジャンル</th><td>百科事典セット内の分類。動物・乗り物・果物・職業・第 5 ジャンル</td></tr>
-      <tr><th>通常カード</th><td>シンプルで瞬時に認識できる標準のカード</td></tr>
-      <tr><th>レアカード</th><td>セット後半に 1 枚だけ配置し、注意を引き直す役割のカード</td></tr>
-      <tr><th>セッション</th><td>全カード種別を通した一連の流れ（§8）。百科事典・ひらがな・ことわざ・四字熟語・反対語・俳句・百人一首など</td></tr>
-      <tr><th>表示方法</th><td>カードが画面に現れる際の見せ方（瞬時表示・ズーム等のトランジション）</td></tr>
+      <tr><th>ジャンル</th><td>百科事典セット内の分類。動物・乗り物・果物・がっき</td></tr>
+      <tr><th>通常カード</th><td>シンプルで瞬時に認識できる標準のカード。<strong>完全に静止している</strong></td></tr>
+      <tr><th>レアカード</th><td>セットに 1 枚だけ配置し、<strong>突然動いて音が鳴る</strong>カード（§3.4）</td></tr>
+      <tr><th>セッション</th><td>全カード種別を通した一連の流れ（§6.1）</td></tr>
+      <tr><th>自動音声モード</th><td>収録音声が読み上げ、「次へ」を押さずに進むモード（§6.2）</td></tr>
+      <tr><th>先生読みモード</th><td>先生がスマホ側で読みながら「次へ」を押して進めるモード（§6.2）</td></tr>
     </tbody>
   </table></div>
 </section>
@@ -423,21 +411,24 @@ html{scroll-behavior:smooth}
       <tr><th>動物</th><td class="num">10</td><td class="num">1</td></tr>
       <tr><th>乗り物</th><td class="num">10</td><td class="num">1</td></tr>
       <tr><th>果物</th><td class="num">10</td><td class="num">1</td></tr>
-      <tr><th>職業</th><td class="num">10</td><td class="num">1</td></tr>
-      <tr><th>がっき（第 5 ジャンル）</th><td class="num">10</td><td class="num">1</td></tr>
-      <tr class="total"><td>合計</td><td class="num">50</td><td class="num">5</td></tr>
+      <tr><th>がっき</th><td class="num">10</td><td class="num">1</td></tr>
+      <tr class="total"><td>合計</td><td class="num">40</td><td class="num">4</td></tr>
     </tbody>
   </table></div>
   <p><strong>各ジャンルは 10 枚を 1 セットとし、途中で止まらず連続提示できること。</strong>セット内での一時停止・選択・確認ダイアログは一切設けません。</p>
 
-  <h3>第 5 ジャンル<span class="b b-rec">推奨</span></h3>
-  <p><strong>「がっき（楽器）」を推奨します。</strong>形が明確で 2〜6 歳でも識別しやすく、レアカード（たいこ）で「音が出る」という変化を作りやすいためです。代替候補（採用可）：<code>やさい</code> / <code>うちゅう（天体）</code> / <code>きょうりゅう</code>。変更する場合は §12 の手順で事前にご連絡ください。</p>
+  <h3>ジャンル構成<span class="b b-req">必須</span></h3>
+  <div class="goal">
+    <p>動物・乗り物・果物・がっき の 4 ジャンル、合計 40 枚とする。</p>
+  </div>
+  <div class="call warn">
+    <p><strong>職業カードは作りません。</strong>職業ジャンルは廃止し、がっき（楽器）に置き換えます。</p>
+  </div>
 
   <h3>レアカードの配置ルール<span class="b b-req">必須</span></h3>
   <ul>
-    <li>各ジャンル 10 枚のうち、<strong>後半（7〜9 枚目）に 1 枚だけ</strong>配置する。</li>
+    <li>各ジャンル 10 枚のうち、<strong>5 枚目以降のどこかに 1 枚だけ</strong>配置する。位置は問わない。</li>
     <li>1 セットにレアカードは<strong>1 枚のみ</strong>。2 枚以上入れない。</li>
-    <li><strong>出現位置は 7〜9 枚目の範囲で毎回変える</strong>（下記「出現位置をランダムにする」）。</li>
     <li>位置はデータ側で決まり、コードに直書きしない。</li>
   </ul>
 
@@ -446,10 +437,10 @@ html{scroll-behavior:smooth}
     <p>レアカードは、子どもが楽しみにするカードである。<br>「10 枚に 1 枚、特別なカードが出る」というゲーム性を持たせる。</p>
   </div>
 
-  <h3>基本の考え方：静・静・静……→ 変化！</h3>
+  <p><strong>基本の考え方：静・静・静……→ 変化！</strong></p>
   <div class="call gold">
     <p><strong>常に派手にするのではありません。</strong></p>
-    <p>通常の 9 枚は統一された図鑑調で、静止したまま、同じテンポで淡々と見せます。そして 7〜9 枚目のどこかで、<strong>突然そのカードだけが動き、音が鳴ります。</strong></p>
+    <p>通常の 9 枚は統一された図鑑調で、静止したまま、同じテンポで淡々と見せます。そして 5 枚目以降のどこかで、<strong>突然そのカードだけが動き、音が鳴ります。</strong></p>
   </div>
   <div class="cycle">
     <ol style="flex-direction:row;flex-wrap:wrap;justify-content:center;gap:6px">
@@ -465,36 +456,14 @@ html{scroll-behavior:smooth}
   <ul>
     <li><strong>レアカードの前に予告・前触れを出さないこと。</strong>「次に来るぞ」と分かった時点で、驚きも変化も失われます。</li>
     <li>直前のカードまで、完全にいつもどおりに進めます。</li>
-    <li>「楽しみにする」気持ちは、<strong>セットのどこかに必ず 1 枚ある</strong>と子どもが覚えることで生まれます。セット内の合図では作りません。</li>
   </ul>
 
-  <h3>変化の内容（カードごとに違う）</h3>
-  <p><strong>レアカードの変化は、そのカード固有のものにします。</strong>全ジャンル共通の演出テンプレートにしないでください。</p>
-  <div class="tw"><table>
-    <thead><tr><th>ジャンル</th><th>レアカード</th><th>変化</th><th>音</th></tr></thead>
-    <tbody>
-      <tr class="rare"><th>動物</th><td><strong>ぞう</strong></td><td>鼻を 1 回持ち上げる</td><td>「パオーン！」</td></tr>
-      <tr class="rare"><th>乗り物</th><td><strong>しょうぼうしゃ</strong></td><td>屋根のライトが 2 回光る</td><td>サイレン</td></tr>
-      <tr class="rare"><th>果物</th><td><strong>すいか</strong></td><td>パカッと割れて中（赤い果肉）が見える</td><td>「パカッ」</td></tr>
-      <tr class="rare"><th>職業</th><td><strong>宇宙飛行士</strong></td><td>ふわっと浮き上がる</td><td>無重力を感じる短い音</td></tr>
-      <tr class="rare"><th>がっき</th><td><strong>たいこ</strong></td><td>ばちが下りて打面が震える</td><td>「ドン！」</td></tr>
-    </tbody>
-  </table></div>
+  <h3>変化の内容<span class="b b-ask">開発側に任せる</span></h3>
   <div class="call">
-    <p><strong>レアカードの題材は、めずらしいものである必要はありません。</strong>むしろ、子どもがよく知っているもの（ぞう・すいか・しょうぼうしゃ）のほうが「いつもと違う」が伝わります。<strong>変えるのは題材ではなく、振る舞いです。</strong></p>
+    <p><strong>変化の内容（何がどう動き、どんな音が鳴るか）は、開発側で決めて構いません。</strong>カードごとに違う変化にしてください。全ジャンル共通の演出テンプレートにしないこと。</p>
+    <p>参考：ぞうなら「鼻を上げて<strong>パオーン！</strong>」、しょうぼうしゃなら「ライトが光る ＋ サイレン」、すいかなら「パカッと割れて中が見える」。</p>
   </div>
-
-  <h3>変化の進行</h3>
-  <div class="tw"><table>
-    <thead><tr><th class="num">順</th><th>内容</th><th class="num">時間</th></tr></thead>
-    <tbody>
-      <tr><td class="num">1</td><td>カード表示 ＋ 語の読み上げ（通常カードと同じ）</td><td class="num">通常どおり</td></tr>
-      <tr><td class="num">2</td><td>間</td><td class="num">0.3 秒</td></tr>
-      <tr class="rare"><td class="num">3</td><td><strong>変化（動き ＋ 効果音）</strong></td><td class="num">0.6 秒以内</td></tr>
-      <tr><td class="num">4</td><td>余韻（変化後の状態のまま静止）</td><td class="num">0.4 秒</td></tr>
-    </tbody>
-  </table></div>
-  <p><strong>レアカードの表示時間は、通常カード +1.0 秒程度</strong>（変化 0.6 秒＋余韻 0.4 秒）。</p>
+  <p><strong>レアカードの題材は、めずらしいものである必要はありません。</strong>むしろ、子どもがよく知っているもののほうが「いつもと違う」が伝わります。<strong>変えるのは題材ではなく、振る舞いです。</strong></p>
 
   <h3>変化の制約<span class="b b-req">必須</span></h3>
   <div class="tw"><table>
@@ -502,52 +471,20 @@ html{scroll-behavior:smooth}
     <tbody>
       <tr><th>回数</th><td><strong>1 回だけ。ループさせない</strong></td></tr>
       <tr><th>長さ</th><td>動きは 0.6 秒以内、音は 0.8 秒以内</td></tr>
-      <tr><th>動かす範囲</th><td><strong>被写体の一部だけ</strong>（ぞうなら鼻、たいこならばち）。画面全体・カード全体を動かさない</td></tr>
-      <tr><th>背景</th><td><strong>変えない</strong>（§3.5 の共通の背景色のまま）</td></tr>
-      <tr><th>光るもの</th><td>点滅は <strong>2 回まで</strong>。3Hz 以上で明滅させない（§4 条件②）</td></tr>
-      <tr><th>枠・★</th><td><strong>付けない。</strong>変化そのものが標示なので、追加の目印は不要（§3.5「境目を作らない」とも両立しない）</td></tr>
       <tr><th>音</th><td>読み上げ音声と<strong>重ねない</strong>。読み上げの後に鳴らす</td></tr>
     </tbody>
   </table></div>
-
-  <h3>セット終了後の再掲<span class="b b-rec">推奨</span></h3>
-  <p>セット終了画面で「きょうのレアカード」としてそのカードを再掲します。先生が「〇〇が出たね」と声をかけられる状態にし、次のセットへの期待をつくります。</p>
-
-  <h3>出現位置をランダムにする<span class="b b-rec">推奨</span></h3>
-  <ul>
-    <li>7〜9 枚目のどこに出るかを、<strong>セット再生ごとにランダムで決める</strong>。</li>
-    <li><strong>「いつ出るか分からない」ことがゲーム性の核</strong>です。位置が毎回同じだと、2 回目以降は驚きが消えます。</li>
-    <li>ただしレアは必ず 1 枚、必ず後半（7〜9 枚目）に出る。<strong>「必ず出る」ことは変えない。</strong></li>
-    <li>実装：データ側に候補位置（例 <code>rareSlot: [7, 8, 9]</code>）を持ち、再生開始時に 1 つ選ぶ。</li>
-    <li>下記の一覧はレアカードを 8 枚目に置いていますが、これは基準位置です。</li>
-  </ul>
-
+  <p><strong>レアカードの表示時間は、通常カード +1.0 秒程度。</strong></p>
   <div class="call warn">
     <span class="ct">禁止事項</span>
-    <p>レアカードの前に予告・前触れを出す／変化を繰り返す・ループさせる／画面全体の色替え・フラッシュ・暗転／複数のアニメーションの重ねがけ／<strong>通常カードにも動きを付ける</strong>（通常カードは完全に静止。これが崩れるとレアが効きません）。</p>
-  </div>
-
-  <div class="call">
-    <span class="ct">判定基準</span>
-    <p>デモでは、<strong>レアカードで子どもの反応（声が出る／身を乗り出す）が起きるか</strong>で判断します。システムが演出を再生できたかどうかは判定基準としません。</p>
+    <p>レアカードの前に予告・前触れを出す／変化を繰り返す・ループさせる／<strong>通常カードにも動きを付ける</strong>（通常カードは完全に静止。これが崩れるとレアが効きません）。</p>
   </div>
 
   <h3>カード画像：画面の使い方<span class="b b-req">必須</span></h3>
   <div class="goal">
     <p>画像はディスプレイ全体を使って表示する。カードとの境目を作らない。</p>
   </div>
-  <p>画面の中に「カード」という囲みが見える状態にはしません。枠・角丸・影・余白の帯を一切作らず、画像が画面の端まで届くこと（フルブリード）。</p>
-  <div class="tw"><table>
-    <thead><tr><th>項目</th><th>規格</th></tr></thead>
-    <tbody>
-      <tr><th>画面の使い方</th><td><strong>画像がディスプレイ全体を覆う。</strong>枠線・角丸・影・レターボックス（上下左右の帯）を作らない</td></tr>
-      <tr><th>形式</th><td>WebP（フォールバックに PNG）。1 枚 500KB 以内</td></tr>
-      <tr><th>解像度</th><td><strong>横長。2732 × 2048 px（4:3）を基準とする</strong>（iPad 横向き想定）</td></tr>
-      <tr><th>アスペクト比の吸収</th><td>画面比が異なる端末では <strong>cover（縦横比を保って画面を覆う）</strong> で表示し、余白を出さない。<strong>letterbox / contain は使わない</strong></td></tr>
-      <tr><th>セーフエリア</th><td>画面比の違いで上下左右が見切れることを前提に、<strong>中央 4:3 相当の範囲に被写体を収める</strong>。端が切れても被写体が欠けないこと</td></tr>
-      <tr><th>被写体</th><td>画面中央。セーフエリアの <strong>70〜80%</strong> を占める</td></tr>
-    </tbody>
-  </table></div>
+  <p>画面の中に「カード」という囲みが見える状態にはしません。枠・角丸・影・余白の帯を一切作らず、画像が画面の端まで届くこと。</p>
 
   <h3>色：明るい・はっきり・少数<span class="b b-req">必須</span></h3>
   <div class="goal">
@@ -558,17 +495,15 @@ html{scroll-behavior:smooth}
     <tbody>
       <tr><th>背景</th><td><strong>白〜ごく薄い単色</strong>（<code>#FFFFFF</code>〜<code>#FAF8F5</code>）。<strong>全カード共通</strong>。画面の端まで塗り切る</td></tr>
       <tr><th>主役の色</th><td>赤・黄・青・緑・オレンジなど、<strong>幼児が区別しやすい色</strong>。彩度は高すぎないこと（目に刺さる蛍光色は使わない）</td></tr>
-      <tr><th>1 枚あたりの色数</th><td><strong>主役の色 1〜2 色のみ。</strong>3 色以上の面を作らない</td></tr>
-      <tr><th>禁止</th><td>背景をカラフルにする／グラデーション背景／カードごとに背景色を変える</td></tr>
     </tbody>
   </table></div>
   <div class="call gold">
     <span class="ct">例 — りんご</span>
     <p><strong>白い背景 ＋ 大きな赤いりんご</strong></p>
-    <p>これくらいがフラッシュカードには向いています。背景まで色を付けないでください。語の「りんご」は画面に出さず、音声と先生の読み上げで伝えます（下記）。</p>
+    <p>これくらいがフラッシュカードには向いています。背景まで色を付けないでください。語の「りんご」は画面に出さず、音声と先生の読み上げで伝えます。</p>
   </div>
   <div class="call warn">
-    <p><strong>背景色をカードごとに変えないでください。</strong>背景が変わると連続再生時のちらつきの主因になります（§4 条件②）。フルブリード表示では画面全体が背景色で埋まるため、色が変わると<strong>画面全体が変化する</strong>ことになり、影響がさらに大きくなります。</p>
+    <p><strong>背景色をカードごとに変えないでください。</strong>背景が変わると連続再生時のちらつきの主因になります。画面全体が背景色で埋まるため、色が変わると<strong>画面全体が変化する</strong>ことになります。</p>
   </div>
 
   <h3>画像のタッチ：実物がすぐ分かる、少し柔らかい図鑑イラスト<span class="b b-req">必須</span></h3>
@@ -590,42 +525,21 @@ html{scroll-behavior:smooth}
   </div>
   <p>百科事典カードなので、「かわいい」だけでは足りません。<strong>実物と結びつくことが目的</strong>です。この基準で 1 枚ずつ確認してください。</p>
 
-  <p><strong>「境目を作らない」の適用範囲</strong></p>
-  <ul>
-    <li>カードの周囲に枠線・影・角丸を付けない。</li>
-    <li>画面の縁に色帯・余白を作らない。</li>
-    <li>前のカードと次のカードの間に、境界を感じさせる線・帯・暗転を挟まない。</li>
-    <li>レアカードも枠で示さない（§3.4）。</li>
-  </ul>
-
   <h3>子ども用画面に文字を出さない<span class="b b-req">必須</span></h3>
   <div class="goal">
     <p>百科事典カードでは、子どもが見る表示画面に文字を表示しない。絵だけを見せる。</p>
   </div>
   <ul>
     <li>カード画像に文字を焼き込まない。画面上にも文字を重ねない。</li>
-    <li>語は<strong>音声（§7）と先生の読み上げ（§8）</strong>で伝える。</li>
-    <li>文字は<strong>先生用の操作画面にのみ表示する</strong>（§8）。</li>
-    <li>理由：絵そのものに注意を集中させるため（§4 条件④）。文字が入ると視線が分散し、実物との結びつき（上記の判定基準）が弱くなる。</li>
+    <li>語は<strong>音声（§5）と先生の読み上げ（§6.5）</strong>で伝える。</li>
+    <li>文字は<strong>先生用の操作画面にのみ表示する</strong>（§6.5）。</li>
+    <li>理由：絵そのものに注意を集中させるため。文字が入ると視線が分散し、実物との結びつきが弱くなる。</li>
   </ul>
-
-  <p><strong>例外：文字が主役のカード種別</strong></p>
-  <p><strong>ひらがな・ことわざ・四字熟語・俳句・百人一首</strong>は、文字そのものがカードの中身です。これらは<strong>子ども用画面にも文字を表示します</strong>。各種別の表示は §5・§6 に従ってください。</p>
-  <div class="tw"><table>
-    <thead><tr><th>種別</th><th>子ども用画面の文字</th></tr></thead>
-    <tbody>
-      <tr><th>百科事典</th><td><strong>出さない</strong>（絵だけ）</td></tr>
-      <tr><th>ひらがな</th><td>出す（文字が中身）</td></tr>
-      <tr><th>ことわざ</th><td>出す（文字が中身）</td></tr>
-      <tr><th>四字熟語</th><td>出す（文字が中身）</td></tr>
-      <tr><th>俳句</th><td>出す（文字が中身）</td></tr>
-      <tr><th>百人一首</th><td>出す（文字が中身）</td></tr>
-    </tbody>
-  </table></div>
+  <p><strong>例外：文字が主役のカード種別</strong> — <strong>ひらがな・ことわざ・四字熟語・俳句・百人一首</strong>は、文字そのものがカードの中身です。これらは<strong>子ども用画面にも文字を表示します</strong>。</p>
   <p><strong>判断の基準は「絵が主役か、文字が主役か」です。</strong>絵が主役の種別では文字を出しません。</p>
 
   <h3>カード内容一覧（制作リスト）</h3>
-  <p>★ ＝ レアカード。<strong>題材は子どもがよく知っているものを選び、変化（上記）で特別さを出します。</strong>一覧では 8 枚目に置いていますが、これは基準位置であり、再生時は 7〜9 枚目のいずれかに移動します。</p>
+  <p>★ ＝ レアカード。<strong>題材は子どもがよく知っているものを選び、変化で特別さを出します。</strong>一覧では 8 枚目に置いていますが、位置は <strong>5 枚目以降であればどこでもよい</strong>。</p>
   <div class="sets">
     <div class="set"><h4>どうぶつ<span>10枚</span></h4><ol>
       <li><i>1</i>いぬ</li><li><i>2</i>ねこ</li><li><i>3</i>うさぎ</li><li><i>4</i>きりん</li><li><i>5</i>ライオン</li><li><i>6</i>ぺんぎん</li><li><i>7</i>くま</li>
@@ -642,99 +556,17 @@ html{scroll-behavior:smooth}
       <li class="r"><i>8</i><b>すいか</b></li>
       <li><i>9</i>パイナップル</li><li><i>10</i>さくらんぼ</li>
     </ol></div>
-    <div class="set"><h4>しょくぎょう<span>10枚</span></h4><ol>
-      <li><i>1</i>医師</li><li><i>2</i>警察官</li><li><i>3</i>消防士</li><li><i>4</i>パイロット</li><li><i>5</i>料理人</li><li><i>6</i>美容師</li><li><i>7</i>農家</li>
-      <li class="r"><i>8</i><b>宇宙飛行士</b></li>
-      <li><i>9</i>教師</li><li><i>10</i>獣医</li>
-    </ol></div>
     <div class="set"><h4>がっき<span>10枚</span></h4><ol>
       <li><i>1</i>ピアノ</li><li><i>2</i>ギター</li><li><i>3</i>バイオリン</li><li><i>4</i>トランペット</li><li><i>5</i>たてぶえ</li><li><i>6</i>カスタネット</li><li><i>7</i>もっきん</li>
       <li class="r"><i>8</i><b>たいこ</b></li>
       <li><i>9</i>ハープ</li><li><i>10</i>すず</li>
     </ol></div>
   </div>
-  <div class="call">
-    <span class="ct">職業カードの表記ルール</span>
-    <p><strong>職業カードは職業名で統一します。</strong>「〜さん」「〜の人」は使いません。さん付けと非さん付けを混在させないでください。この表記は<strong>先生用の操作画面と音声</strong>で使います（子ども用画面には文字を出しません）。ひらがなだけでは語が特定できないもの（いし・きょうし・じゅうい）は、先生用画面で漢字にふりがなを振ります。</p>
-    <p>医師（「おいしゃさん」としない）／料理人（「コックさん」としない）／農家（「農家の人」としない）／教師（「せんせい」は職業名として不明確なため使わない）／獣医（「じゅういさん」としない）。読みはそれぞれ いし・りょうりにん・のうか・きょうし・じゅうい。</p>
-  </div>
-  <p>果物の「りんご」は §3.5 の色の基準例です（白い背景 ＋ 大きな赤いりんご）。</p>
+  <p>果物の「りんご」は色の基準例です（白い背景 ＋ 大きな赤いりんご）。レアカードの変化の内容は開発側で決めてください。</p>
 </section>
 
 <section id="s4">
-  <h2><span class="num">04</span>表示方法（トランジション）</h2><div class="rule"></div>
-  <div class="call">
-    <span class="ct">提案依頼</span>
-    <p>表示方法はこちらで固定しません。<strong>まず 2〜3 パターンを試作し、実機で比較したうえで、今後の基本となる表示方法を決定します。</strong></p>
-  </div>
-
-  <h3>満たすべき条件<span class="b b-req">必須</span></h3>
-  <div class="tw"><table>
-    <thead><tr><th class="num">#</th><th>条件</th><th>実装上の判定基準</th></tr></thead>
-    <tbody>
-      <tr><td class="num">①</td><th>テンポが落ちない</th><td>1 枚あたりの実測表示間隔のばらつきが ±50ms 以内。フレーム落ち（60fps 未満のフレーム）が 1 セット中 3 回以下</td></tr>
-      <tr><td class="num">②</td><th>目がチカチカしない</th><td>画面全体の輝度変化が 1 秒あたり 3 回未満（WCAG 2.3.1 準拠）。白フラッシュ・全画面の色反転を行わない。背景色は全カード共通で<strong>切替時も変化させない</strong></td></tr>
-      <tr><td class="num">③</td><th>2〜6 歳が見やすい</th><td>被写体が常に画面中央。トランジション中に被写体が画面外へ出ない。回転・反転・スライドアウトを使わない</td></tr>
-      <tr><td class="num">④</td><th>絵や文字に注意が向く</th><td>装飾・エフェクト・UI 要素をカード表示中に出さない。動きは「現れる」ためだけに使い、「見せる」ためには使わない</td></tr>
-      <tr><td class="num">⑤</td><th>連続でも疲れにくい</th><td>トランジション時間 250ms 以内。カード間に暗転・白転を挟まない。<code>prefers-reduced-motion: reduce</code> 指定時は A 案（瞬時表示）に自動切替</td></tr>
-    </tbody>
-  </table></div>
-
-  <h3>試作する 3 案<span class="b b-rec">推奨</span></h3>
-  <div class="tw"><table>
-    <thead><tr><th class="num">案</th><th>名称</th><th>内容</th><th>初期パラメータ</th></tr></thead>
-    <tbody>
-      <tr><td class="num">A</td><th>瞬時表示（カット）</th><td>前カードを即座に置き換える。トランジションなし</td><td>遷移 0ms</td></tr>
-      <tr><td class="num">B</td><th>軽いズーム</th><td>わずかに縮んだ状態から等倍へ</td><td>scale 0.94 → 1.00、opacity 0 → 1、180ms、ease-out</td></tr>
-      <tr><td class="num">C</td><th>中央から広がる</th><td>中央から自然に広がって定位置に収まる（現在ひらがな「あ」で使用中の表示）</td><td>scale 0.80 → 1.00、opacity 0 → 1、220ms、cubic-bezier(0.16, 1, 0.3, 1)</td></tr>
-    </tbody>
-  </table></div>
-
-  <p><strong>3 案共通の必須事項</strong></p>
-  <ul>
-    <li>前のカードは<strong>フェードアウトさせず、新カードの表示開始と同時に消す</strong>（クロスフェードは残像となりテンポを損なうため）。</li>
-    <li>背景は常に固定。トランジション対象は前景（画像＋文字）のみ。</li>
-    <li>アニメーションは <code>transform</code> と <code>opacity</code> のみで実装する（レイアウト再計算を発生させない）。</li>
-    <li>画像は<strong>セット再生開始前に 10 枚すべてデコード完了</strong>させる（<code>Image.decode()</code> 等）。読み込み待ちによるテンポ低下は認めません。</li>
-  </ul>
-
-  <h3>比較方法<span class="b b-req">必須</span></h3>
-  <ul>
-    <li><strong>同一の 10 枚</strong>（動物セット）を、A / B / C の 3 案で連続再生できるようにする。</li>
-    <li>案の切替は<strong>デバッグ用の隠し設定</strong>とし、先生が触れる本番 UI には出さない。</li>
-    <li>各案について、①1 枚あたりの実測表示間隔（平均・最大・最小）②フレーム落ち回数 ③通し再生の総所要時間 を計測して提出する。</li>
-    <li>計測値と併せ、<strong>貴社としての推奨案と理由</strong>を 1 案添えること。</li>
-  </ul>
-</section>
-
-<section id="s5">
-  <h2><span class="num">05</span>ひらがなカード</h2><div class="rule"></div>
-
-  <h3>表示方法の統一<span class="b b-req">必須</span></h3>
-  <ul>
-    <li><strong>カードごとに異なるアニメーションを使う現在の実装を廃止する。</strong></li>
-    <li>全カードを、<strong>現在「あ」で使用している「中央から自然に広がる表示」（§4 の C 案）に統一</strong>する。</li>
-    <li>カード個別のアニメーション指定は、データ・コードの両方から削除する。</li>
-  </ul>
-
-  <h3>文字サイズ<span class="b b-req">必須</span></h3>
-  <ul>
-    <li><strong>「あ・い・う・え・お」の文字を、現在の約 2 倍にする。</strong></li>
-    <li>目安：画面高さの <strong>55%</strong>（現行が約 27〜28% の場合）。</li>
-    <li>実装は固定 px ではなく、画面高さ基準の相対指定（<code>vh</code> / <code>clamp()</code> 等）とする。</li>
-    <li>「あ〜お」以外の行も同じ基準で統一する（行ごとに文字サイズを変えない）。</li>
-  </ul>
-
-  <h3>内容変更<span class="b b-req">必須</span></h3>
-  <div class="tw"><table>
-    <thead><tr><th>対象</th><th>変更前</th><th>変更後</th></tr></thead>
-    <tbody><tr><th>「お」の語</th><td>おさる</td><td><strong>おちば</strong></td></tr></tbody>
-  </table></div>
-  <p>画像・音声・テキストラベルの<strong>すべて</strong>を差し替えてください。「おさる」の素材はデータから削除し、参照が残らないようにします。</p>
-</section>
-
-<section id="s6">
-  <h2><span class="num">06</span>ことわざカード</h2><div class="rule"></div>
+  <h2><span class="num">04</span>ことわざカード</h2><div class="rule"></div>
   <p>ことわざカードは「<strong>あいうえお順にことわざを覚える</strong>」カードです。ことわざ単体を覚えるカードではありません。</p>
 
   <h3>音声の読み上げルール<span class="b b-req">必須</span></h3>
@@ -749,7 +581,6 @@ html{scroll-behavior:smooth}
       <tr><td><strong>「う！</strong> 嘘八百」</td></tr>
     </tbody>
   </table></div>
-
   <p><strong>禁止する読み方</strong></p>
   <div class="tw"><table>
     <thead><tr><th>禁止</th><th>理由</th></tr></thead>
@@ -769,16 +600,14 @@ html{scroll-behavior:smooth}
 
   <h3>画面表示</h3>
   <ul>
-    <li>画面上部に頭のひらがなを大きく表示（画面高さの 25% 程度）。</li>
-    <li>画面下部にことわざ本文をひらがなで表示。</li>
     <li>音声の頭のひらがな発声と、画面のひらがな表示の<strong>開始タイミングを一致</strong>させる。</li>
   </ul>
 </section>
 
-<section id="s7">
-  <h2><span class="num">07</span>音声仕様<span class="b b-req">必須</span></h2><div class="rule"></div>
+<section id="s5">
+  <h2><span class="num">05</span>音声仕様<span class="b b-req">必須</span></h2><div class="rule"></div>
 
-  <h3>音量の統一<span class="b b-req">必須・最優先</span></h3>
+  <h3>音量の統一<span class="b b-req">最優先</span></h3>
   <div class="call warn">
     <span class="ct">現状の問題</span>
     <p><strong>動画と歌が急に大きくなり、フラッシュカードの音声との差がある。</strong>レッスン中に先生が端末の音量を調整せざるを得ない状態になっています。</p>
@@ -800,7 +629,6 @@ html{scroll-behavior:smooth}
     </tbody>
   </table></div>
 
-  <p><strong>測定・制作のルール</strong></p>
   <div class="call gold">
     <p><strong>ラウドネス（LUFS）で揃える。ピーク正規化だけで揃えない。</strong></p>
     <p>ピーク正規化（波形の最大値を 0dB に合わせる方法）は、<strong>今回の音量差の典型的な原因</strong>です。歌や動画は音が詰まっているため、ピークを揃えると体感音量が読み上げ音声より大きくなります。</p>
@@ -808,14 +636,14 @@ html{scroll-behavior:smooth}
   <ul>
     <li>歌は<strong>ボーカルと伴奏の合計</strong>で測る。ボーカルだけで測らない。</li>
     <li>動画は<strong>音声トラックを抽出して測る</strong>。書き出し時の再エンコードで音量が変わっていないか、書き出し後にもう一度測る。</li>
-    <li>2 秒未満の短い素材（カード 1 語の読み上げなど）は integrated の測定が不安定になる。<strong>同一話者・同一収録条件で録ったうえで</strong>、測定値を添えて提出する。</li>
+    <li>2 秒未満の短い素材は integrated の測定が不安定になる。<strong>同一話者・同一収録条件で録ったうえで</strong>、測定値を添えて提出する。</li>
     <li>測定ツールは問わない（<code>ffmpeg -af loudnorm</code> 等で可）。ただし<strong>全素材を同一の方法で測ること</strong>。</li>
   </ul>
 
   <p><strong>実装側のルール</strong></p>
   <ul>
     <li><strong>種別ごとの再生ゲインを設定ファイルで持つ</strong>（例 <code>volumeGain</code>）。素材を作り直さずに微調整できるようにする。</li>
-    <li><strong>再生時に自動ゲイン調整（AGC）やリミッターをかけない。</strong>素材の段階で揃える。実行時の自動調整は、静かな部分を持ち上げてノイズを目立たせ、テンポの妨げになる。</li>
+    <li><strong>再生時に自動ゲイン調整（AGC）やリミッターをかけない。</strong>素材の段階で揃える。</li>
     <li>端末の音量は先生が最初に 1 回決める。<strong>レッスン中に音量 UI を出さない。</strong></li>
   </ul>
 
@@ -824,37 +652,15 @@ html{scroll-behavior:smooth}
     <li><strong>全素材の測定値一覧を提出する</strong>（ファイル名／integrated LUFS／True Peak の表）。フラッシュカード音声・歌・動画・効果音のすべてを含めること。</li>
     <li><strong>通し再生で、端末の音量に触れずに最後まで行けることを確認する。</strong>これが合格の判定です。</li>
   </ol>
-
-  <h3>音声ファイルの規格<span class="b b-req">必須</span></h3>
-  <div class="tw"><table>
-    <thead><tr><th>項目</th><th>規格</th></tr></thead>
-    <tbody>
-      <tr><th>形式</th><td>MP3（128kbps 以上）／44.1kHz／モノラル</td></tr>
-      <tr><th>音量</th><td>上記「音量の統一」のとおり</td></tr>
-      <tr><th>先頭無音</th><td>50ms 以内</td></tr>
-      <tr><th>末尾無音</th><td>100ms 以内</td></tr>
-      <tr><th>読み上げ</th><td>通常カードは語を<strong>1 回のみ</strong>。繰り返さない</td></tr>
-      <tr><th>職業カード</th><td>職業名をそのまま読む（「いし」「きょうし」）。「おいしゃさん」等に言い換えない</td></tr>
-      <tr><th>話速</th><td>2〜6 歳が聞き取れる速度。全カードで統一</td></tr>
-      <tr><th>話者</th><td>全カード・全セットで同一話者に統一</td></tr>
-      <tr><th>同期</th><td>カード表示開始から音声再生開始までのズレ <strong>100ms 以内</strong></td></tr>
-      <tr><th>先読み</th><td>次の 3 枚分の音声を事前に読み込む</td></tr>
-    </tbody>
-  </table></div>
-
-  <h3>再生上の注意</h3>
-  <div class="call warn">
-    <p><strong>ブラウザの自動再生制限</strong>により、音声は必ず<strong>ユーザー操作を起点</strong>に再生を開始する必要があります。「次へ」タップ時に AudioContext を resume し、以降のセット内自動再生を成立させてください。<strong>この処理を入れないと 2 枚目以降が無音になります。</strong></p>
-  </div>
 </section>
 
-<section id="s8">
-  <h2><span class="num">08</span>フラッシュカード全体の操作</h2><div class="rule"></div>
+<section id="s6">
+  <h2><span class="num">06</span>フラッシュカード全体の操作</h2><div class="rule"></div>
   <div class="call warn"><p><strong>ここは今回、最も重要な項目です。</strong></p></div>
 
   <h3>レッスンの流れと対象カード種別<span class="b b-req">必須</span></h3>
   <div class="goal">
-    <p>フラッシュカードは、すべてのカード種別を一つの流れとして一気に流していく。</p>
+    <p>すべてのカード種別を一つの流れとして一気に流していく。</p>
   </div>
   <p>百科事典はその中の 1 種別にすぎません。<strong>百科事典を特別扱いしないでください。</strong></p>
   <div class="flow">
@@ -865,62 +671,50 @@ html{scroll-behavior:smooth}
     <span class="step">反対語</span><span class="arw">▶</span>
     <span class="step">俳句</span><span class="arw">▶</span>
     <span class="step">百人一首</span><span class="arw">▶</span>
-    <span class="step">その他のカード</span>
+    <span class="step">反対語の歌</span>
   </div>
-
-  <p><strong>対象カード種別</strong></p>
+  <p><strong>ここまでを一気に流します。</strong></p>
   <div class="tw"><table>
     <thead><tr><th>種別</th><th>1 セットの構成</th><th>カードの中身</th></tr></thead>
     <tbody>
-      <tr><th>百科事典</th><td>10 枚 × 5 ジャンル</td><td>絵 ＋ 語</td></tr>
+      <tr><th>百科事典</th><td>10 枚 × 4 ジャンル</td><td>絵</td></tr>
       <tr><th>ひらがな</th><td>行ごと</td><td>文字 ＋ 語 ＋ 絵</td></tr>
       <tr><th>ことわざ</th><td>あいうえお順</td><td>頭のひらがな ＋ ことわざ</td></tr>
       <tr><th>四字熟語</th><td>あいうえお順</td><td>四字熟語 ＋ 絵または文字のみ</td></tr>
       <tr><th>反対語</th><td>対で 1 枚</td><td>語 ＋ 対になる語</td></tr>
       <tr><th>俳句</th><td>句ごと</td><td>句 ＋ 絵</td></tr>
       <tr><th>百人一首</th><td>歌ごと</td><td>上の句 ＋ 下の句</td></tr>
+      <tr><th>反対語の歌</th><td>曲ごと</td><td>歌</td></tr>
     </tbody>
   </table></div>
   <p>種別は今後も増えます。<strong>種別が増えても、再生の仕組みを作り直さずに追加できる構造にしてください。</strong></p>
 
-  <h3>全種別に共通する仕様<span class="b b-req">必須</span></h3>
-  <div class="call warn">
-    <p><strong>カード種別ごとに別々の再生画面・別々の実装を作らないでください。</strong>全種別が<strong>同一の再生エンジン</strong>で動きます。</p>
-  </div>
+  <h3>再生モード<span class="b b-req">必須</span></h3>
   <div class="tw"><table>
-    <thead><tr><th>項目</th><th>扱い</th></tr></thead>
+    <thead><tr><th>モード</th><th>進み方</th><th>音声</th><th>先生用画面の文字</th></tr></thead>
     <tbody>
-      <tr><th>表示方法（トランジション）</th><td><strong>全種別で共通</strong>（§4 で決定したもの）</td></tr>
-      <tr><th>画像の表示</th><td><strong>全種別で共通</strong>。ディスプレイ全体・境目なし（§3.5）</td></tr>
-      <tr><th>文字の表示</th><td><strong>全種別で共通</strong>（§3.6、下記「先生が読むための文字表示」）</td></tr>
-      <tr><th>音声の規格</th><td><strong>全種別で共通</strong>（§7）。同一話者・同一音量</td></tr>
-      <tr><th>操作</th><td><strong>全種別で共通</strong>。「次へ」1 ボタンのみ</td></tr>
-      <tr><th>レアカード</th><td>百科事典以外の種別にも入れてよい（§3 の設計に従う）</td></tr>
-      <tr class="rare"><th>種別ごとに変わってよいもの</th><td><strong>カードの中身（データ）と、1 枚あたりの表示時間だけ</strong></td></tr>
+      <tr class="rare"><th>自動音声モード</th><td><strong>「次へ」を押さずに自動で進む</strong></td><td>収録音声が読み上げる</td><td>不要</td></tr>
+      <tr><th>先生読みモード</th><td>先生がスマホ側で「次へ」を押して進める</td><td>収録音声は鳴らさない</td><td><strong>必要</strong>（下記）</td></tr>
     </tbody>
   </table></div>
-  <p><strong>種別ごとに違う挙動を作り込まないでください。</strong>違いが増えるほど、先生の操作と子どもの見え方が種別ごとにばらつき、「一つの流れ」が成立しなくなります。</p>
-
-  <h3>セット間の連結</h3>
   <ul>
-    <li>既定では、セット終了時に「次へ」待ちで静止する（下記「操作モデル」）。</li>
-    <li><strong>ただしセッション定義で、セット間を自動で連結できるようにすること</strong>（<code>autoAdvanceBetweenDecks: true</code>）。種別をまたいで一気に流したい場合に使う。</li>
-    <li>どちらの場合も、<strong>先生の画面操作は「次へ」だけ</strong>である点は変わらない。設定はセッション定義（JSON）側で持ち、先生に選ばせない。</li>
+    <li>モードは<strong>セッション定義（JSON）で指定する</strong>。先生がレッスン中に切り替える UI は出さない。</li>
+    <li><strong>自動音声モードでは、カード間もセット間も「次へ」を押さずに進む。</strong></li>
+    <li><strong>先生読みモードでは、先生が読みながら「次へ」を押して進める。</strong></li>
+  </ul>
+  <p><strong>セット間の連結</strong></p>
+  <ul>
+    <li><strong>自動音声モード</strong>：セット間も自動で連結し、止まらずに次のセットへ進む。</li>
+    <li><strong>先生読みモード</strong>：セット終了時に「次へ」待ちで静止する（子どもの様子を見る時間を確保するため）。</li>
+    <li>どちらの場合も、<strong>セット間で種類選択・設定・確認ダイアログ・モーダルを一切表示しない。</strong></li>
   </ul>
 
   <h3>操作モデル<span class="b b-req">必須</span></h3>
-  <p><strong>カードの種類が変わるたびに先生が細かな設定や選択をする仕様にはしないでください。</strong>理想の操作は次のとおりです。</p>
-  <div class="opflow">
-    <div><span class="k">01</span><span class="press b b-rec">「次へ」を押す</span></div>
-    <div><span class="k">02</span>そのカードセットが自動で流れる</div>
-    <div><span class="k">03</span>終了</div>
-    <div><span class="k">04</span><span class="press b b-rec">「次へ」を押す</span></div>
-    <div><span class="k">05</span>次のカードセットが始まる</div>
-  </div>
+  <p><strong>カードの種類が変わるたびに先生が細かな設定や選択をする仕様にしないでください。</strong></p>
   <ul>
     <li>先生の操作は「<strong>次へ</strong>」1 種類のみ。</li>
     <li>セット再生中、先生の操作は不要（完全自動送り）。</li>
-    <li>セット終了時、次のセットは<strong>自動では始まらない</strong>。「次へ」待ちで静止する（子どもの様子を見る時間を確保するため）。</li>
+    <li><strong>自動音声モードでは「次へ」を押さずに最後まで進む。</strong></li>
     <li><strong>セット間で、種類選択・設定・確認ダイアログ・モーダルを一切表示しない。</strong></li>
   </ul>
   <div class="call">
@@ -939,18 +733,18 @@ html{scroll-behavior:smooth}
   </table></div>
   <ul>
     <li>タップ領域は<strong>画面全体</strong>とし、先生が画面を見ずに押せるようにする。</li>
-    <li>ボタンは押しやすい大きさ（最小 88 × 88px）とし、<strong>カード表示中は薄く（opacity 0.25 程度）</strong>して注意を奪わない。</li>
+    <li>ボタンは押しやすい大きさ（最小 88 × 88px）とし、<strong>カード表示中は薄く</strong>して注意を奪わない。</li>
   </ul>
 
   <h3>先生が読むための文字表示<span class="b b-req">必須</span></h3>
-  <div class="goal">
-    <p>レッスンでは、先生がカードを見せながら文字を読み上げる。押す動作と読む動作が同時に起きる。</p>
+  <div class="call gold">
+    <p><strong>このセクションは「先生読みモード」のときにのみ適用します。</strong></p>
   </div>
-  <p>したがって、<strong>先生が見ている画面上の文字が、押す姿勢のまま読めること</strong>を必須要件とします。</p>
+  <p>先生読みモードでは、先生がカードを見せながら文字を読み上げます。押す動作と読む動作が同時に起きるため、<strong>先生が見ている画面上の文字が、押す姿勢のまま読めること</strong>を必須要件とします。</p>
   <div class="tw"><table>
     <thead><tr><th>項目</th><th>要件</th></tr></thead>
     <tbody>
-      <tr><th>表示先</th><td><strong>先生用の操作画面にのみ表示する。</strong>百科事典では子ども用の表示画面に文字を出さない（§3.6）ため、<strong>先生用画面が唯一の文字の表示先</strong>になる</td></tr>
+      <tr><th>表示先</th><td><strong>先生用の操作画面（スマホ）にのみ表示する。</strong>百科事典では子ども用の表示画面に文字を出さないため、<strong>先生用画面が唯一の文字の表示先</strong>になる</td></tr>
       <tr><th>文字サイズ</th><td>先生の視距離（30〜50cm）で読める大きさ。<strong>最小 32px、推奨は画面高さの 10% 以上</strong></td></tr>
       <tr><th>位置</th><td>画面の<strong>上半分</strong>に置く。押す指・手で隠れない位置とする</td></tr>
       <tr><th>ボタンとの関係</th><td>「つぎへ」ボタンは画面下部。文字と重ねない</td></tr>
@@ -960,7 +754,7 @@ html{scroll-behavior:smooth}
       <tr><th>書体</th><td>丸ゴシック系（ヒラギノ丸ゴ／M PLUS Rounded 1c など）、ウェイトは Bold</td></tr>
       <tr><th>ふりがな</th><td>本文の 40% 程度の大きさ</td></tr>
       <tr><th>表記</th><td><strong>先生が読み間違えない表記にする。</strong>ことわざ・俳句は漢字にふりがなを振るか、全ひらがなで表示する</td></tr>
-      <tr><th>次カードの予告 <span class="b b-rec">推奨</span></th><td>先生用の操作画面に「つぎ：〇〇」を小さく表示し、読む準備ができるようにする</td></tr>
+      <tr><th>次カードの予告</th><td>先生用の操作画面に「つぎ：〇〇」を小さく表示し、読む準備ができるようにする</td></tr>
     </tbody>
   </table></div>
   <div class="call warn">
@@ -970,7 +764,7 @@ html{scroll-behavior:smooth}
 
   <h3>セッション定義<span class="b b-req">必須</span></h3>
   <ul>
-    <li>セッションの順序は<strong>設定ファイル（JSON）で定義</strong>し、コードに直書きしない。</li>
+    <li>セッションの順序と<strong>再生モード</strong>は<strong>設定ファイル（JSON）で定義</strong>し、コードに直書きしない。</li>
     <li>次回デモ用のセッション定義を 1 本、既定として同梱する。</li>
     <li>セッション定義の編集 UI は今回のスコープ外（ファイル編集で対応）。</li>
   </ul>
@@ -981,15 +775,15 @@ html{scroll-behavior:smooth}
     <tbody>
       <tr><th>セッション開始前</th><td>セッション名と「はじめる」ボタンのみ</td></tr>
       <tr><th>セット再生中</th><td>カードのみ（進捗表示・タイトル・メニューを出さない）</td></tr>
-      <tr><th>セット終了時</th><td>「◯◯ おわり」＋ <strong>きょうのレアカード再掲（§3 ③）</strong> ＋ 次セット名 ＋「つぎへ」</td></tr>
+      <tr><th>セット終了時</th><td>「◯◯ おわり」＋ 次セット名 ＋「つぎへ」（<strong>先生読みモードのみ</strong>。自動音声モードでは止まらない）</td></tr>
       <tr><th>セッション終了時</th><td>「おしまい」＋ 最初に戻るボタン</td></tr>
     </tbody>
   </table></div>
-  <p><strong>セット再生中は、カード以外の要素を画面に出さないでください</strong>（§4 条件④に直結）。進捗バー・枚数表示も出しません。</p>
+  <p><strong>セット再生中は、カード以外の要素を画面に出さないでください。</strong>進捗バー・枚数表示も出しません。</p>
 </section>
 
-<section id="s9">
-  <h2><span class="num">09</span>データ構造<span class="b b-rec">推奨</span></h2><div class="rule"></div>
+<section id="s7">
+  <h2><span class="num">07</span>データ構造<span class="b b-req">必須</span></h2><div class="rule"></div>
   <p>コンテンツはコードから分離し、JSON で定義してください。</p>
 
   <h3>カード</h3>
@@ -1001,8 +795,8 @@ html{scroll-behavior:smooth}
   "label": "ぞう",
   "image": "/cards/encyclopedia/animal/08-zou.webp",
   "audio": "/audio/encyclopedia/animal/08-zou.mp3",
-  "changeMotion": "trunk-lift",
-  "changeSound": "/audio/sfx/paoon.mp3"
+  "changeMotion": "（開発側で決める）",
+  "changeSound": "（開発側で決める）"
 }</code></pre>
   <div class="tw"><table>
     <thead><tr><th>フィールド</th><th>型</th><th>説明</th></tr></thead>
@@ -1011,10 +805,10 @@ html{scroll-behavior:smooth}
       <tr><th><code>deckId</code></th><td>string</td><td>所属セット</td></tr>
       <tr><th><code>order</code></th><td>number</td><td>セット内の提示順（1 起点）</td></tr>
       <tr><th><code>rarity</code></th><td>"normal" | "rare"</td><td>レアカード判定</td></tr>
-      <tr><th><code>type</code></th><td>string</td><td>カード種別（encyclopedia / hiragana / kotowaza / yojijukugo / hantaigo / haiku / hyakunin）。<strong>種別で分岐する処理は表示時間の決定のみ</strong></td></tr>
-      <tr><th><code>label</code></th><td>string</td><td>語。<strong>先生用の操作画面と音声</strong>で使う。百科事典では子ども用画面に出さない（§3.6）</td></tr>
+      <tr><th><code>type</code></th><td>string</td><td>カード種別（encyclopedia / hiragana / kotowaza / yojijukugo / hantaigo / haiku / hyakunin / hantaigo-song）</td></tr>
+      <tr><th><code>label</code></th><td>string</td><td>語。<strong>先生用の操作画面と音声</strong>で使う。百科事典では子ども用画面に出さない</td></tr>
       <tr><th><code>image</code> / <code>audio</code></th><td>string</td><td>素材パス</td></tr>
-      <tr><th><code>changeMotion</code> / <code>changeSound</code></th><td>string</td><td><strong>レアカードのみ。</strong>変化の動きと効果音（§3.4）</td></tr>
+      <tr><th><code>changeMotion</code> / <code>changeSound</code></th><td>string</td><td><strong>レアカードのみ。</strong>変化の動きと効果音。<strong>内容は開発側で決める</strong>（§3）</td></tr>
     </tbody>
   </table></div>
 
@@ -1023,14 +817,12 @@ html{scroll-behavior:smooth}
   "id": "enc-animal",
   "type": "encyclopedia",
   "title": "どうぶつ",
-  "transition": "expand",
   "cardDurationMs": 1600,
-  "rareDurationBonusMs": 400,
-  "rareSlot": [7, 8, 9],
+  "rareDurationBonusMs": 1000,
+  "rareSlot": "5+",
   "cards": ["enc-animal-01", "..."]
 }</code></pre>
-
-  <p><code>rareSlot</code> は、レアカードを配置する候補位置。再生開始時にこの中から 1 つを選びます（§3）。</p>
+  <p><code>rareSlot</code> は、レアカードを配置できる範囲。<strong>5 枚目以降であればどこでもよい</strong>（§3）。</p>
 
   <h3>ことわざカードの追加フィールド</h3>
   <pre><code>{
@@ -1045,50 +837,44 @@ html{scroll-behavior:smooth}
   <pre><code>{
   "id": "demo-session-01",
   "title": "デモ用レッスン",
-  "autoAdvanceBetweenDecks": false,
+  "mode": "auto",
   "decks": [
     "enc-animal", "hiragana-agyo", "kotowaza-agyo",
-    "yojijukugo-01", "hantaigo-01", "haiku-01", "hyakunin-01"
+    "yojijukugo-01", "hantaigo-01", "haiku-01", "hyakunin-01",
+    "hantaigo-song-01"
   ]
 }</code></pre>
+  <p><code>mode</code> は <code>"auto"</code>（自動音声モード）または <code>"teacher"</code>（先生読みモード）。§6.2 のとおり。</p>
 </section>
 
-<section id="s10">
-  <h2><span class="num">10</span>第 1 次提出物<span class="b b-req">必須</span></h2><div class="rule"></div>
+<section id="s8">
+  <h2><span class="num">08</span>第 1 次提出物<span class="b b-req">必須</span></h2><div class="rule"></div>
   <div class="call">
-    <p><strong>50 枚すべてを作ってから確認するのではなく、まず以下を作成し、一度見せてください。</strong>ここで方向性を確認したうえで、残りのジャンルへ展開します。</p>
+    <p><strong>40 枚すべてを作ってから確認するのではなく、まず以下を作成し、一度見せてください。</strong>ここで方向性を確認したうえで、残りのジャンルへ展開します。</p>
   </div>
   <ul class="deliv">
-    <li><span class="n">①</span><span><b>百科事典カード 1 ジャンル 10 枚</b><span>動物セット。<strong>絵のみ</strong>の完成品（子ども用画面に文字は出さない。§3.6）</span></span></li>
-    <li><span class="n">②</span><span><b>通常カードの表示方法 2〜3 案</b><span>§4 の A / B / C。同一 10 枚で切り替えて比較できる状態</span></span></li>
-    <li><span class="n">③</span><span><b>レアカード 1 枚</b><span><strong>ぞう</strong>（鼻を持ち上げる ＋「パオーン！」）。<strong>通常 9 枚の静けさとの対比</strong>が出ているかを確認する</span></span></li>
-    <li><span class="n">④</span><span><b>音声</b><span>動物 10 枚分。§7 の規格に準拠</span></span></li>
-    <li><span class="n">⑤</span><span><b>10 枚を連続再生したときの動き</b><span>実機（iPad）で通し再生。§4 の計測値を添付</span></span></li>
+    <li><span class="n">①</span><span><b>百科事典カード 1 ジャンル 10 枚</b><span>動物セット。<strong>絵のみ</strong>の完成品（子ども用画面に文字は出さない）</span></span></li>
+    <li><span class="n">②</span><span><b>レアカード 1 枚</b><span><strong>ぞう</strong>。<strong>通常 9 枚の静けさとの対比</strong>が出ているかを確認する</span></span></li>
+    <li><span class="n">③</span><span><b>音声</b><span>動物 10 枚分。§5 に準拠</span></span></li>
+    <li><span class="n">④</span><span><b>10 枚を連続再生したときの動き</b><span>実機で通し再生</span></span></li>
   </ul>
-
-  <h3>確認の実施方法</h3>
-  <ul>
-    <li>実機（iPad）で実際に再生し、その場で確認する。</li>
-    <li>併せて、A / B / C 各案の通し再生を録画したものを事前共有する。</li>
-    <li>貴社の推奨案とその理由を口頭で説明いただく。</li>
-  </ul>
+  <p>実機で実際に再生し、その場で確認します。</p>
   <div class="call warn">
-    <p><strong>第 1 次確認が完了するまで、残り 4 ジャンル（40 枚）の量産に着手しないでください。</strong>表示方法が変われば素材の作り直しが発生するためです。</p>
+    <p><strong>第 1 次確認が完了するまで、残り 3 ジャンル（30 枚）の量産に着手しないでください。</strong>方向性が変われば素材の作り直しが発生するためです。</p>
   </div>
 </section>
 
-<section id="s11">
-  <h2><span class="num">11</span>スケジュールと報告<span class="b b-req">必須</span></h2><div class="rule"></div>
+<section id="s9">
+  <h2><span class="num">09</span>スケジュールと報告<span class="b b-req">必須</span></h2><div class="rule"></div>
   <p>デモ実施日を <strong>D 日</strong>、着手日を <strong>D-14</strong> とした相対日程を基準とします。デモ日確定後、実日付に置き換えて再提出してください。</p>
   <div class="tw"><table>
     <thead><tr><th>マイルストーン</th><th class="num">時期</th><th>内容</th><th>確認方法</th></tr></thead>
     <tbody>
-      <tr><th>M0 着手</th><td class="num">D-14</td><td>本仕様の受領確認。不明点・懸念の洗い出し</td><td>§12 の質問回答</td></tr>
+      <tr><th>M0 着手</th><td class="num">D-14</td><td>本仕様の受領確認。不明点・懸念の洗い出し</td><td>§10 の質問回答</td></tr>
       <tr><th>提案・指示サイクル</th><td class="num">毎日<br>12:00 / 17:00</td><td>提案を受け取り、その場で指示を返す（各 15 分）</td><td>下記のとおり</td></tr>
-      <tr><th>M1 中間確認①</th><td class="num">D-10</td><td>第 1 次提出物（§10 ①〜⑤）の確認</td><td><strong>実機で対面確認</strong></td></tr>
-      <tr><th>M1.5 表示方法決定</th><td class="num">D-9</td><td>基本表示方法の確定・通知</td><td>書面 1 枚</td></tr>
-      <tr><th>M2 中間確認②</th><td class="num">D-6</td><td>百科事典 50 枚完成、ひらがな改修（§5）完了</td><td><strong>実機で対面確認</strong></td></tr>
-      <tr><th>M3 中間確認③</th><td class="num">D-3</td><td>ことわざ音声改修（§6）、セッション通し再生（§8）完了</td><td><strong>実機で通し再生</strong></td></tr>
+      <tr><th>M1 中間確認①</th><td class="num">D-10</td><td>第 1 次提出物（§8）の確認</td><td><strong>実機で対面確認</strong></td></tr>
+      <tr><th>M2 中間確認②</th><td class="num">D-6</td><td>百科事典 40 枚完成</td><td><strong>実機で対面確認</strong></td></tr>
+      <tr><th>M3 中間確認③</th><td class="num">D-3</td><td>ことわざ音声改修（§4）、セッション通し再生（§6）完了</td><td><strong>実機で通し再生</strong></td></tr>
       <tr><th>M4 リハーサル</th><td class="num">D-1</td><td>先生役による本番同等の通し再生</td><td><strong>本番機・本番環境</strong></td></tr>
       <tr class="total"><td>D デモ</td><td class="num">D</td><td>本番</td><td>—</td></tr>
     </tbody>
@@ -1099,8 +885,6 @@ html{scroll-behavior:smooth}
   <div class="goal">
     <p>この定例は進捗報告の場ではない。システム会社から提案を受け取り、その場で指示を返す場である。</p>
   </div>
-  <p>この往復を確実に回すことが、デモまでの品質と速度を決めます。<strong>流れを作ることそのものが目的</strong>であり、報告を聞くことが目的ではありません。</p>
-
   <div class="cycle">
     <ol>
       <li><span class="node">前回の指示</span></li>
@@ -1115,8 +899,6 @@ html{scroll-behavior:smooth}
     </ol>
     <p class="loop">1 日 2 回、繰り返す</p>
   </div>
-
-  <p><strong>実施時刻</strong></p>
   <div class="tw"><table>
     <thead><tr><th class="num">時刻</th><th>受け取る提案の対象</th><th>出す指示が動かす作業</th></tr></thead>
     <tbody>
@@ -1124,8 +906,6 @@ html{scroll-behavior:smooth}
       <tr><td class="num">17:00<br>（15 分）</td><td>午後の作業結果</td><td><strong>翌日午前</strong>の作業</td></tr>
     </tbody>
   </table></div>
-
-  <p><strong>15 分の進め方</strong></p>
   <div class="tw"><table>
     <thead><tr><th class="num">時間</th><th>方向</th><th>内容</th></tr></thead>
     <tbody>
@@ -1134,86 +914,53 @@ html{scroll-behavior:smooth}
       <tr><td class="num">12〜15 分</td><th>相互確認</th><td>次の作業ブロックで進める内容の確定・復唱</td></tr>
     </tbody>
   </table></div>
-
   <div class="call">
     <span class="ct">提案の出し方 — システム会社側のルール</span>
-    <p><strong>判断が必要な点は、必ず「案」の形で出してください。</strong>「どうしますか」という丸投げの質問にはしないでください。</p>
-    <p>1 件につき、次の 4 点をセットで出します。</p>
+    <p><strong>判断が必要な点は、必ず「案」の形で出してください。</strong>「どうしますか」という丸投げの質問にはしないでください。1 件につき ①現状 ②案（最低 1 案、可能なら 2 案）③推奨する案とその理由 ④決まらない場合の影響 をセットで出します。</p>
+    <p><strong>提案は定例の開始前までに箇条書きで共有してください。</strong>口頭のみにしないこと。</p>
   </div>
-  <ol class="steps">
-    <li><strong>現状</strong> … 何がどこまで進み、何が引っかかっているか</li>
-    <li><strong>案</strong> … 最低 1 案、可能なら 2 案</li>
-    <li><strong>推奨する案とその理由</strong></li>
-    <li><strong>決まらない場合の影響</strong> … 何が止まるか、どれだけ遅れるか</li>
-  </ol>
-  <p><strong>提案は定例の開始前までに箇条書きで共有してください。</strong>口頭のみにしないこと（15 分に収めるため）。</p>
-
   <div class="call">
     <span class="ct">指示の出し方 — こちら側のルール</span>
-    <p>各提案に対し、その場で <strong>採用 ／ 修正のうえ採用 ／ 保留</strong> のいずれかを返します。<strong>持ち帰りを原則としません。</strong></p>
-    <p>保留にする場合は、<strong>いつまでに決めるかをその場で決めます</strong>。期限のない保留を作りません。</p>
-    <p>修正指示は「良くない」で終わらせず、<strong>何をどう変えるか</strong>まで言い切ります。</p>
+    <p>各提案に対し、その場で <strong>採用 ／ 修正のうえ採用 ／ 保留</strong> のいずれかを返します。<strong>持ち帰りを原則としません。</strong>保留にする場合は、<strong>いつまでに決めるかをその場で決めます</strong>。</p>
   </div>
-
-  <p><strong>決定の記録</strong> — 決定事項は、その場で決定ログに 1 行ずつ残します。</p>
-  <div class="tw"><table>
-    <thead><tr><th class="num">日付</th><th class="num">時刻</th><th>議題</th><th>提案（システム会社）</th><th>決定・指示</th><th>担当</th><th class="num">期限</th></tr></thead>
-    <tbody>
-      <tr><td class="num">例：9/2</td><td class="num">12:00</td><td>表示方法</td><td>B 案（軽いズーム）を推奨</td><td>C 案（中央から広がる）を採用。ひらがなと揃えるため</td><td>〇〇</td><td class="num">9/3 12:00</td></tr>
-    </tbody>
-  </table></div>
+  <p><strong>決定の記録</strong> — 決定事項は、その場で決定ログに 1 行ずつ残します（日付／時刻／議題／提案／決定・指示／担当／期限）。</p>
   <div class="call warn">
     <p><strong>次の回の冒頭で、前回の決定ログの実施状況を確認します。これによりサイクルが閉じます。</strong>指示が実行されたかを確認しないまま、次の提案に進まないでください。</p>
   </div>
-
-  <p><strong>運用ルール</strong></p>
   <ul>
     <li>15 分の枠を超えない。議論が長引く論点は別途時間を取るが、<strong>その日時はこの場で決める</strong>。</li>
-    <li>提案がない回も<strong>必ず実施する</strong>。「提案がない」こと自体が状況の共有になる。</li>
-    <li><strong>遅延の可能性は、次のマイルストーンを待たずこの場で必ず共有する</strong>（下記の報告ルールと連動）。</li>
-    <li>実装確認が必要な場合は、この場で実機を見せる。</li>
+    <li>提案がない回も<strong>必ず実施する</strong>。</li>
+    <li><strong>遅延の可能性は、次のマイルストーンを待たずこの場で必ず共有する。</strong></li>
   </ul>
 
   <h3>報告ルール<span class="b b-req">必須</span></h3>
   <div class="call warn">
-    <span class="ct">遅延の相談タイミング</span>
-    <p><strong>予定どおりの完成が難しい可能性が出た場合は、完成直前ではなく、その時点で直ちにご相談ください。</strong></p>
-    <p>「間に合いそうにない」と判断した時点ではなく、<strong>「間に合わない可能性が出た」時点</strong>でご連絡ください。その際は ①遅れる対象 ②想定される遅延幅 ③代替案（例：ジャンルを 4 つに減らす／レア演出を簡略化する）を添えてください。</p>
+    <p><strong>予定どおりの完成が難しい可能性が出た場合は、完成直前ではなく、その時点で直ちにご相談ください。</strong>「間に合いそうにない」と判断した時点ではなく、<strong>「間に合わない可能性が出た」時点</strong>でご連絡ください。その際は ①遅れる対象 ②想定される遅延幅 ③代替案 を添えてください。</p>
   </div>
-  <ul>
-    <li>日々の判断は上記の提案・指示サイクルで確定させ、各マイルストーン終了時に、進捗と残課題を 1 通の連絡にまとめて共有する。</li>
-    <li>仕様に疑義が生じた場合、独自判断で決めずに §12 の手順で確認する。</li>
-  </ul>
 
   <h3>遅延時の優先順位</h3>
-  <p>やむを得ず作業を削る場合、以下の順で守ってください。上位ほど死守します。</p>
   <ol class="prio">
-    <li>セッション通し再生と「次へ」1 ボタン操作（§8）</li>
-    <li>表示方法の決定と統一（§4）</li>
-    <li><strong>音量の統一（§7）</strong></li>
-    <li>ことわざの読み上げルール（§6）</li>
-    <li>ひらがなの統一・文字サイズ・おちば（§5）</li>
-    <li>百科事典 50 枚（枚数はジャンル数を減らして調整可）</li>
-    <li>レアカードの変化（削る場合は、セット終了後の再掲と出現位置のランダム化から落とす。<strong>変化そのものは最後まで残す</strong>）</li>
+    <li>セッション通し再生と 2 つの再生モード（§6）</li>
+    <li>音量の統一（§5）</li>
+    <li>ことわざの読み上げルール（§4）</li>
+    <li>百科事典 40 枚（枚数はジャンル数を減らして調整可）</li>
+    <li>レアカードの変化</li>
   </ol>
 </section>
 
-<section id="s12">
-  <h2><span class="num">12</span>確認・提案をお願いする事項<span class="b b-ask">提案依頼</span></h2><div class="rule"></div>
-  <p>以下は本仕様書で確定していません。<strong>M0（着手時）までに回答・提案をお願いします。</strong></p>
+<section id="s10">
+  <h2><span class="num">10</span>確認事項<span class="b b-req">必須</span></h2><div class="rule"></div>
+  <p>以下は本仕様書で確定していません。<strong>M0（着手時）までに回答をお願いします。</strong></p>
   <div class="tw"><table>
     <thead><tr><th class="num">#</th><th>項目</th><th>内容</th></tr></thead>
     <tbody>
-      <tr><td class="num">Q1</td><th>表示方法</th><td>§4 の 3 案で問題ないか。追加・代替案があれば提示</td></tr>
-      <tr><td class="num">Q2</td><th>第 5 ジャンル</th><td>「がっき」で問題ないか。難がある場合は代替案</td></tr>
-      <tr><td class="num">Q3</td><th>カード表示時間</th><td>初期値 1.6 秒／レア +0.4 秒の妥当性。実測に基づく推奨値</td></tr>
-      <tr><td class="num">Q4</td><th>素材の調達方法</th><td>画像・音声の制作手段（内製／外注／生成）と、それに伴うリードタイム</td></tr>
-      <tr><td class="num">Q5</td><th>反対語・俳句カード</th><td>現状の実装状況と、今回の統一ルール適用にかかる工数</td></tr>
-      <tr><td class="num">Q6</td><th>実機性能</th><td>対象 iPad の機種・OS バージョン。50 枚の先読みがメモリ上問題ないか</td></tr>
-      <tr><td class="num">Q7</td><th>デモ実施日</th><td>確定日。§11 の相対日程を実日付に変換するため</td></tr>
-      <tr><td class="num">Q8</td><th>読み上げの担当</th><td>§7 の収録音声と、§8 の先生による読み上げの関係。両方行うのか、どちらかを選べるようにするのか</td></tr>
-      <tr><td class="num">Q9</td><th>音量の現状</th><td>現在、動画・歌・フラッシュカード音声はそれぞれどの水準で作られているか。既存素材の測り直しと作り直しにどれだけかかるか</td></tr>
-      <tr><td class="num">Q10</td><th>画面構成</th><td>子ども用の表示画面と先生用の操作画面は分かれているか。分かれている場合、それぞれに何を表示しているか</td></tr>
+      <tr><td class="num">Q1</td><th>カード表示時間</th><td>初期値 1.6 秒／レア +1.0 秒の妥当性。実測に基づく推奨値</td></tr>
+      <tr><td class="num">Q2</td><th>素材の調達方法</th><td>画像・音声の制作手段（内製／外注／生成）と、それに伴うリードタイム。<strong>レアカードの「動く絵」の作り方</strong>を含む</td></tr>
+      <tr><td class="num">Q3</td><th>既存カードの状況</th><td>反対語・俳句・四字熟語・百人一首・反対語の歌の現状の実装状況と、今回のルール適用にかかる工数</td></tr>
+      <tr><td class="num">Q4</td><th>実機性能</th><td>対象端末の機種・OS バージョン</td></tr>
+      <tr><td class="num">Q5</td><th>デモ実施日</th><td>確定日。§9 の相対日程を実日付に変換するため</td></tr>
+      <tr><td class="num">Q6</td><th>音量の現状</th><td>現在、動画・歌・フラッシュカード音声はそれぞれどの水準で作られているか。既存素材の測り直しと作り直しにどれだけかかるか</td></tr>
+      <tr><td class="num">Q7</td><th>画面構成</th><td>子ども用の表示画面と先生用の操作画面（スマホ）は分かれているか。分かれている場合、それぞれに何を表示しているか</td></tr>
     </tbody>
   </table></div>
   <div class="call">
@@ -1221,10 +968,10 @@ html{scroll-behavior:smooth}
   </div>
 </section>
 
-<section id="s13">
-  <h2><span class="num">13</span>今回のスコープ外</h2><div class="rule"></div>
+<section id="s11">
+  <h2><span class="num">11</span>今回のスコープ外</h2><div class="rule"></div>
   <div class="call warn">
-    <p><strong>例外：§7 の音量基準は、フラッシュカード以外（動画・歌）にも適用します。</strong>ここだけはフラッシュカードの範囲を越えます。フラッシュカード側だけを揃えても音量差が解消しないためです。</p>
+    <p><strong>例外：§5 の音量基準は、フラッシュカード以外（動画・歌）にも適用します。</strong>フラッシュカード側だけを揃えても音量差が解消しないためです。</p>
   </div>
   <p>以下は今回のデモ対象に含めません。実装しないでください。</p>
   <ul>
@@ -1233,33 +980,24 @@ html{scroll-behavior:smooth}
     <li>学習履歴・成績の記録機能</li>
     <li>ログイン・ユーザー管理</li>
     <li>カードの並び替え・シャッフル機能</li>
-    <li>各種別の<strong>全カードの</strong>新規コンテンツ制作。次回デモでは、<strong>種別ごとに 1 セット</strong>（通しで見せられる最小構成）があればよい。ただし §8 の共通仕様は最初から全種別に適用すること（後から作り直すことになるため）</li>
+    <li>各種別の<strong>全カードの</strong>新規コンテンツ制作。次回デモでは、<strong>種別ごとに 1 セット</strong>（通しで見せられる最小構成）があればよい</li>
   </ul>
 </section>
 
 <section id="sA">
   <h2><span class="num">付録 A</span>デモ前の最終チェックリスト</h2><div class="rule"></div>
   <ul class="check">
-    <li>百科事典 50 枚がそろっている（5 ジャンル × 10 枚）</li>
-    <li>各ジャンルの 7〜9 枚目にレアカードが 1 枚だけ入っている</li>
+    <li>百科事典 40 枚がそろっている（4 ジャンル × 10 枚）</li>
+    <li>各ジャンルの 5 枚目以降にレアカードが 1 枚だけ入っている</li>
     <li>通常カードは完全に静止しており、動くのはレアカードだけ</li>
     <li>レアカードの前に予告・前触れが出ない</li>
     <li>レアカードの変化が 1 回だけで、ループしない</li>
     <li>背景が白〜ごく薄い単色で、全カード共通</li>
-    <li>1 枚の中の色が主役 1〜2 色に収まっている</li>
+    <li>画像がディスプレイ全体を覆い、カードの枠・角丸・影・余白帯が見えない</li>
+    <li>絵から実物が分かる（あとで本物を見て結びつく）</li>
     <li>百科事典カードの子ども用画面に文字が出ていない</li>
     <li>ひらがな・ことわざ・四字熟語・俳句・百人一首は文字が出ている</li>
-    <li>絵から実物が分かる（あとで本物を見て結びつく）</li>
-    <li>レアカードの出現位置が再生ごとに変わる</li>
-    <li>セット終了画面に「きょうのレアカード」が再掲される</li>
-    <li>レアカードで子どもの反応が起きた</li>
     <li>各セット 10 枚が途中で止まらず連続再生される</li>
-    <li>画像がディスプレイ全体を覆い、カードの枠・角丸・影・余白帯が見えない</li>
-    <li>職業カードが職業名で統一されている（「さん」「〜の人」がない）</li>
-    <li>表示方法が全カードで統一されている</li>
-    <li>ひらがなカードのアニメーションが「中央から広がる」に統一されている</li>
-    <li>「あ・い・う・え・お」の文字が従来の約 2 倍になっている</li>
-    <li>「おさる」が「おちば」に変わっている（画像・音声・文字すべて）</li>
     <li>ことわざが「あ！ 足元に火がつく」の形式で読まれる</li>
     <li>ことわざ本文の重複読みがない</li>
     <li>頭のひらがなを飛ばして本文から始まるものがない</li>
@@ -1267,14 +1005,13 @@ html{scroll-behavior:smooth}
     <li>動画・歌・フラッシュカード音声・効果音の間で音量差を感じない</li>
     <li>通し再生の間、端末の音量に一度も触らずに済んだ</li>
     <li>全素材の測定値一覧（LUFS / True Peak）が提出されている</li>
-    <li>全カード種別が一つの流れとして通しで再生される（百科事典だけで終わらない）</li>
-    <li>種別が変わっても表示方法・文字・音声・操作が同じである</li>
-    <li>「次へ」だけでセット間を移動できる</li>
+    <li>全カード種別が一つの流れとして通しで再生される</li>
+    <li><strong>自動音声モードで、「次へ」を押さずに最後まで進む</strong></li>
+    <li><strong>先生読みモードで、押す姿勢のまま指で隠れず文字を読める</strong></li>
+    <li>先生読みモードで、押した瞬間に文字が読める（アニメーション待ちがない）</li>
+    <li>ことわざ・俳句の漢字にふりがながある（または全ひらがな）</li>
     <li>セット間に設定・選択画面が出ない</li>
     <li>カード再生中に UI 要素が表示されない</li>
-    <li>先生が「次へ」を押す姿勢のまま、指で隠れず文字を読める</li>
-    <li>押した瞬間に文字が読める状態になっている（アニメーション待ちがない）</li>
-    <li>ことわざ・俳句の漢字にふりがながある（または全ひらがな）</li>
     <li>通し再生中に読み込み待ちが発生しない</li>
     <li>本番機で最初から最後まで通し再生できた</li>
   </ul>
@@ -1282,21 +1019,17 @@ html{scroll-behavior:smooth}
 
 <section id="sB">
   <h2><span class="num">付録 B</span>本仕様の出典</h2><div class="rule"></div>
-  <p>本仕様書には、<strong>ご指示いただいた内容</strong>と、<strong>それを実装可能・検証可能にするために制作側で補った内容</strong>の両方が含まれます。どちらであるかを以下に明示します。</p>
-  <div class="call gold">
-    <p><strong>「制作側の補足」は、§12 の手順で削除・変更してよい項目です。</strong></p>
-  </div>
+  <p>本仕様書には、<strong>ご指示いただいた内容</strong>と、<strong>それを実装可能・検証可能にするために制作側で補った内容</strong>の両方が含まれます。</p>
 
   <h3>B-1. 完成条件（§1）の各項目</h3>
   <div class="tw"><table>
-    <thead><tr><th class="num">#</th><th>項目</th><th>出典</th><th>補足の理由</th></tr></thead>
+    <thead><tr><th class="num">#</th><th>項目</th><th>出典</th></tr></thead>
     <tbody>
-      <tr><td class="num">1</td><th>最初から最後まで通して再生できる</th><td><span class="b b-req">ご指示</span></td><td>「先生役が操作して、子どもに見せるつもりでフラッシュカード部分を最初から最後まで通して再生できること」をそのまま条件化</td></tr>
-      <tr><td class="num">2</td><th>途中で中断が発生しない</th><td><span class="b b-rec">制作側</span></td><td>「途中で止まらず連続して提示」「種類が変わるたびに設定・選択をさせない」を、<strong>当日その場で判定できる形</strong>にしたもの。中断の定義を明示しないと「動いた」で合格になってしまうため</td></tr>
-      <tr><td class="num">3</td><th>操作は「次へ」を押すだけ</th><td><span class="b b-req">ご指示</span></td><td>「『次へ』を押す → 自動で流れる → 終了 → 『次へ』」をそのまま条件化</td></tr>
-      <tr><td class="num">4</td><th>音声とカード表示のズレが気にならない</th><td><span class="b b-rec">制作側</span></td><td>ご指示にはないが、ことわざの読み上げルール（§6）とテンポ条件①を実機で成立させるために必要。ズレが出ると、頭のひらがなと画面表示が合わなくなる</td></tr>
-      <tr><td class="num">5</td><th>10 枚連続時、表示間隔が不均一に見えない</th><td><span class="b b-rec">制作側</span></td><td>ご指示の「テンポが落ちない」を、<strong>10 枚連続再生（ご指示の確認項目⑤）で判定できる形</strong>にしたもの</td></tr>
-      <tr><td class="num">6</td><th>先生が押しながら文字を読める</th><td><span class="b b-req">ご指示</span></td><td>「押すときに、文字を読むので、文字が見やすいように」をそのまま条件化</td></tr>
+      <tr><td class="num">1</td><th>全カード種別を最初から最後まで通して再生できる</th><td><span class="b b-req">ご指示</span></td></tr>
+      <tr><td class="num">2</td><th>途中で中断が発生しない</th><td><span class="b b-rec">制作側</span></td></tr>
+      <tr><td class="num">3</td><th>音声とカード表示のズレが気にならない</th><td><span class="b b-rec">制作側</span></td></tr>
+      <tr><td class="num">4</td><th>先生読みモードで、押しながら文字を読める</th><td><span class="b b-req">ご指示</span></td></tr>
+      <tr><td class="num">5</td><th>通し再生の間、端末の音量を変える必要がない</th><td><span class="b b-req">ご指示</span></td></tr>
     </tbody>
   </table></div>
 
@@ -1304,31 +1037,22 @@ html{scroll-behavior:smooth}
   <div class="tw"><table>
     <thead><tr><th>章</th><th>ご指示いただいた内容</th><th>制作側で補った内容</th></tr></thead>
     <tbody>
-      <tr><th>§1 目的</th><td>目的の 2 文、「システムが動くことは完成条件ではない」</td><td>完成条件の判定形式（B-1）</td></tr>
-      <tr><th>§3 百科事典</th><td>5 ジャンル × 10 枚＝50 枚、後半にレア 1 枚、通常はシンプルで瞬時に認識、<strong>画像はディスプレイ全体・境目なし</strong>、<strong>職業は職業名で統一</strong>、<strong>色は明るい・はっきり・少数（白背景＋主役の色＋黒い文字）</strong>、<strong>タッチは「実物がすぐ分かる、少し柔らかい図鑑イラスト」</strong>、<strong>対象年齢 2〜6 歳</strong>、<strong>子ども用画面に文字を出さない</strong></td><td>第 5 ジャンル「がっき」の提案、50 語の具体名、画像の技術規格（解像度・形式・セーフエリア）、同音異義語のふりがな規則、<strong>文字を出す種別と出さない種別の切り分け</strong></td></tr>
-      <tr><th>§3.4 レアカード</th><td><strong>子どもが楽しみにするカード。ゲーム性を持たせる。「静・静・静……→変化！」。予想していた流れから少し外れる変化。ぞう→パオーン／しょうぼうしゃ→ライト＋サイレン／すいか→割れて中が見える</strong></td><td>変化の時間配分と制約（1 回・0.6 秒・被写体の一部のみ）、職業とがっきのレア案、出現位置のランダム化、判定基準</td></tr>
-      <tr><th>§4 表示方法</th><td>2〜3 案を試作して比較、条件①〜⑤、方法は固定しない</td><td>3 案の具体と初期パラメータ、条件①〜⑤の<strong>数値化</strong>、比較の手順と計測項目</td></tr>
-      <tr><th>§5 ひらがな</th><td>「あ」の中央展開に統一、「あいうえお」を約 2 倍、おさる→おちば</td><td>文字サイズの具体値（画面高さ 55%）、相対指定での実装</td></tr>
-      <tr><th>§6 ことわざ</th><td>頭のひらがなを読んでからことわざ、重複読み禁止、本文からの開始禁止</td><td>間の長さ（0.4 秒）、画面表示との同期</td></tr>
-      <tr><th>§7 音声</th><td><strong>音量の調整が必要。動画と歌が急に大きくなり、フラッシュカードの音声との差がある</strong></td><td>基準ラウドネスの数値、測定・制作のルール、実装側のゲイン設計、検収方法。話者・無音・同期の規格は制作側の補足</td></tr>
-      <tr><th>§8 操作</th><td>「次へ」1 ボタン、セット間で設定・選択をさせない、先生が子どもを見ることに集中できる、<strong>押しながら文字を読める</strong>、<strong>全カード種別を一つの流れとして一気に流す</strong></td><td>操作の割り当て、画面状態の定義、セッション定義の JSON 化、先生用画面の文字要件の具体値、種別共通仕様の明文化</td></tr>
-      <tr><th>§9 データ構造</th><td>（直接のご指示なし）</td><td><strong>全体が制作側の補足。</strong>コンテンツをコードから分離しないと、50 枚の差し替えや表示方法の変更が実装作業になるため</td></tr>
-      <tr><th>§10 第 1 次提出物</th><td>①〜⑤、ここで方向性を確認してから展開</td><td>確認の実施方法、「確認完了まで量産に着手しない」</td></tr>
-      <tr><th>§11 スケジュール</th><td>途中段階で確認できる日程、完成直前ではなくその時点で相談、<strong>毎日 12:00 / 17:00 に 15 分、提案を受けて指示を出す</strong></td><td>M0〜M4 の相対日程、15 分の内訳、提案の 4 点セット、決定ログ、遅延時の優先順位</td></tr>
-      <tr><th>§13 スコープ外</th><td>（直接のご指示なし）</td><td><strong>全体が制作側の補足。</strong>書かないと管理画面や履歴機能まで作られる可能性があるため</td></tr>
+      <tr><th>§1 目的</th><td>目的の 2 文、「システムが動くことは完成条件ではない」</td><td>完成条件の判定形式</td></tr>
+      <tr><th>§3 百科事典</th><td>4 ジャンル × 10 枚、レア 1 枚は 5 枚目以降、<strong>職業を廃止しがっきに変更</strong>、画像はディスプレイ全体・境目なし、色は明るい・はっきり・少数、タッチは「実物がすぐ分かる、少し柔らかい図鑑イラスト」、対象年齢 2〜6 歳、子ども用画面に文字を出さない</td><td>40 語の具体名、文字を出す種別と出さない種別の切り分け</td></tr>
+      <tr><th>§3 レアカード</th><td>子どもが楽しみにするカード。「静・静・静……→変化！」。予想していた流れから少し外れる変化。<strong>変化の内容は開発側に任せる</strong></td><td>変化の時間の上限（1 回・0.6 秒）、予兆を出さないこと</td></tr>
+      <tr><th>§4 ことわざ</th><td>頭のひらがなを読んでからことわざ、重複読み禁止、本文からの開始禁止</td><td>間の長さ（0.4 秒）</td></tr>
+      <tr><th>§5 音声</th><td><strong>音量の調整が必要。動画と歌が急に大きくなり、フラッシュカードの音声との差がある</strong></td><td>基準ラウドネスの数値、測定・制作のルール、実装側のゲイン設計、検収方法</td></tr>
+      <tr><th>§6 操作</th><td>セット間で設定・選択をさせない、先生が子どもを見ることに集中できる、<strong>自動音声モードでは「次へ」を押さずに進む</strong>、<strong>先生読みモードでは押しながら文字を読む</strong>、全カード種別を一つの流れとして一気に流す、<strong>その他のカード→反対語の歌</strong></td><td>操作の割り当て、画面状態の定義、先生用画面の文字要件の具体値</td></tr>
+      <tr><th>§7 データ構造</th><td>（直接のご指示なし）</td><td>全体が制作側の補足</td></tr>
+      <tr><th>§8 第 1 次提出物</th><td>まず 1 ジャンル 10 枚とレア 1 枚と音声と連続再生を確認してから展開</td><td>「確認完了まで量産に着手しない」</td></tr>
+      <tr><th>§9 スケジュール</th><td>途中段階で確認できる日程、完成直前ではなくその時点で相談、<strong>毎日 12:00 / 17:00 に 15 分、提案を受けて指示を出す</strong></td><td>M0〜M4 の相対日程、15 分の内訳、提案の 4 点セット、決定ログ</td></tr>
+      <tr><th>§11 スコープ外</th><td>（直接のご指示なし）</td><td>全体が制作側の補足</td></tr>
     </tbody>
   </table></div>
-
-  <h3>B-3. この付録の使い方</h3>
-  <ul>
-    <li><strong>「制作側の補足」は提案です。</strong>不要・不適切と判断されたものは削除して構いません。</li>
-    <li>削除・変更のご指示は §11 の提案・指示サイクルで受けます。</li>
-    <li>削除した場合、その項目が担保していたこと（例：§7 を削れば音量・話者の統一が担保されなくなる）は失われます。影響は制作側から提示します。</li>
-  </ul>
 </section>
 
 <footer>
-  <span>フラッシュカード機能 次回デモ仕様 / Ver 1.0</span>
+  <span>フラッシュカード機能 次回デモ仕様 / Ver 2.0</span>
   <span>2026-08-28</span>
 </footer>
 
