@@ -385,6 +385,7 @@ html{scroll-behavior:smooth}
     <li>カード種別が切り替わる際、先生の操作は<strong>「次へ」を押すだけ</strong>である。</li>
     <li>音声とカード表示のズレが体感で気にならない（§7 の許容値内）。</li>
     <li>10 枚連続再生時、1 枚あたりの表示間隔が<strong>目視で不均一に見えない</strong>。</li>
+    <li><strong>先生が「次へ」を押しながら、そのカードの文字を無理なく読める</strong>（§8）。</li>
   </ol>
   <div class="call warn">
     <span class="ct">重要</span>
@@ -477,6 +478,7 @@ html{scroll-behavior:smooth}
     <li>書体：丸ゴシック系（ヒラギノ丸ゴ／M PLUS Rounded 1c など）。ウェイトは Bold。</li>
     <li>文字色 <code>#2B2B2B</code>、背景とのコントラスト比 7:1 以上。</li>
     <li>表示タイミングは画像と<strong>同時</strong>。文字だけ遅れて出す演出はしない。</li>
+    <li>先生が読み上げるための要件は §8 を参照。</li>
   </ul>
 
   <h3>カード内容一覧（制作リスト）</h3>
@@ -693,6 +695,31 @@ html{scroll-behavior:smooth}
     <li>タップ領域は<strong>画面全体</strong>とし、先生が画面を見ずに押せるようにする。</li>
     <li>ボタンは押しやすい大きさ（最小 88 × 88px）とし、<strong>カード表示中は薄く（opacity 0.25 程度）</strong>して注意を奪わない。</li>
   </ul>
+
+  <h3>先生が読むための文字表示<span class="b b-req">必須</span></h3>
+  <div class="goal">
+    <p>レッスンでは、先生がカードを見せながら文字を読み上げる。押す動作と読む動作が同時に起きる。</p>
+  </div>
+  <p>したがって、<strong>先生が見ている画面上の文字が、押す姿勢のまま読めること</strong>を必須要件とします。</p>
+  <div class="tw"><table>
+    <thead><tr><th>項目</th><th>要件</th></tr></thead>
+    <tbody>
+      <tr><th>表示先</th><td>子ども用の表示画面と先生用の操作画面が分かれている場合、<strong>両方に文字を表示する</strong>。先生用画面に文字がないと読めない</td></tr>
+      <tr><th>文字サイズ</th><td>先生の視距離（30〜50cm）で読める大きさ。<strong>最小 32px、推奨は画面高さの 10% 以上</strong></td></tr>
+      <tr><th>位置</th><td>画面の<strong>上半分</strong>に置く。押す指・手で隠れない位置とする</td></tr>
+      <tr><th>ボタンとの関係</th><td>「つぎへ」ボタンは画面下部。文字と重ねない</td></tr>
+      <tr><th>表示タイミング</th><td><strong>押した瞬間に文字が読める状態になる。</strong>トランジションの完了を待たせない</td></tr>
+      <tr><th>文字の動き</th><td>トランジション中に文字を動かさない。フェード途中の薄い状態で読ませない</td></tr>
+      <tr><th>コントラスト</th><td>背景とのコントラスト比 <strong>7:1 以上</strong></td></tr>
+      <tr><th>書体</th><td>丸ゴシック系 Bold（子ども用画面と同一）</td></tr>
+      <tr><th>表記</th><td><strong>先生が読み間違えない表記にする。</strong>ことわざ・俳句は漢字にふりがなを振るか、全ひらがなで表示する</td></tr>
+      <tr><th>次カードの予告 <span class="b b-rec">推奨</span></th><td>先生用の操作画面に「つぎ：〇〇」を小さく表示し、読む準備ができるようにする</td></tr>
+    </tbody>
+  </table></div>
+  <div class="call warn">
+    <span class="ct">禁止事項</span>
+    <p>読み終わる前に文字が消える／フェード途中の薄い状態でしか読めない／指やボタンで文字が隠れる／読むために先生が画面に顔を近づける必要がある。</p>
+  </div>
 
   <h3>セッション定義<span class="b b-req">必須</span></h3>
   <ul>
@@ -925,6 +952,8 @@ html{scroll-behavior:smooth}
       <tr><td class="num">Q5</td><th>反対語・俳句カード</th><td>現状の実装状況と、今回の統一ルール適用にかかる工数</td></tr>
       <tr><td class="num">Q6</td><th>実機性能</th><td>対象 iPad の機種・OS バージョン。50 枚の先読みがメモリ上問題ないか</td></tr>
       <tr><td class="num">Q7</td><th>デモ実施日</th><td>確定日。§11 の相対日程を実日付に変換するため</td></tr>
+      <tr><td class="num">Q8</td><th>読み上げの担当</th><td>§7 の収録音声と、§8 の先生による読み上げの関係。両方行うのか、どちらかを選べるようにするのか</td></tr>
+      <tr><td class="num">Q9</td><th>画面構成</th><td>子ども用の表示画面と先生用の操作画面は分かれているか。分かれている場合、それぞれに何を表示しているか</td></tr>
     </tbody>
   </table></div>
   <div class="call">
@@ -962,6 +991,9 @@ html{scroll-behavior:smooth}
     <li>「次へ」だけでセット間を移動できる</li>
     <li>セット間に設定・選択画面が出ない</li>
     <li>カード再生中に UI 要素が表示されない</li>
+    <li>先生が「次へ」を押す姿勢のまま、指で隠れず文字を読める</li>
+    <li>押した瞬間に文字が読める状態になっている（アニメーション待ちがない）</li>
+    <li>ことわざ・俳句の漢字にふりがながある（または全ひらがな）</li>
     <li>通し再生中に読み込み待ちが発生しない</li>
     <li>本番機で最初から最後まで通し再生できた</li>
   </ul>
