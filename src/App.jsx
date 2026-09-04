@@ -1,5 +1,5 @@
-import VehicleQuiz from './VehicleQuiz'
+import CrosswordGame from './CrosswordGame'
 
 export default function App() {
-  return <VehicleQuiz />
+  return <CrosswordGame />
 }
